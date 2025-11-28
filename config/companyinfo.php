@@ -12,7 +12,6 @@ return [
     |
     */
 
-<<<<<<< HEAD
     'name'        => env('COMPANY_NAME', 'Springbord'),
     'address'     => env(
         'COMPANY_ADDRESS',
@@ -28,7 +27,6 @@ return [
     'iec_code'    => env('COMPANY_IEC_CODE', 'IEC1234567'),
     'description' => env('COMPANY_DESCRIPTION', 'Invoice for professional services'),
     'sac_code'    => env('COMPANY_SAC_CODE', '9983'),
-=======
     'name'        => env('COMPANY_NAME', 'Springbord Systems Private Limited'),
     'address'     => env(
         'COMPANY_ADDRESS',
@@ -52,6 +50,5 @@ return [
     'description' => env('COMPANY_DESCRIPTION', 'Invoice for professional services'),
     'sac_code'    => env('COMPANY_SAC_CODE', '9983'),
     'gst_percent' => env('COMPANY_GST_PERCENT', 18),
->>>>>>> 9d9ed85b (for cleaner setup)
 
 ];

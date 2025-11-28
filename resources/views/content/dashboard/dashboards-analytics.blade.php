@@ -13,8 +13,6 @@
 @section('page-style')
     <!-- Page -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-advance.css') }}">
-<<<<<<< HEAD
-=======
     <style>
         .multiplemonthdropdown .choices__list--multiple .choices__item{
             color: #fff !important;
@@ -83,7 +81,6 @@
         }
 
     </style>
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection
 
 @section('vendor-script')
@@ -93,7 +90,6 @@
 @endsection
 
 @section('page-script')
-<<<<<<< HEAD
     <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
 @endsection
 
@@ -589,7 +585,6 @@ function generateAlternatingShades(base1, base2, count){
 let badges = document.querySelectorAll('.dynamic-badge');
 let colors = generateAlternatingShades('#E35205','#97999B', badges.length);
 badges.forEach((b,i)=> b.style.setProperty('background-color', colors[i], 'important'));
-=======
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
@@ -669,6 +664,5 @@ badges.forEach((b,i)=> b.style.setProperty('background-color', colors[i], 'impor
         const initialCatAttr = $('#projectSelect option:selected').attr('data-category') || $('#projectSelect').val() || 0;
         toggleProjectBlocks(initialCatAttr);
     });
->>>>>>> 9d9ed85b (for cleaner setup)
 </script>
 @endsection

@@ -12,14 +12,12 @@ use Illuminate\Support\Facades\DB;
 use App\Models\PricingMasterSkillLine;
 use App\Models\Note;
 use Illuminate\Support\Facades\Storage;
-<<<<<<< HEAD
 
 class PricingMasterController extends Controller
 {
    
     public function index(PricingMasterDataTable $dataTable) { 
          if ( !auth()->user()->can('view pricing master')) {
-=======
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PricingMasterApprovalRequest;
 use App\Mail\PricingMasterApprovedNotification;
@@ -30,7 +28,6 @@ class PricingMasterController extends Controller
     public function index(PricingMasterDataTable $dataTable)
     {
         if (!auth()->user()->can('view pricing master')) {
->>>>>>> 9d9ed85b (for cleaner setup)
             abort(403, 'Unauthorized action.');
         }
         return $dataTable->render('content.pricing-master.index');
@@ -38,11 +35,8 @@ class PricingMasterController extends Controller
 
     public function create()
     {
-<<<<<<< HEAD
         if ( !auth()->user()->can('create pricing master')) {
-=======
         if (!auth()->user()->can('create pricing master')) {
->>>>>>> 9d9ed85b (for cleaner setup)
             abort(403, 'Unauthorized action.');
         }
         $title = 'Create Pricing Master';
@@ -52,7 +46,6 @@ class PricingMasterController extends Controller
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
         if ( !auth()->user()->can('create pricing master')) {
             abort(403, 'Unauthorized action.');
         }
@@ -81,7 +74,6 @@ class PricingMasterController extends Controller
 
       return redirect()->route('pricing-master.index')->with('success', 'Pricing Master created successfully.');
     
-=======
         if (!auth()->user()->can('create pricing master')) {
             abort(403, 'Unauthorized action.');
         }
@@ -144,22 +136,18 @@ class PricingMasterController extends Controller
             );
         }
         return redirect()->route('pricing-master.index')->with('success', 'Pricing Master created successfully.');
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function edit($id)
     {
-<<<<<<< HEAD
         if ( !auth()->user()->can('edit pricing master')) {
             abort(403, 'Unauthorized action.');
         }
     
-=======
         if (!auth()->user()->can('edit pricing master')) {
             abort(403, 'Unauthorized action.');
         }
 
->>>>>>> 9d9ed85b (for cleaner setup)
         $data = PricingMaster::with('skillLines')->findOrFail(Crypt::decryptString($id));
 
         //$data = PricingMaster::findOrFail(Crypt::Crypt::decryptStringString($id));
@@ -171,7 +159,6 @@ class PricingMasterController extends Controller
 
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         if ( !auth()->user()->can('edit pricing master')) {
             abort(403, 'Unauthorized action.');
         }
@@ -200,7 +187,6 @@ class PricingMasterController extends Controller
                 $pricing->approved_by = null;
                 $pricing->approved_at = null;
                 $pricing->approval_note = null;
-=======
         if (!auth()->user()->can('edit pricing master')) {
             abort(403, 'Unauthorized action.');
         }
@@ -229,12 +215,10 @@ class PricingMasterController extends Controller
                 $pricing->approved_by     = null;
                 $pricing->approved_at     = null;
                 $pricing->approval_note   = null;
->>>>>>> 9d9ed85b (for cleaner setup)
             }
 
             $pricing->save();
 
-<<<<<<< HEAD
             $pricing->skillLines()->delete();
             if ($validated['pricing_type'] === 'custom') {
                 $this->syncSkillLines($pricing, $request->input('skills', []), $request->input('average_handling_time', []));
@@ -257,7 +241,6 @@ class PricingMasterController extends Controller
             ]);
          }
         
-=======
             // Reset and (re)sync skills only when Custom + Variable
             $pricing->skillLines()->delete();
             if (
@@ -287,20 +270,16 @@ class PricingMasterController extends Controller
                 'create_by'         => Auth::id()
             ]);
         }
->>>>>>> 9d9ed85b (for cleaner setup)
 
         return redirect()->route('pricing-master.index')->with('success', 'Pricing Master updated successfully.');
     }
 
-<<<<<<< HEAD
     public function destroy($id) 
     {
         if ( !auth()->user()->can('delete pricing master')) {
-=======
     public function destroy($id)
     {
         if (!auth()->user()->can('delete pricing master')) {
->>>>>>> 9d9ed85b (for cleaner setup)
             abort(403, 'Unauthorized action.');
         }
         $pricingMaster = PricingMaster::findOrFail(Crypt::decryptString($id));
@@ -332,7 +311,6 @@ class PricingMasterController extends Controller
 
     public function approve(Request $request, string $encryptedId)
     {
-<<<<<<< HEAD
         $id = Crypt::decryptString($encryptedId);
         $pricing = PricingMaster::findOrFail($id);
        
@@ -343,7 +321,6 @@ class PricingMasterController extends Controller
         // if ($pricing->approval_status !== 'pending') {
         //     return back()->with('warning', 'Record is not pending.');
         // }
-=======
 
         $request->validate(['approval_note' => 'required|string|max:2000']);
         $id = Crypt::decryptString($encryptedId);
@@ -353,7 +330,6 @@ class PricingMasterController extends Controller
             ->where('note_type', 3)
             ->first();
         
->>>>>>> 9d9ed85b (for cleaner setup)
         $pricing->rate =  $note->price;
         $pricing->approval_status = 'approved';
         $pricing->approved_by = Auth::id();
@@ -362,7 +338,6 @@ class PricingMasterController extends Controller
         $pricing->updated_by = Auth::id();
         $pricing->save();
         //dd($pricing);
-<<<<<<< HEAD
          if ($note) {
             $note->update([
                 'note_type'           => 1,
@@ -370,7 +345,6 @@ class PricingMasterController extends Controller
                 'description' => $request->approval_note ?? null
             ]);
          }
-=======
         if ($note) {
             $note->update([
                 'note_type'           => 1,
@@ -384,7 +358,6 @@ class PricingMasterController extends Controller
                 new PricingMasterApprovedNotification($pricing, $encryptedId)
             );
         }
->>>>>>> 9d9ed85b (for cleaner setup)
 
         return back()->with('success', 'Approved.');
     }
@@ -401,17 +374,12 @@ class PricingMasterController extends Controller
         }
 
         $pricing->approval_status = 'rejected';
-<<<<<<< HEAD
         $pricing->approved_by = Auth::id(); 
-=======
         $pricing->approved_by = Auth::id();
->>>>>>> 9d9ed85b (for cleaner setup)
         $pricing->approved_at = now();
         $pricing->approval_note = $request->input('approval_note');
         $pricing->updated_by = Auth::id();
         $pricing->save();
-<<<<<<< HEAD
-=======
         
         $creator = $pricing->creator()->first(); 
         if ($creator && !empty($creator->email)) {
@@ -419,7 +387,6 @@ class PricingMasterController extends Controller
                 new PricingMasterRejectedNotification($pricing, $encryptedId)
             );
         }
->>>>>>> 9d9ed85b (for cleaner setup)
 
         return back()->with('success', 'Rejected.');
     }
@@ -436,7 +403,6 @@ class PricingMasterController extends Controller
         return view('content.pricing-master.history', compact('pricing', 'activities'));
     }
 
-<<<<<<< HEAD
     private function validateForm(Request $request): array
     {
         return $request->validate([
@@ -468,7 +434,6 @@ class PricingMasterController extends Controller
             'skills.*'                => 'exclude_unless:pricing_type,custom|integer|distinct',
             'average_handling_time'   => 'exclude_unless:pricing_type,custom|array|min:1',
             'average_handling_time.*' => 'exclude_unless:pricing_type,custom|integer|min:1',
-=======
     // private function validateForm(Request $request): array
     // {
     //     return $request->validate([
@@ -538,7 +503,6 @@ class PricingMasterController extends Controller
             'skills.*'                => 'exclude_unless:pricing_type,custom|exclude_if:custom_pricing_type,fixed|integer|distinct|required',
             'average_handling_time'   => 'exclude_unless:pricing_type,custom|exclude_if:custom_pricing_type,fixed|array|min:1|required',
             'average_handling_time.*' => 'exclude_unless:pricing_type,custom|exclude_if:custom_pricing_type,fixed|integer|min:1|required',
->>>>>>> 9d9ed85b (for cleaner setup)
         ]);
     }
 
@@ -564,7 +528,6 @@ class PricingMasterController extends Controller
     {
         $id =  Crypt::decryptString($encryptedId);
         $note = Note::where('pricing_master_id', $id)
-<<<<<<< HEAD
         ->where('note_type', 3) 
         ->first();
       
@@ -591,7 +554,6 @@ class PricingMasterController extends Controller
         ]);
     }
 
-=======
             ->where('note_type', 3)
             ->first();
 
@@ -739,5 +701,4 @@ function findPricingWithComputed(int $id) {
 }
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
 }

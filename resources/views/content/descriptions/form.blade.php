@@ -27,7 +27,6 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-<<<<<<< HEAD
                             <select name="status" id="status" class="form-select {{ $errors->has('status') ? 'is-invalid' : '' }}">
                                 <option value="">Select</option>
                                 <option value="1" {{ old('status', $data->status ?? '') == '1' ? 'selected' : '' }}>Active</option>
@@ -35,7 +34,6 @@
                             </select>
                             @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
-=======
 
                             @php
                                 // Default to 1 (Active) when creating; keep old() or $data->status on edit/validation error
@@ -50,7 +48,6 @@
                             @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
 
                     <div class="text-end">

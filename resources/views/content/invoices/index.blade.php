@@ -9,31 +9,25 @@
 
 @section('vendor-script')
 {{-- jQuery MUST be before select2/datepicker --}}
-<<<<<<< HEAD
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
 {{-- If using Bootstrap modal JS and you’re on BS5, make sure bootstrap.bundle.js is included in your layout --}}
-=======
 <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection
 
 @section('content')
 <div class="card mb-4">
   <div class="card-header d-flex align-items-center justify-content-between">
-<<<<<<< HEAD
     <h4 class="mb-0">Generate Invoice</h4>
   </div>
-=======
   <h4 class="mb-0">Generate Invoice</h4>
   <a href="{{ route('invoices.general') }}" class="btn btn-primary">
     <i class="ti ti-adjustments-horizontal me-1"></i> Submitted Invoice
   </a>
 </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
   <div class="card-body">
     <form id="invoicePicker" class="mb-3" novalidate>
       @csrf
@@ -49,11 +43,8 @@
         </div>
         <div class="col-md-3">
           <label class="form-label mb-1">Billing Month</label>
-<<<<<<< HEAD
           <input type="text" name="month" id="billingMonth" class="form-control" placeholder="YYYY-MM" required>
-=======
           <input type="text" name="month" id="billingMonth" class="form-control" placeholder="MM-YYYY" required>
->>>>>>> 9d9ed85b (for cleaner setup)
         </div>
         <div class="col-md-3">
           <button type="submit" class="btn btn-primary w-100" id="btnLoad">Load</button>
@@ -75,11 +66,8 @@
             <th>Tenant</th>
             <th>Delivered Date</th>
             <th>Billing Month</th>
-<<<<<<< HEAD
-=======
             <th>Status</th>
             <th>Notes</th> <!-- 👈 NEW -->
->>>>>>> 9d9ed85b (for cleaner setup)
             <th class="text-end">Rate</th>
             <th class="text-end">Value</th>
           </tr>
@@ -139,27 +127,21 @@
     try {
       var $m = $('#billingMonth');
       $m.datepicker({
-<<<<<<< HEAD
         format: 'yyyy-mm',
-=======
         format: 'mm-yyyy',       // MM-YYYY
->>>>>>> 9d9ed85b (for cleaner setup)
         autoclose: true,
         minViewMode: 1,
         endDate: new Date(),
         clearBtn: true
       });
       if (!$m.val()) {
-<<<<<<< HEAD
         var d = new Date(),
           m = String(d.getMonth() + 1).padStart(2, '0');
         $m.val(d.getFullYear() + '-' + m);
-=======
         var d = new Date();
         var mm = String(d.getMonth() + 1).padStart(2, '0');
         // DEFAULT AS MM-YYYY (fixed)
         $m.val(mm + '-' + d.getFullYear());
->>>>>>> 9d9ed85b (for cleaner setup)
       }
     } catch (e) {}
 
@@ -168,11 +150,8 @@
       e.preventDefault();
 
       const pid = $('#projectSelect').val();
-<<<<<<< HEAD
       const month = $('#billingMonth').val();
-=======
       const month = $('#billingMonth').val(); // already MM-YYYY
->>>>>>> 9d9ed85b (for cleaner setup)
       if (!pid || !month) {
         alert('Select project and month');
         return;
@@ -192,7 +171,6 @@
           const sym = (res.currency && res.currency.symbol) ? res.currency.symbol + ' ' : '';
 
           if (!res.data || !res.data.length) {
-<<<<<<< HEAD
             tbody.append('<tr><td colspan="8" class="text-center text-muted">No records found</td></tr>');
             tfoot.empty();
             return;
@@ -211,7 +189,6 @@
               '<td>' + nn(r.billing_month, '-') + '</td>' +
               '<td class="text-end">' + sym + (parseFloat(r.rate || 0).toFixed(2)) + '</td>' +
               '<td class="text-end">' + sym + (parseFloat(r.value || 0).toFixed(2)) + '</td>' +
-=======
            tbody.append('<tr><td colspan="10" class="text-center text-muted">No records found</td></tr>');
             tfoot.empty();
             return;
@@ -271,15 +248,11 @@
                 '<td>' + notesText + '</td>' +                 // 👈 NEW notes cell
                 '<td class="text-end">' + sym + (parseFloat(r.rate || 0).toFixed(2)) + '</td>' +
                 '<td class="text-end">' + sym + (parseFloat(r.value || 0).toFixed(2)) + '</td>' +
->>>>>>> 9d9ed85b (for cleaner setup)
               '</tr>'
             );
           });
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
           // Gross total footer (if present)
           const gross = (res.totals && typeof res.totals.gross !== 'undefined') ?
             parseFloat(res.totals.gross || 0) :
@@ -287,13 +260,10 @@
 
           tfoot.append(
             '<tr>' +
-<<<<<<< HEAD
             '<th colspan="7" class="text-end">Gross Total</th>' +
             '<th class="text-end">' + sym + gross.toFixed(2) + '</th>' +
-=======
               '<th colspan="9" class="text-end">Gross Total</th>' + // was 8, now 9
               '<th class="text-end">' + sym + gross.toFixed(2) + '</th>' +
->>>>>>> 9d9ed85b (for cleaner setup)
             '</tr>'
           );
 
@@ -309,7 +279,6 @@
     });
 
     function rebindSelection() {
-<<<<<<< HEAD
       const $table = $('#resultsTable');
       const $selectAll = $('#selectAll');
       const $checks = $table.find('.row-check');
@@ -333,7 +302,6 @@
 
       $('#btnClear').off('click').on('click', function() {
         $checks.prop('checked', false);
-=======
       const $table      = $('#resultsTable');
       const $selectAll  = $('#selectAll');
       const $allChecks  = $table.find('.row-check');          // includes disabled
@@ -367,7 +335,6 @@
       // Clear only affects enabled
       $('#btnClear').off('click').on('click', function() {
         $enabled.prop('checked', false);
->>>>>>> 9d9ed85b (for cleaner setup)
         update();
       });
 
@@ -376,14 +343,11 @@
 
     // initial
     rebindSelection();
-<<<<<<< HEAD
 
     // OPTIONAL: wire preview/approve/reject later
   });
-=======
   });
 
->>>>>>> 9d9ed85b (for cleaner setup)
   $('#btnPreview').on('click', function() {
     const ids = $('#resultsTable .row-check:checked').map(function() {
       return this.value;
@@ -394,11 +358,8 @@
     }
 
     const pid = $('#projectSelect').val();
-<<<<<<< HEAD
     const month = $('#billingMonth').val();
-=======
     const month = $('#billingMonth').val(); // MM-YYYY
->>>>>>> 9d9ed85b (for cleaner setup)
 
     $.post('{{route('invoices.previewHtml')}}', {
           project_id: pid,
@@ -415,10 +376,8 @@
         alert('Failed to load preview');
       });
   });
-<<<<<<< HEAD
 </script>
 @endsection
-=======
 
   // Helper to read currently selected row ids
   function getSelectedIntakeIds() {
@@ -505,4 +464,3 @@
   });
 </script>
 @endsection
->>>>>>> 9d9ed85b (for cleaner setup)

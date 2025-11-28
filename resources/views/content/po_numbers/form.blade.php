@@ -89,7 +89,6 @@
         </div>
 
         {{-- Status --}}
-<<<<<<< HEAD
         <div class="col-md-3">
           <label class="form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-select @error('status') is-invalid @enderror" required>
@@ -98,7 +97,6 @@
           </select>
           @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
         </div>
-=======
        <div class="col-md-3">
         <label class="form-label">Status <span class="text-danger">*</span></label>
 
@@ -115,7 +113,6 @@
         @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
       </div>
 
       <div class="text-end mt-3">

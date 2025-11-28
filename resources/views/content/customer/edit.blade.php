@@ -75,10 +75,7 @@
                                     </span>
                                 @enderror
                             </div>
-<<<<<<< HEAD
-=======
                             
->>>>>>> 9d9ed85b (for cleaner setup)
                             <div class="mb-3 custom-validation col-md-6 col-lg-6">
                                 <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                                 <select name="status" id="status" class="form-control form-select {{ $errors->has('status') ? 'is-invalid' : '' }}">

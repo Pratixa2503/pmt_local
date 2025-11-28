@@ -7,12 +7,9 @@ use App\Services\ApiService;
 use App\Models\Project;
 use App\Models\ProjectStatus;
 use App\Models\Company;
-<<<<<<< HEAD
 
-=======
 use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Log;
->>>>>>> 9d9ed85b (for cleaner setup)
 
 class HomeController extends Controller
 {
@@ -20,11 +17,8 @@ class HomeController extends Controller
 
     public function __construct(ApiService $api)
     {
-<<<<<<< HEAD
         $this->middleware('auth');
         // Injected ApiService instance from the container
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
         $this->api = $api;
     }
 
@@ -35,7 +29,6 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request)
-<<<<<<< HEAD
     {
         $year   = $request->query('year', date('Y'));
         $userId = $request->query('user_id', auth()->id());
@@ -76,7 +69,6 @@ class HomeController extends Controller
             'error'
         ));
     }
-=======
 {
     $error = null;
     $totalProjects = Project::count();
@@ -100,5 +92,4 @@ class HomeController extends Controller
     ));
 }
 
->>>>>>> 9d9ed85b (for cleaner setup)
 }

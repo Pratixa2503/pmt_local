@@ -2,18 +2,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 
 class ProjectIntake extends Model
 {
    protected $table = 'project_intakes';
-=======
 use Illuminate\Database\Eloquent\SoftDeletes;
 class ProjectIntake extends Model
 {
    
     protected $table = 'project_intakes';
->>>>>>> 9d9ed85b (for cleaner setup)
    
     protected $fillable = [
         'project_manager',
@@ -58,9 +55,7 @@ class ProjectIntake extends Model
         'language_code',
         'non_english_pages',
         'invoice_format_id',
-<<<<<<< HEAD
     ];
-=======
         'suite_id','review_start_date', 'sense_check_start_date','abstract_notified_on','review_notified_on','sense_notified_on'
     ];
 
@@ -68,5 +63,4 @@ class ProjectIntake extends Model
     {
         return $this->hasMany(IntakeQuery::class, 'intake_id');
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

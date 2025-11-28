@@ -28,7 +28,6 @@
 @endphp
 
 <div class="row">
-<<<<<<< HEAD
   <div class="col-xl-12 col-lg-11 mx-auto">
     <div class="card shadow-sm">
       <div class="card-header sticky-top-lite d-flex justify-content-between align-items-center">
@@ -77,7 +76,6 @@
       Reset
     </a>
   </div>
-=======
   <div class="col-12 col-xxl-11 mx-auto">
     <div class="card shadow-sm">
 
@@ -181,7 +179,6 @@
 </div>
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
 </form>
 
 
@@ -238,11 +235,8 @@
                   <thead class="table-light">
                     <tr>
                       <th>User</th>
-<<<<<<< HEAD
-=======
                       <th>Start Time</th>
                       <th>End Time</th>
->>>>>>> 9d9ed85b (for cleaner setup)
                       <th>Main Task</th>
                       <th>Sub Task</th>
                       <th class="text-end">Time (hh:mm:ss)</th>
@@ -252,11 +246,8 @@
                     @forelse($todayRows as $r)
                       <tr>
                         <td>{{ $r->user_name }}</td>
-<<<<<<< HEAD
-=======
                         <td>{{ \Carbon\Carbon::parse($r->start_time)->format('m-d-Y H:i:s') }}</td>
                         <td>{{ \Carbon\Carbon::parse($r->end_time)->format('m-d-Y H:i:s') }}</td>
->>>>>>> 9d9ed85b (for cleaner setup)
                         <td>{{ $r->main_task }}</td>
                         <td>{{ $r->sub_task }}</td>
                         <td class="text-end">{{ $hms((int)$r->seconds_today) }}</td>
@@ -268,11 +259,8 @@
                   @if($todayRows->count())
                   <tfoot>
                     <tr class="table-light">
-<<<<<<< HEAD
                       <th colspan="3" class="text-end">Total</th>
-=======
                       <th colspan="5" class="text-end">Total</th>
->>>>>>> 9d9ed85b (for cleaner setup)
                       <th class="text-end">{{ $hms((int)$secondsToday) }}</th>
                     </tr>
                   </tfoot>

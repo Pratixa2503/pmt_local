@@ -26,7 +26,6 @@
 
                         <div class="mb-3 custom-validation col-md-6">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-<<<<<<< HEAD
                             <select name="status" id="status" class="form-control form-select @error('status') is-invalid @enderror">
                                 <option value="">Select Status</option>
                                 <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
@@ -36,7 +35,6 @@
                                 <span class="invalid-feedback d-block">{{ $message }}</span>
                             @enderror
                         </div>
-=======
 
                             @php
                                 // Default to Active (1) when creating; keep old()/model value on edit/validation error
@@ -54,7 +52,6 @@
                             @enderror
                             </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
 
                     <div class="text-end">

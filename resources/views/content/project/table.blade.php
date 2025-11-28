@@ -1,14 +1,10 @@
-<<<<<<< HEAD
 {{-- resources/views/project-intake/form.blade.php (fixed header & sequence) --}}
-=======
 {{-- resources/views/project-intake/form.blade.php --}}
->>>>>>> 9d9ed85b (for cleaner setup)
 @extends('layouts/layoutMaster')
 
 @section('title', $title)
 
 @section('vendor-style')
-<<<<<<< HEAD
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
 <style>
@@ -625,7 +621,6 @@ return $model ? data_get($model, $modelKey) : '';
 
 @endphp
 
-=======
   <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
   <style>
@@ -868,7 +863,6 @@ return $model ? data_get($model, $modelKey) : '';
   </div>
 @endif
 
->>>>>>> 9d9ed85b (for cleaner setup)
 <div class="row">
   <div class="col-xxl">
     <div class="card mb-4">
@@ -877,29 +871,23 @@ return $model ? data_get($model, $modelKey) : '';
           {{ $title }} ({{ $project_info->project_name }}) ({{ $project_info->customer_name }})
         </h4>
         @if($canAdd)
-<<<<<<< HEAD
         <div><button type="button" id="btn-add-row" class="btn btn-primary">+ Add Row</button></div>
         @endif
       </div>
 
       <div class="card-body">
-=======
           <div><button type="button" id="btn-add-row" class="btn btn-primary">+ Add Row</button></div>
         @endif
       </div>
 
       <div class="card-body ">
         {{-- Filters --}}
->>>>>>> 9d9ed85b (for cleaner setup)
         <form id="filtersForm" method="GET" action="{{ url()->current() }}" class="mb-3">
           <div class="card border-0 shadow-sm">
             <div class="card-header orange-header bg-light d-flex align-items-center justify-content-between">
               <div class="d-flex align-items-center gap-2">
                 <h5 class="mb-0">Filters</h5>
-<<<<<<< HEAD
                 {{-- Active filters badges (auto-render if present) --}}
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
                 <div class="d-none d-md-flex flex-wrap gap-2 ms-2" id="activeFiltersBadges"></div>
               </div>
               <div class="d-flex align-items-center gap-2">
@@ -912,19 +900,15 @@ return $model ? data_get($model, $modelKey) : '';
             </div>
 
             <div class="card-body">
-<<<<<<< HEAD
               {{-- Top row: the most used filters --}}
               <div class="row g-3">
                 {{-- Property Manager --}}
-=======
               <div class="row g-3">
->>>>>>> 9d9ed85b (for cleaner setup)
                 <div class="col-12 col-md-3">
                   <label class="form-label mb-1">Property Manager</label>
                   <select name="filter[property_manager_id]" class="form-select select2">
                     <option value="">All</option>
                     @foreach(($project_managers ?? []) as $u)
-<<<<<<< HEAD
                     @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                     <option value="{{ $u->id }}" @selected(request('filter.property_manager_id')==$u->id)>{{ $name }}</option>
                     @endforeach
@@ -932,64 +916,52 @@ return $model ? data_get($model, $modelKey) : '';
                 </div>
 
                 {{-- Status --}}
-=======
                       @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                       <option value="{{ $u->id }}" @selected(request('filter.property_manager_id')==$u->id)>{{ $name }}</option>
                     @endforeach
                   </select>
                 </div>
->>>>>>> 9d9ed85b (for cleaner setup)
                 <div class="col-12 col-md-3">
                   <label class="form-label mb-1">Status</label>
                   <select name="filter[status_id]" class="form-select select2">
                     <option value="">All</option>
                     @foreach(($masters['status'] ?? []) as $item)
-<<<<<<< HEAD
                     <option value="{{ $item->id }}" @selected(request('filter.status_id')==$item->id)>{{ $item->name }}</option>
                     @endforeach
                   </select>
                 </div>
 
                 {{-- Type of Work --}}
-=======
                       <option value="{{ $item->id }}" @selected(request('filter.status_id')==$item->id)>{{ $item->name }}</option>
                     @endforeach
                   </select>
                 </div>
->>>>>>> 9d9ed85b (for cleaner setup)
                 <div class="col-12 col-md-3">
                   <label class="form-label mb-1">Type of Work</label>
                   <select name="filter[type_of_work_id]" class="form-select select2">
                     <option value="">All</option>
                     @foreach(($masters['work_types'] ?? []) as $item)
-<<<<<<< HEAD
                     <option value="{{ $item->id }}" @selected(request('filter.type_of_work_id')==$item->id)>{{ $item->name }}</option>
                     @endforeach
                   </select>
                 </div>
 
                 {{-- Client-wise (Customer) --}}
-=======
                       <option value="{{ $item->id }}" @selected(request('filter.type_of_work_id')==$item->id)>{{ $item->name }}</option>
                     @endforeach
                   </select>
                 </div>
->>>>>>> 9d9ed85b (for cleaner setup)
                 <div class="col-12 col-md-3">
                   <label class="form-label mb-1">Client</label>
                   <select name="filter[customer_id]" class="form-select select2">
                     <option value="">All</option>
                     @foreach(($customers ?? []) as $c)
-<<<<<<< HEAD
                     <option value="{{ $c->id }}" @selected(request('filter.customer_id')==$c->id)>{{ $c->name }}</option>
-=======
                       <option value="{{ $c->id }}" @selected(request('filter.customer_id')==$c->id)>{{ $c->name }}</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                     @endforeach
                   </select>
                 </div>
 
-<<<<<<< HEAD
                 {{-- Received Date (range) --}}
                 <div class="col-12 col-md-3">
                   <label class="form-label mb-1">Received Date (from)</label>
@@ -1020,7 +992,6 @@ return $model ? data_get($model, $modelKey) : '';
                 <div class="border-top pt-3">
                   <div class="row g-3">
                     {{-- Production Details: Abstractor / Reviewer / Sense Check --}}
-=======
                 {{-- Dates in MM-DD-YYYY --}}
                 <div class="col-12 col-md-3">
                   <label class="form-label mb-1">Received Date (from)</label>
@@ -1043,19 +1014,15 @@ return $model ? data_get($model, $modelKey) : '';
               <div class="collapse mt-3" id="moreFilters">
                 <div class="border-top pt-3">
                   <div class="row g-3">
->>>>>>> 9d9ed85b (for cleaner setup)
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Abstractor</label>
                       <select name="filter[abstractor_id]" class="form-select select2">
                         <option value="">All</option>
                         @foreach(($abstractor_users ?? []) as $u)
-<<<<<<< HEAD
                         @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                         <option value="{{ $u->id }}" @selected(request('filter.abstractor_id')==$u->id)>{{ $name }}</option>
-=======
                           @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                           <option value="{{ $u->id }}" @selected(request('filter.abstractor_id')==$u->id)>{{ $name }}</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                         @endforeach
                       </select>
                     </div>
@@ -1064,13 +1031,10 @@ return $model ? data_get($model, $modelKey) : '';
                       <select name="filter[reviewer_id]" class="form-select select2">
                         <option value="">All</option>
                         @foreach(($reviewer ?? []) as $u)
-<<<<<<< HEAD
                         @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                         <option value="{{ $u->id }}" @selected(request('filter.reviewer_id')==$u->id)>{{ $name }}</option>
-=======
                           @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                           <option value="{{ $u->id }}" @selected(request('filter.reviewer_id')==$u->id)>{{ $name }}</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                         @endforeach
                       </select>
                     </div>
@@ -1079,36 +1043,27 @@ return $model ? data_get($model, $modelKey) : '';
                       <select name="filter[sense_check_ddr_id]" class="form-select select2">
                         <option value="">All</option>
                         @foreach(($sense_check ?? []) as $u)
-<<<<<<< HEAD
                         @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                         <option value="{{ $u->id }}" @selected(request('filter.sense_check_ddr_id')==$u->id)>{{ $name }}</option>
-=======
                           @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                           <option value="{{ $u->id }}" @selected(request('filter.sense_check_ddr_id')==$u->id)>{{ $name }}</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                         @endforeach
                       </select>
                     </div>
 
-<<<<<<< HEAD
                     {{-- Member-wise: Role + Member --}}
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Member-wise (Role)</label>
                       <select name="filter[member_role]" class="form-select">
                         <option value="">All</option>
-<<<<<<< HEAD
                         <option value="abstractor" @selected(request('filter.member_role')==='abstractor' )>Abstractor</option>
                         <option value="reviewer" @selected(request('filter.member_role')==='reviewer' )>Reviewer</option>
                         <option value="sense_check" @selected(request('filter.member_role')==='sense_check' )>Sense Check / DDR</option>
                         <option value="property_manager" @selected(request('filter.member_role')==='property_manager' )>Property Manager</option>
-=======
                         <option value="abstractor" @selected(request('filter.member_role')==='abstractor')>Abstractor</option>
                         <option value="reviewer" @selected(request('filter.member_role')==='reviewer')>Reviewer</option>
                         <option value="sense_check" @selected(request('filter.member_role')==='sense_check')>Sense Check / DDR</option>
                         <option value="property_manager" @selected(request('filter.member_role')==='property_manager')>Property Manager</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                       </select>
                     </div>
                     <div class="col-12 col-md-4">
@@ -1116,18 +1071,14 @@ return $model ? data_get($model, $modelKey) : '';
                       <select name="filter[member_user_id]" class="form-select select2">
                         <option value="">All</option>
                         @foreach(($all_users ?? []) as $u)
-<<<<<<< HEAD
                         @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                         <option value="{{ $u->id }}" @selected(request('filter.member_user_id')==$u->id)>{{ $name }}</option>
-=======
                           @php $name = trim(($u->first_name ?? '').' '.($u->last_name ?? '')); @endphp
                           <option value="{{ $u->id }}" @selected(request('filter.member_user_id')==$u->id)>{{ $name }}</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                         @endforeach
                       </select>
                     </div>
 
-<<<<<<< HEAD
                     {{-- Actual Delivery Date (range) --}}
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Actual Delivery Date (from)</label>
@@ -1145,7 +1096,6 @@ return $model ? data_get($model, $modelKey) : '';
                       <label class="form-label mb-1">Billing Month</label>
                       <input type="text" name="filter[billing_month]" class="form-control js-month ym" placeholder="YYYY-MM"
                         value="{{ request('filter.billing_month') }}">
-=======
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Actual Delivery Date (from)</label>
                       <input type="text" name="filter[actual_delivered_date_from]" class="form-control js-date ymd" placeholder="MM-DD-YYYY" value="{{ fmtMDY(request('filter.actual_delivered_date_from')) }}">
@@ -1158,36 +1108,26 @@ return $model ? data_get($model, $modelKey) : '';
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Billing Month</label>
                       <input type="text" name="filter[billing_month]" class="form-control js-month my" placeholder="MM-YYYY" value="{{ fmtMY(request('filter.billing_month')) }}">
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Invoice Method</label>
                       <select name="filter[invoice_format_id]" class="form-select select2">
                         <option value="">All</option>
                         @foreach(($masters['invoice_formats'] ?? []) as $item)
-<<<<<<< HEAD
                         <option value="{{ $item->id }}" @selected(request('filter.invoice_format_id')==$item->id)>{{ $item->name }}</option>
-=======
                           <option value="{{ $item->id }}" @selected(request('filter.invoice_format_id')==$item->id)>{{ $item->name }}</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                         @endforeach
                       </select>
                     </div>
 
-<<<<<<< HEAD
                     {{-- Customer Feedback --}}
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Customer Feedback (Category)</label>
                       <select name="filter[fb_category_id]" class="form-select select2">
                         <option value="">All</option>
                         @foreach(($masters['feedback_categories'] ?? []) as $item)
-<<<<<<< HEAD
                         <option value="{{ $item->id }}" @selected(request('filter.fb_category_id')==$item->id)>{{ $item->name }}</option>
-=======
                           <option value="{{ $item->id }}" @selected(request('filter.fb_category_id')==$item->id)>{{ $item->name }}</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                         @endforeach
                       </select>
                     </div>
@@ -1195,7 +1135,6 @@ return $model ? data_get($model, $modelKey) : '';
                       <label class="form-label mb-1">Has Feedback?</label>
                       <select name="filter[has_feedback]" class="form-select">
                         <option value="">All</option>
-<<<<<<< HEAD
                         <option value="1" @selected(request('filter.has_feedback')==='1' )>Yes</option>
                         <option value="0" @selected(request('filter.has_feedback')==='0' )>No</option>
                       </select>
@@ -1211,7 +1150,6 @@ return $model ? data_get($model, $modelKey) : '';
                       <label class="form-label mb-1">Feedback received date (to)</label>
                       <input type="text" name="filter[feedback_received_date_to]" class="form-control js-date ymd" placeholder="YYYY-MM-DD"
                         value="{{ request('filter.feedback_received_date_to') }}">
-=======
                         <option value="1" @selected(request('filter.has_feedback')==='1')>Yes</option>
                         <option value="0" @selected(request('filter.has_feedback')==='0')>No</option>
                       </select>
@@ -1224,7 +1162,6 @@ return $model ? data_get($model, $modelKey) : '';
                     <div class="col-12 col-md-4">
                       <label class="form-label mb-1">Feedback received date (to)</label>
                       <input type="text" name="filter[feedback_received_date_to]" class="form-control js-date ymd" placeholder="MM-DD-YYYY" value="{{ fmtMDY(request('filter.feedback_received_date_to')) }}">
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
                   </div>
                 </div>
@@ -1232,13 +1169,11 @@ return $model ? data_get($model, $modelKey) : '';
             </div>
           </div>
         </form>
-<<<<<<< HEAD
         <form id="excelForm" method="POST"
           action="{{ $type == 'edit' ? route('project.file.update') : route('project.file.store') }}">
           @csrf
           @if($type == 'edit') @method('PUT') @endif
           @isset($parentId) <input type="hidden" name="parent_id" value="{{ $parentId }}"> @endisset
-=======
 
         {{-- Excel-like form --}}
         <form id="excelForm" method="POST" action="{{ $type == 'edit' ? route('project.file.update') : route('project.file.store') }}" class="property-table">
@@ -1253,13 +1188,11 @@ return $model ? data_get($model, $modelKey) : '';
           @endphp
 
           <input type="hidden" name="has_active_filters" value="{{ $filtersActive ? 1 : 0 }}">
->>>>>>> 9d9ed85b (for cleaner setup)
 
           <div class="table-responsive">
             <table class="table table-bordered table-sm align-middle excel-table">
               <thead class="table-light">
                 <tr>
-<<<<<<< HEAD
                   @if($canPrimary)
                   <th class="sticky">#</th>
                   {{-- <th class="sticky">Client Name</th>
@@ -1323,7 +1256,6 @@ return $model ? data_get($model, $modelKey) : '';
 
                   @if($canRemove)
                   <th class="sticky excel-actions">Actions</th>
-=======
                   @if($canViewPrimary)
                     <th class="sticky">#</th>
                     <th class="sticky">Property ID</th>
@@ -1383,14 +1315,12 @@ return $model ? data_get($model, $modelKey) : '';
 
                   @if($canRemove)
                     <th class="sticky excel-actions">Actions</th>
->>>>>>> 9d9ed85b (for cleaner setup)
                   @endif
                 </tr>
               </thead>
 
               <tbody id="excel-tbody">
                 @for($i=0; $i < $rowCount; $i++)
-<<<<<<< HEAD
                   @php $model=($rows[$i] ?? null); @endphp
                   <tr>
                   {{-- Always include the hidden id for update semantics --}}
@@ -1659,7 +1589,6 @@ return $model ? data_get($model, $modelKey) : '';
                   @endif
                   </tr>
                   @endfor
-=======
                   @php $model = ($rows[$i] ?? null); @endphp
                   <tr>
                     <input type="hidden" name="intake_id[]" value="{{ $model->id ?? '' }}" />
@@ -1886,13 +1815,11 @@ return $model ? data_get($model, $modelKey) : '';
                     @endif
                   </tr>
                 @endfor
->>>>>>> 9d9ed85b (for cleaner setup)
               </tbody>
             </table>
           </div>
 
           <div class="text-end mt-3">
-<<<<<<< HEAD
             <a href="{{ $backUrl ?? '#' }}" class="btn btn-secondary">
               <i class="ti ti-chevron-left me-sm-1 me-0 mb-1"></i>Back
             </a>
@@ -1903,7 +1830,6 @@ return $model ? data_get($model, $modelKey) : '';
               <i class="ti ti-file-upload ms-1 mb-1"></i>
             </button>
 
-=======
             <a href="/projects" class="btn btn-secondary">
               <i class="ti ti-chevron-left me-sm-1 me-0 mb-1"></i>Back
             </a>
@@ -1911,7 +1837,6 @@ return $model ? data_get($model, $modelKey) : '';
               {{ $type == 'create' ? 'Save' : 'Update' }}
               <i class="ti ti-file-upload ms-1 mb-1"></i>
             </button>
->>>>>>> 9d9ed85b (for cleaner setup)
           </div>
         </form>
       </div>
@@ -1919,7 +1844,6 @@ return $model ? data_get($model, $modelKey) : '';
   </div>
 </div>
 
-<<<<<<< HEAD
 {{-- ========= Template for new rows ========= --}}
 <template id="row-template">
   <tr>
@@ -2117,7 +2041,6 @@ return $model ? data_get($model, $modelKey) : '';
 </template>
 
 @endsection
-=======
 {{-- ===== Modal: Queries Repeater (separate table) ===== --}}
 <div class="modal fade" id="queriesModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -3059,4 +2982,3 @@ $(function () {
 });
 </script>
 @endsection
->>>>>>> 9d9ed85b (for cleaner setup)

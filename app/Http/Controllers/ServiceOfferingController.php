@@ -8,12 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\ServiceOffering;
 use App\DataTables\ServiceOfferingDataTable;
 use Illuminate\Support\Facades\Crypt;
-<<<<<<< HEAD
 
-=======
 use App\Models\Department;
 use Illuminate\Support\Facades\DB;
->>>>>>> 9d9ed85b (for cleaner setup)
 class ServiceOfferingController extends Controller
 {
     public function index(ServiceOfferingDataTable $dataTable)
@@ -28,9 +25,7 @@ class ServiceOfferingController extends Controller
     {
         $title = "Create Service Offering";
         $type = "create";
-<<<<<<< HEAD
         return view('content.service-offerings.form',compact('title','type'));
-=======
         $department = Department::query()
         ->leftJoin('industry_verticals as iv', 'iv.id', '=', 'departments.industry_verticals_id')
         ->where('departments.status', 1)
@@ -44,12 +39,10 @@ class ServiceOfferingController extends Controller
         ->orderBy('name')
         ->get();
         return view('content.service-offerings.form',compact('title','type','department'));
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
         $request->validate([
             'name' => 'required|unique:service_offerings,name',
             'status' => 'required|boolean'
@@ -60,7 +53,6 @@ class ServiceOfferingController extends Controller
         return redirect()->route('service-offerings.index')->with('success', 'Service Offering created successfully.');
     }
 
-=======
         $validated = $request->validate([
             'name'          => [
                 'required',
@@ -91,15 +83,12 @@ class ServiceOfferingController extends Controller
     }
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
     public function edit($id)
     {
         $title = "Edit Service Offering";
         $type = "edit";
         $data = ServiceOffering::findOrFail(Crypt::decryptString($id));
-<<<<<<< HEAD
         return view('content.service-offerings.form', compact('data','title','type'));
-=======
         $department = Department::query()
         ->leftJoin('industry_verticals as iv', 'iv.id', '=', 'departments.industry_verticals_id')
         ->where('departments.status', 1)
@@ -113,13 +102,11 @@ class ServiceOfferingController extends Controller
         ->orderBy('name')
         ->get();
         return view('content.service-offerings.form', compact('data','title','type','department'));
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function update(Request $request, $id)
     {
         $id = Crypt::decryptString($id);
-<<<<<<< HEAD
 
         $request->validate([
             'name' => 'required|unique:service_offerings,name,'.$id,
@@ -131,7 +118,6 @@ class ServiceOfferingController extends Controller
         return redirect()->route('service-offerings.index')->with('success', 'Service Offering updated successfully.');
     }
 
-=======
         $service = ServiceOffering::findOrFail($id);
 
         $validated = $request->validate([
@@ -160,7 +146,6 @@ class ServiceOfferingController extends Controller
     }
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
     public function destroy($id)
     {
         ServiceOffering::findOrFail(Crypt::decryptString($id))->delete();
@@ -172,8 +157,6 @@ class ServiceOfferingController extends Controller
         ]);
         //return redirect()->route('service-offerings.index')->with('success', 'Service Offering deleted successfully.');
     }
-<<<<<<< HEAD
-=======
 
     public function byDepartment($department)
     {
@@ -191,5 +174,4 @@ class ServiceOfferingController extends Controller
 
         return response()->json(['data' => $items]);
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

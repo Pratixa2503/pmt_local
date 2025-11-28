@@ -45,12 +45,10 @@
 
                             <div class="mb-3 custom-validation col-md-6 col-lg-6">
                                 <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-<<<<<<< HEAD
                                 <select name="status" id="status" class="form-control form-select {{ $errors->has('status') ? 'is-invalid' : '' }}">
                                     <option value="">Select Status</option>
                                     <option value="1" {{ old('status', $data->status ?? '') == '1' ? 'selected' : '' }}>Active</option>
                                     <option value="0" {{ old('status', $data->status ?? '') == '0' ? 'selected' : '' }}>Deactive</option>
-=======
                               @php
                                 $statusVal = (string) old('status', $data->status ?? 1);
                                 @endphp
@@ -59,7 +57,6 @@
                                     <option value="">Select Status</option>
                                     <option value="1" {{ $statusVal === '1' ? 'selected' : '' }}>Active</option>
                                     <option value="0" {{ $statusVal === '0' ? 'selected' : '' }}>Inactive</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                                 </select>
                                 @error('status')
                                     <span class="invalid-feedback d-block" role="alert">

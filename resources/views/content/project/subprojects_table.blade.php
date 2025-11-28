@@ -7,11 +7,8 @@
         <tr>
           <th>Subproject</th>
           <th>Customer</th>
-<<<<<<< HEAD
           <th>Type</th>
-=======
           <!-- <th>Type</th> -->
->>>>>>> 9d9ed85b (for cleaner setup)
           <th>Status</th>
           <th class="text-center">Actions</th>
         </tr>
@@ -22,11 +19,9 @@
           <tr>
             <td>{{ $sp->project_name }}</td>
             <td>{{ $sp->customer_name }}</td>
-<<<<<<< HEAD
             <td>{{ $sp->project_type_name }}</td>
             <td>{{ $sp->status_name ?? '-' }}</td>
             <td class="text-center">
-=======
             <!-- <td>{{ $sp->project_type_name }}</td> -->
             <td>{{ $sp->status_name ?? '-' }}</td>
             <td class="text-center">
@@ -44,7 +39,6 @@
                
               @endif
 
->>>>>>> 9d9ed85b (for cleaner setup)
               @can('create project')
                   <a href="{{ route('projects.fileView', ['parent' => $encId]) }}" class="me-2">
                       <i class="fa-solid fa-file-excel" title="View Files"></i>

@@ -3,10 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Log;
->>>>>>> 9d9ed85b (for cleaner setup)
 
 class ApiService
 {
@@ -16,7 +13,6 @@ class ApiService
 
     public function __construct()
     {
-<<<<<<< HEAD
         $this->baseUrl = env('API_BASE_URL');
         $this->apiKey  = env('API_KEY');
 
@@ -48,7 +44,6 @@ class ApiService
         } catch (\Exception $e) {
             return [
                 'status'  => false,
-=======
         $this->baseUrl = rtrim(env('API_BASE_URL'), '/'); // remove trailing slash if any
         $this->apiKey  = env('API_KEY');
         $this->defaultYear = env('METRICS_DEFAULT_YEAR');
@@ -97,13 +92,10 @@ class ApiService
 
             return [
                 'status' => false,
->>>>>>> 9d9ed85b (for cleaner setup)
                 'message' => $e->getMessage(),
             ];
         }
     }
-<<<<<<< HEAD
-=======
 
      public function getFileTypeDetails($year = null)
     {
@@ -323,5 +315,4 @@ class ApiService
         ];
     }
 }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

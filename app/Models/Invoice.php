@@ -17,21 +17,16 @@ class Invoice extends Model
         'gross_total','discount_total','tax_total','net_total',
         'company_name','company_address','company_pan','company_gstin',
         'company_lut_no','company_iec','company_reference_no','company_signatory',
-<<<<<<< HEAD
         'customer_name','customer_address','customer_type','description',
-=======
         'customer_name','customer_address','customer_type','description','subtotal',
         'discount','total','bank_id','payment_completed','finance_notes','sac_number',
         'customer_zipcode','invoice_type'
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
 
     public function lines()
     {
         return $this->hasMany(InvoiceLine::class);
     }
-<<<<<<< HEAD
-=======
 
     public function project() {
         return $this->belongsTo(Project::class);
@@ -54,5 +49,4 @@ class Invoice extends Model
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

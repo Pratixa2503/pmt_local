@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-<<<<<<< HEAD
 
 class Company extends Model
 {
     use HasFactory;
 
-=======
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Company extends LoggableModel
 {
@@ -19,7 +17,6 @@ class Company extends LoggableModel
     use SoftDeletes;
     public const TYPE_INDIAN     = 1;
     public const TYPE_NON_INDIAN = 2;
->>>>>>> 9d9ed85b (for cleaner setup)
     /**
      * Mass-assignable attributes.
      */
@@ -29,10 +26,8 @@ class Company extends LoggableModel
         'location',
         'contact_no',
         'website',
-<<<<<<< HEAD
     ];
 
-=======
         'company_type',
         'zip_code',
         'invoice_type' 
@@ -47,19 +42,15 @@ class Company extends LoggableModel
     {
         return $this->hasMany(PoNumber::class, 'customer_id');
     }
->>>>>>> 9d9ed85b (for cleaner setup)
     /**
      * Attribute casting.
      */
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-<<<<<<< HEAD
-=======
         'company_type' => 'integer',
         'zip_code'  => 'string',
         'invoice_type' => 'integer'
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
 
     /**
@@ -134,8 +125,6 @@ class Company extends LoggableModel
             'activeUsers',
         ]);
     }
-<<<<<<< HEAD
-=======
 
     public function getCompanyTypeLabelAttribute(): string
     {
@@ -144,5 +133,4 @@ class Company extends LoggableModel
             default               => 'Indian',
         };
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

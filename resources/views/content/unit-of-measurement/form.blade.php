@@ -25,7 +25,6 @@
                             @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
-<<<<<<< HEAD
                         <div class="col-md-6 mb-3">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                             <select name="status" id="status" class="form-select {{ $errors->has('status') ? 'is-invalid' : '' }}">
@@ -35,7 +34,6 @@
                             </select>
                             @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
-=======
                         @php
                         $statusVal = (string) old('status', $data->status ?? 1);
                         @endphp
@@ -50,7 +48,6 @@
                         @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
 
                     <div class="text-end">

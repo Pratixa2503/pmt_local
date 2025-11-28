@@ -50,7 +50,6 @@ $configData = Helper::appClasses();
       </div>
 
       <table class="table common-datatable" id="input-output-format-table">
-<<<<<<< HEAD
         <thead>
           <tr>
             <th></th>
@@ -68,7 +67,6 @@ $configData = Helper::appClasses();
           </tr>
         </tfoot>
       </table>
-=======
       <thead>
         <tr>
           <th></th>
@@ -89,7 +87,6 @@ $configData = Helper::appClasses();
       </tfoot>
     </table>
 
->>>>>>> 9d9ed85b (for cleaner setup)
     </div>
   </div>
 </div>
@@ -100,7 +97,6 @@ $configData = Helper::appClasses();
   const dataTablePageLength = {{ env('DATATABLEPAGELENGTH', 10) }};
 
   $(function () {
-<<<<<<< HEAD
     $('#input-output-format-table').DataTable({
       responsive: true,
       processing: true,
@@ -144,7 +140,6 @@ $configData = Helper::appClasses();
       },
       order: [[0, 'desc']]
     });
-=======
    $('#input-output-format-table').DataTable({
   responsive: true,
   processing: true,
@@ -186,7 +181,6 @@ $configData = Helper::appClasses();
   order: [[0, 'desc']]
 });
 
->>>>>>> 9d9ed85b (for cleaner setup)
   });
 
   $(document).on("click", "#delete-service-offering", function () {

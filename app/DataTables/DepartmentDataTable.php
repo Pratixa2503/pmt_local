@@ -11,10 +11,7 @@ class DepartmentDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-<<<<<<< HEAD
            
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
             ->addColumn('actions', function ($department) {
                 $encrypted = Crypt::encryptString($department->id);
                 $actions = '';
@@ -31,9 +28,7 @@ class DepartmentDataTable extends DataTable
 
     public function query(Department $model)
     {
-<<<<<<< HEAD
         return $model->newQuery()->orderBy('id', 'DESC');
-=======
         // LEFT JOIN to expose industry vertical name
         return $model->newQuery()
             ->leftJoin('industry_verticals as iv', 'iv.id', '=', 'departments.industry_verticals_id')
@@ -42,7 +37,6 @@ class DepartmentDataTable extends DataTable
                 'iv.name as industry_vertical', // <-- alias used by DataTable
             ])
             ->orderBy('departments.id', 'DESC');
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function html()
@@ -59,7 +53,6 @@ class DepartmentDataTable extends DataTable
     protected function getColumns()
     {
         return [
-<<<<<<< HEAD
             ['data' => 'name',    'name' => 'name',    'title' => 'Department Name'],
             ['data' => 'status',  'name' => 'status',  'title' => 'Status'],
             ['data' => 'actions', 'name' => 'actions', 'title' => 'Actions', 'orderable' => false, 'searchable' => false],
@@ -67,7 +60,6 @@ class DepartmentDataTable extends DataTable
     }
 
 }
-=======
             ['data' => 'name',               'name' => 'departments.name',      'title' => 'Department Name'],
             ['data' => 'industry_vertical',  'name' => 'iv.name',               'title' => 'Industry Vertical'], // NEW
             ['data' => 'status',             'name' => 'departments.status',    'title' => 'Status'],
@@ -75,4 +67,3 @@ class DepartmentDataTable extends DataTable
         ];
     }
 }
->>>>>>> 9d9ed85b (for cleaner setup)

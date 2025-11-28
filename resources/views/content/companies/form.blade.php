@@ -24,11 +24,9 @@
     });
 
     // --- Repeater: Team rows ---
-<<<<<<< HEAD
     const $wrapper = $('#team-repeater');
     const $template = $('#teamRowTemplate').html();
 
-=======
     const $wrapper  = $('#team-repeater');
     const $template = $('#teamRowTemplate').html();
 
@@ -77,7 +75,6 @@
       wireSelect2Validation($status);
     }
 
->>>>>>> 9d9ed85b (for cleaner setup)
     // Add a row
     $wrapper.on('click', '.add-row', function () {
       let idx = Number($wrapper.data('idx') || 0);
@@ -86,7 +83,6 @@
       $wrapper.data('idx', idx + 1);
 
       // init select2 for the newly added status field
-<<<<<<< HEAD
       const $lastStatus = $wrapper.find('.team-row:last .status-select');
       $lastStatus.select2();
 
@@ -97,7 +93,6 @@
 
     // Remove a row
     $wrapper.on('click', '.remove-row', function () {
-=======
       const $newRow     = $wrapper.find('.team-row').last();
       const $lastStatus = $newRow.find('.status-select');
       $lastStatus.select2();
@@ -111,12 +106,10 @@
     $wrapper.on('click', '.remove-row', function () {
       const count = $wrapper.find('.team-row').length;
       if (count <= 1) return; // safety: never remove the last one
->>>>>>> 9d9ed85b (for cleaner setup)
       $(this).closest('.team-row').remove();
       updateRowButtons();
     });
 
-<<<<<<< HEAD
     // Ensure proper +/- buttons
     function updateRowButtons() {
       $('.team-row .btn-slot').each(function(i){
@@ -127,17 +120,12 @@
     }
     updateRowButtons();
 
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
     // ---------- Validation ----------
     const $form = $("#companyForm");
 
     $.validator.addMethod("optionalPhone", function (value, element) {
       if (this.optional(element)) return true;
-<<<<<<< HEAD
       // basic relaxed phone check (digits, +, -, space, () ); adjust as needed
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
       return /^[0-9+\-() ]+$/.test(value);
     }, "Enter a valid phone.");
 
@@ -147,11 +135,8 @@
         'name': { required: true, maxlength: 255 },
         'address': { maxlength: 255 },
         'location': { maxlength: 255 },
-<<<<<<< HEAD
         'contact_no': { optionalPhone: true, maxlength: 50 },
         'website': { url: true, maxlength: 255 }
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
       },
       messages: {
         name: { required: "Enter customer name." }
@@ -181,7 +166,6 @@
       }
     });
 
-<<<<<<< HEAD
     // Wire select2 validation
     function wireSelect2Validation($select) {
       $select.on('change', function () {
@@ -214,11 +198,9 @@
 
     // Initial bind for existing rows
     $('#team-repeater .team-row').each(function(){ bindTeamRowValidation($(this)); });
-=======
     // Initial bind for existing rows
     $('#team-repeater .team-row').each(function(){ bindTeamRowValidation($(this)); });
     updateRowButtons();
->>>>>>> 9d9ed85b (for cleaner setup)
 
     // Bind on new rows
     $wrapper.on('row:added', function (e, $row) {
@@ -226,10 +208,8 @@
     });
   });
 </script>
-<<<<<<< HEAD
 @endsection
 
-=======
 
 <script>
   // Show/Hide "Invoice Entity" when Company Type is Non-India
@@ -258,16 +238,13 @@
 @endsection
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
 @section('content')
 @php
   // Defaults for old input / edit mode
   $company = $company ?? null;
 
   $oldTeam = old('team', $team ?? [
-<<<<<<< HEAD
     ['first_name' => '', 'last_name' => '', 'contact_no' => '', 'email' => '', 'status' => 'active']
-=======
     [
       'first_name' => '',
       'last_name' => '',
@@ -277,7 +254,6 @@
       'is_billing' => '0',
       'is_project' => '0'
     ]
->>>>>>> 9d9ed85b (for cleaner setup)
   ]);
 @endphp
 
@@ -329,17 +305,13 @@
             <div class="mb-3 col-md-4 form-group">
               <label for="contact_no" class="form-label">Contact No.</label>
               <input type="text" name="contact_no" id="contact_no" class="form-control"
-<<<<<<< HEAD
                      value="{{ old('contact_no', $company->contact_no ?? '') }}" placeholder="+1 234 567 8900">
-=======
                      value="{{ old('contact_no', $company->contact_no ?? '') }}" placeholder="1234567890">
->>>>>>> 9d9ed85b (for cleaner setup)
               @error('contact_no')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
             </div>
 
             <div class="mb-3 col-md-4 form-group">
               <label for="website" class="form-label">Website</label>
-<<<<<<< HEAD
               <input type="url" name="website" id="website" class="form-control"
                      value="{{ old('website', $company->website ?? '') }}" placeholder="https://example.com">
               @error('website')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
@@ -351,7 +323,6 @@
             <div class="d-flex align-items-center">
               <div class="flex-grow-1 border-top border-grey"></div>
               <span class="mx-3 text-grey fw-semibold text-uppercase small bg-light px-3 py-1 rounded">Team Information</span>
-=======
               <input type="text" name="website" id="website" class="form-control"
                      value="{{ old('website', $company->website ?? '') }}" placeholder="https://example.com">
               @error('website')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
@@ -409,19 +380,16 @@
             <div class="d-flex align-items-center">
               <div class="flex-grow-1 border-top border-grey"></div>
               <span class="mx-3 text-grey fw-semibold text-uppercase small bg-light px-3 py-1 rounded">Customer Contact Information</span>
->>>>>>> 9d9ed85b (for cleaner setup)
               <div class="flex-grow-1 border-top border-grey"></div>
             </div>
           </div>
 
           <div class="row">
-<<<<<<< HEAD
             <div class="col-md-3"><label class="form-label">First Name <span class="text-danger">*</span></label></div>
             <div class="col-md-3"><label class="form-label">Last Name <span class="text-danger">*</span></label></div>
             <div class="col-md-3"><label class="form-label">Contact No. <span class="text-danger">*</span></label></div>
             <div class="col-md-2"><label class="form-label">Email <span class="text-danger">*</span></label></div>
             <div class="col-md-1"><label class="form-label">Status</label></div>
-=======
             <div class="col-md-2"><label class="form-label">First Name <span class="text-danger">*</span></label></div>
             <div class="col-md-2"><label class="form-label">Last Name <span class="text-danger">*</span></label></div>
             <div class="col-md-2"><label class="form-label">Contact No.</label></div>
@@ -429,7 +397,6 @@
             <div class="col-md-1"><label class="form-label">Status</label></div>
             <div class="col-md-1"><label class="form-label">Billing</label></div>
             <div class="col-md-1"><label class="form-label">Project</label></div>
->>>>>>> 9d9ed85b (for cleaner setup)
           </div>
 
           @php
@@ -439,12 +406,10 @@
           <div id="team-repeater" data-idx="{{ $rowCount }}">
             @for ($i = 0; $i < $rowCount; $i++)
               @php
-<<<<<<< HEAD
                 $row = $oldTeam[$i] ?? ['first_name'=>'','last_name'=>'','contact_no'=>'','email'=>'','status'=>'active'];
               @endphp
               <div class="row team-row align-items-end mb-2">
                 <div class="mb-3 col-md-3 form-group">
-=======
                 $row = $oldTeam[$i] ?? [
                   'first_name'=>'','last_name'=>'','contact_no'=>'','email'=>'',
                   'status'=>'1','is_billing'=>'0','is_project'=>'0'
@@ -452,17 +417,13 @@
               @endphp
               <div class="row team-row align-items-end mb-2">
                 <div class="mb-3 col-md-2 form-group">
->>>>>>> 9d9ed85b (for cleaner setup)
                   <input type="text" name="team[{{ $i }}][first_name]" class="form-control first-name"
                          value="{{ $row['first_name'] ?? '' }}" placeholder="First name" required>
                   @error('team.'.$i.'.first_name')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                 </div>
 
-<<<<<<< HEAD
                 <div class="mb-3 col-md-3 form-group">
-=======
                 <div class="mb-3 col-md-2 form-group">
->>>>>>> 9d9ed85b (for cleaner setup)
                   <input type="text" name="team[{{ $i }}][last_name]" class="form-control last-name"
                          value="{{ $row['last_name'] ?? '' }}" placeholder="Last name" required>
                   @error('team.'.$i.'.last_name')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
@@ -470,41 +431,33 @@
 
                 <div class="mb-3 col-md-2 form-group">
                   <input type="text" name="team[{{ $i }}][contact_no]" class="form-control contact-no"
-<<<<<<< HEAD
                          value="{{ $row['contact_no'] ?? '' }}" placeholder="Phone" required>
                   @error('team.'.$i.'.contact_no')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="mb-3 col-md-2 form-group">
-=======
                          value="{{ $row['contact_no'] ?? '' }}" placeholder="Phone">
                   @error('team.'.$i.'.contact_no')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="mb-3 col-md-3 form-group">
->>>>>>> 9d9ed85b (for cleaner setup)
                   <input type="email" name="team[{{ $i }}][email]" class="form-control email"
                          value="{{ $row['email'] ?? '' }}" placeholder="email@example.com" required>
                   @error('team.'.$i.'.email')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                 </div>
 
-<<<<<<< HEAD
                 <div class="mb-3 col-md-2 form-group">
                   <select name="team[{{ $i }}][status]" class="form-select status-select select2">
                     <option value="1"   {{ ($row['status'] ?? '1') === '1' ? 'selected' : '' }}>Active</option>
                     <option value="0" {{ ($row['status'] ?? '0') === '0' ? 'selected' : '' }}>Inactive</option>
-=======
                 <div class="mb-3 col-md-1 form-group">
                   <select name="team[{{ $i }}][status]" class="form-select status-select select2">
                     <option value="1" {{ (string)($row['status'] ?? '1') === '1' ? 'selected' : '' }}>Active</option>
                     <option value="0" {{ (string)($row['status'] ?? '0') === '0' ? 'selected' : '' }}>Inactive</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                   </select>
                   @error('team.'.$i.'.status')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                 </div>
 
-<<<<<<< HEAD
-=======
                 <div class="mb-3 col-md-1 d-flex align-items-center">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
@@ -521,7 +474,6 @@
                   </div>
                 </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
                 <div class="col-md-12 d-flex justify-content-end btn-slot">
                   <!-- buttons will be injected by JS -->
                 </div>
@@ -548,7 +500,6 @@
 {{-- Hidden template for new rows --}}
 <template id="teamRowTemplate">
   <div class="row team-row align-items-end mb-2">
-<<<<<<< HEAD
     <div class="mb-3 col-md-3 form-group">
       <input type="text" name="team[__IDX__][first_name]" class="form-control first-name" placeholder="First name" required>
     </div>
@@ -562,7 +513,6 @@
       <input type="email" name="team[__IDX__][email]" class="form-control email" placeholder="email@example.com" required>
     </div>
     <div class="mb-3 col-md-2 form-group">
-=======
     <div class="mb-3 col-md-2 form-group">
       <input type="text" name="team[__IDX__][first_name]" class="form-control first-name" placeholder="First name" required>
     </div>
@@ -576,14 +526,11 @@
       <input type="email" name="team[__IDX__][email]" class="form-control email" placeholder="email@example.com" required>
     </div>
     <div class="mb-3 col-md-1 form-group">
->>>>>>> 9d9ed85b (for cleaner setup)
       <select name="team[__IDX__][status]" class="form-select status-select select2">
         <option value="1" selected>Active</option>
         <option value="0">Inactive</option>
       </select>
     </div>
-<<<<<<< HEAD
-=======
     <div class="mb-3 col-md-1 d-flex align-items-center">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" name="team[__IDX__][is_billing]" value="1">
@@ -594,7 +541,6 @@
         <input class="form-check-input" type="checkbox" name="team[__IDX__][is_project]" value="1">
       </div>
     </div>
->>>>>>> 9d9ed85b (for cleaner setup)
     <div class="col-md-12 d-flex justify-content-end btn-slot"></div>
   </div>
 </template>

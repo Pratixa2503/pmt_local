@@ -16,11 +16,8 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles,LogsActivity;
 
-<<<<<<< HEAD
-=======
     public const CUSTOMER_TYPE_IND      = 1;
     public const CUSTOMER_TYPE_NON_IND  = 2;
->>>>>>> 9d9ed85b (for cleaner setup)
     /**
      * The attributes that are mass assignable.
      *
@@ -35,11 +32,8 @@ class User extends Authenticatable
         'password',
         'status',
         'is_password_update',
-<<<<<<< HEAD
         'created_by','updated_by','project_manager'
-=======
         'created_by','updated_by','project_manager','is_billing_contact','is_project_contact'
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
 
     /**
@@ -64,11 +58,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-<<<<<<< HEAD
-=======
             'is_billing_contact' => 'boolean',
             'is_project_contact' => 'boolean',
->>>>>>> 9d9ed85b (for cleaner setup)
         ];
     }
 
@@ -94,9 +85,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(User::class, 'project_manager', 'id');
     }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
 }

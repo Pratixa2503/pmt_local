@@ -88,7 +88,6 @@ $pocLabel = function($p) {
           </div>
 
           <div class="row g-3">
-<<<<<<< HEAD
             <div class="col-md-4">
               <label for="customer_id" class="form-label">Customer <span class="text-danger">*</span></label>
               <select name="customer_id" id="customer_id" class="form-select select2" required>
@@ -110,7 +109,6 @@ $pocLabel = function($p) {
             </div>
 
             <div class="col-md-4">
-=======
            <div class="col-md-4">
               <label for="customer_id" class="form-label">
                 Customer <span class="text-danger">*</span>
@@ -149,7 +147,6 @@ $pocLabel = function($p) {
 
 
             <div class="col-md-6">
->>>>>>> 9d9ed85b (for cleaner setup)
               <label for="description" class="form-label">Description<span class="text-danger">*</span></label>
                <textarea name="description" id="description" class="form-control" rows="4" required>{{ old('description', $document->description ?? '') }}</textarea>
 
@@ -167,7 +164,6 @@ $pocLabel = function($p) {
           </div>
 
 
-<<<<<<< HEAD
           <div class="row g-3">
             <div class="col-md-6">
               <label for="contract_start_date" class="form-label">Contract Start Date <span class="text-danger">*</span></label>
@@ -182,7 +178,6 @@ $pocLabel = function($p) {
                 value="{{ old('contract_end_date', isset($document->contract_end_date) ? \Carbon\Carbon::parse($document->contract_end_date)->format('m/d/Y') : '') }}"
                 placeholder="MM/DD/YYYY" autocomplete="off">
               @error('contract_end_date') <div class="text-danger small">{{ $message }}</div> @enderror
-=======
           {{-- Unified Contract Dates and Alerts Repeater --}}
           <div class="row g-3">
             <div class="col-md-12">
@@ -354,7 +349,6 @@ $pocLabel = function($p) {
                   <i class="ti ti-plus"></i> Add Contract Date Range
                 </button>
               </div>
->>>>>>> 9d9ed85b (for cleaner setup)
             </div>
           </div>
 
@@ -409,7 +403,6 @@ $pocLabel = function($p) {
           </div>
           <div class="row g-3">
             <div class="mb-3 custom-validation col-md-4 col-lg-4">
-<<<<<<< HEAD
                 <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                 <select name="status" id="status" class="form-control form-select {{ $errors->has('status') ? 'is-invalid' : '' }}">
                     <option value="">Select Status</option>
@@ -423,7 +416,6 @@ $pocLabel = function($p) {
                 @enderror
             </div>
 
-=======
               <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
 
               @php
@@ -445,7 +437,6 @@ $pocLabel = function($p) {
             </div>
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
             <div class="col-md-4 mb-3 form-group static custom">
               <label for="industry_vertical_id" class="form-label">Industry Vertical <span class="text-danger">*</span></label>
               <select name="industry_vertical_id" id="industry_vertical_id" class="form-select select2">
@@ -502,12 +493,10 @@ $pocLabel = function($p) {
                     <input type="file"
                         class="form-control @error('file_path') is-invalid @enderror"
                         id="file_path"
-<<<<<<< HEAD
                         name="file_path">
 
                     @error('file_path')
                         <div class="invalid-feedback">{{ $message }}</div>
-=======
                         name="file_path"
                         accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/png,image/jpeg">
                     <div class="form-text">
@@ -517,7 +506,6 @@ $pocLabel = function($p) {
                     </div>
                     @error('file_path')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
->>>>>>> 9d9ed85b (for cleaner setup)
                     @enderror
 
                     @if(isset($document) && $document->file_path)
@@ -556,10 +544,7 @@ $pocLabel = function($p) {
     const $isRecurring = $('#is_recurring');
     const $recurrenceGroup = $('#recurrence_group');
     const $customerSel = $('#customer_id');
-<<<<<<< HEAD
-=======
     const $contractAlertRepeater = $('#contract-alert-repeater');
->>>>>>> 9d9ed85b (for cleaner setup)
 
     function toggleRecurrence() {
       $recurrenceGroup.toggle($isRecurring.is(':checked'));
@@ -567,8 +552,6 @@ $pocLabel = function($p) {
     $isRecurring.on('change', toggleRecurrence);
     toggleRecurrence();
 
-<<<<<<< HEAD
-=======
     // Unified Contract & Alert Repeater Functions
     function getNextContractAlertIndex() {
       const rows = $contractAlertRepeater.find('.contract-alert-row');
@@ -752,7 +735,6 @@ $pocLabel = function($p) {
     // Initialize remove buttons state
     updateContractAlertRemoveButtons();
 
->>>>>>> 9d9ed85b (for cleaner setup)
     // ---------- Datepicker ----------
     function parseUsDate(str) {
       const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec((str || '').trim());
@@ -762,7 +744,6 @@ $pocLabel = function($p) {
       return (d.getFullYear() === yyyy && d.getMonth() === mm - 1 && d.getDate() === dd) ? d : null;
     }
 
-<<<<<<< HEAD
     $('#contract_start_date').datepicker({
       minDate: 'today',
       format: 'mm/dd/yyyy',
@@ -791,7 +772,6 @@ $pocLabel = function($p) {
         if (e && e < s) $('#contract_end_date').datepicker('setDate', null);
       }
     })();
-=======
     // Initialize datepickers for existing contract-alert rows
     $contractAlertRepeater.find('.contract-alert-row').each(function() {
       const $row = $(this);
@@ -824,7 +804,6 @@ $pocLabel = function($p) {
         if (e && e < s) $endDate.datepicker('setDate', null);
       }
     });
->>>>>>> 9d9ed85b (for cleaner setup)
 
     function addDays(d, n) { const x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
     function addMonthsClamped(d, m) {
@@ -870,10 +849,7 @@ $pocLabel = function($p) {
       rules: {
         //project_name: { required: true, maxlength: 255, lettersNumbersSpaces: true },
         customer_id: { required: true },
-<<<<<<< HEAD
         contact_no :{required: true},
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
         description: { required: true, maxlength: 1000 },
         contract_start_date: { required: true, usDate: true },
         contract_end_date: { required: true, usDate: true, endAfterStart: '#contract_start_date' },
@@ -1107,7 +1083,4 @@ $pocLabel = function($p) {
   });
 </script>
 @endsection
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)

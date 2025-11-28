@@ -10,35 +10,26 @@ use Illuminate\Support\Facades\Validator;
 use App\DataTables\CompanyDataTable;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
-<<<<<<< HEAD
 
-=======
 use Illuminate\Support\Facades\Hash;
 use App\Models\Project;
 use Yajra\DataTables\Facades\DataTables;
  
->>>>>>> 9d9ed85b (for cleaner setup)
 class CompanyController extends Controller
 {
 
     public function index(CompanyDataTable $dataTable)
     {
-<<<<<<< HEAD
         if ( !auth()->user()->can('view customer')) {
-=======
         if (!auth()->user()->can('view customer')) {
->>>>>>> 9d9ed85b (for cleaner setup)
             abort(403, 'Unauthorized action.');
         }
         return $dataTable->render('content.companies.index');
     }
     /**
      * Show create form.
-<<<<<<< HEAD
      */ 
-=======
      */
->>>>>>> 9d9ed85b (for cleaner setup)
     public function create()
     {
         $title = 'Create Customer';
@@ -68,11 +59,8 @@ class CompanyController extends Controller
                 'location'   => $data['location']    ?? null,
                 'contact_no' => $data['contact_no']  ?? null,
                 'website'    => $data['website']     ?? null,
-<<<<<<< HEAD
-=======
                 'company_type' => $data['company_type'] ?? 1,
                 'zip_code'    => $data['zip_code'] ?? null
->>>>>>> 9d9ed85b (for cleaner setup)
             ]);
 
             // 2) Team (users)
@@ -82,11 +70,8 @@ class CompanyController extends Controller
         return redirect()->route('companies.index')->with('success', 'Customer and team saved successfully.');
     }
 
-<<<<<<< HEAD
      protected function resolveCompanyFromEncrypted(string $encryptedId): Company
-=======
     protected function resolveCompanyFromEncrypted(string $encryptedId): Company
->>>>>>> 9d9ed85b (for cleaner setup)
     {
         try {
             $id = Crypt::decryptString($encryptedId);
@@ -101,22 +86,16 @@ class CompanyController extends Controller
      */
     public function edit($encryptedId)
     {
-<<<<<<< HEAD
        
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
         $title = 'Edit Customer';
         $type  = 'edit';
         $company =  $this->resolveCompanyFromEncrypted($encryptedId);
         // Pre-fill team rows from existing users for this company
         $team = $company->users()
             ->orderBy('id', 'asc')
-<<<<<<< HEAD
             ->get(['first_name', 'last_name', 'email', 'contact_no', 'status'])
-=======
             ->get(['first_name', 'last_name', 'email', 'contact_no', 'status','is_billing_contact','is_project_contact'])
->>>>>>> 9d9ed85b (for cleaner setup)
             ->map(function ($u) {
                 return [
                     'first_name' => $u->first_name ?? '',
@@ -124,27 +103,21 @@ class CompanyController extends Controller
                     'contact_no' => $u->contact_no ?? '', // if your column is 'phone', we remapped above
                     'email'      => $u->email      ?? '',
                     'status'     => $u->status     ?? 'active',
-<<<<<<< HEAD
-=======
                     'is_billing_contact' => $u->is_billing_contact ?? '',
                     'is_project_contact' => $u->is_project_contact ?? '',
->>>>>>> 9d9ed85b (for cleaner setup)
                 ];
             })->toArray();
 
         if (empty($team)) {
             $team = [
-<<<<<<< HEAD
                 ['first_name' => '', 'last_name' => '', 'contact_no' => '', 'email' => '', 'status' => 'active']
             ];
         }
 
-=======
                 ['first_name' => '', 'last_name' => '', 'contact_no' => '', 'email' => '', 'status' => 'active','is_billing_contact'=>'','is_project_contact'=>'']
             ];
         }
         //dd($team);
->>>>>>> 9d9ed85b (for cleaner setup)
         return view('content.companies.form', compact('title', 'type', 'company', 'team'));
     }
 
@@ -156,11 +129,8 @@ class CompanyController extends Controller
         $company = $this->resolveCompanyFromEncrypted($encryptedId);
         $request->merge(['company_id' => $company->id]);
         $data = $this->validateRequest($request, isUpdate: true);
-<<<<<<< HEAD
 
-=======
         
->>>>>>> 9d9ed85b (for cleaner setup)
         DB::transaction(function () use ($company, $data) {
             // 1) Company
             $company->update([
@@ -169,11 +139,8 @@ class CompanyController extends Controller
                 'location'   => $data['location']    ?? null,
                 'contact_no' => $data['contact_no']  ?? null,
                 'website'    => $data['website']     ?? null,
-<<<<<<< HEAD
-=======
                 'company_type' => $data['company_type'] ?? 1,
                 'zip_code'    => $data['zip_code'] ?? null
->>>>>>> 9d9ed85b (for cleaner setup)
             ]);
 
             // 2) Team (users): upsert new/changed rows; do not delete missing ones by default
@@ -187,11 +154,8 @@ class CompanyController extends Controller
              * $company->users()->whereNotIn('email', $incomingEmails)->delete();
              */
         });
-<<<<<<< HEAD
       
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
         return redirect()->route('companies.index')->with('success', 'Customer and team updated successfully.');
     }
 
@@ -202,20 +166,15 @@ class CompanyController extends Controller
     {
         // Use the company_id we just merged (update) or any provided (create)
         $companyId = $request->input('company_id');
-<<<<<<< HEAD
         
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
         $rules = [
             'name'       => ['required', 'string', 'max:255'],
             'address'    => ['nullable', 'string', 'max:255'],
             'location'   => ['nullable', 'string', 'max:255'],
-<<<<<<< HEAD
             'contact_no' => ['nullable', 'string', 'max:50'],
             'website'    => ['nullable', 'url', 'max:255'],
 
-=======
             'contact_no' => ['nullable', 'string', 'max:10'],
             'website' => [
                 'nullable',
@@ -239,17 +198,14 @@ class CompanyController extends Controller
             ],
             'zip_code'   => ['nullable', 'string', 'max:20'],
             'company_type' => ['nullable', 'integer', 'in:1,2'],
->>>>>>> 9d9ed85b (for cleaner setup)
             'team'              => ['nullable', 'array'],
             'team.*.id'         => ['nullable', 'integer', 'exists:users,id'],
             'team.*.first_name' => ['required_with:team', 'string', 'max:100'],
             'team.*.last_name'  => ['required_with:team', 'string', 'max:100'],
-<<<<<<< HEAD
             'team.*.contact_no' => ['nullable', 'string', 'max:50'],
             'team.*.status'     => ['required_with:team', Rule::in(['1', '0'])],
             // prevent duplicates inside the *payload* itself
             'team.*.email'      => ['required_with:team', 'email', 'distinct'],
-=======
             'team.*.contact_no' => ['nullable', 'string', 'max:10'],
             'team.*.status'     => ['required_with:team', Rule::in(['1', '0'])],
             'team.*.is_billing' => ['nullable', Rule::in(['1','0','on','off','true','false'])],
@@ -286,7 +242,6 @@ class CompanyController extends Controller
                 },
                 'distinct',
             ],
->>>>>>> 9d9ed85b (for cleaner setup)
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -297,26 +252,20 @@ class CompanyController extends Controller
             $memberId = data_get($row, 'id');
 
             $emailRule = Rule::unique('users', 'email')
-<<<<<<< HEAD
                 ->where(fn ($q) => $q->where('company_id', '!=', $companyId));
-=======
                 ->where(fn($q) => $q->where('company_id', '!=', $companyId));
->>>>>>> 9d9ed85b (for cleaner setup)
 
             if ($isUpdate && $memberId) {
                 $emailRule->ignore($memberId);
             }
 
             // Always apply this rule to the specific row’s email
-<<<<<<< HEAD
             $validator->sometimes("team.$i.email", [$emailRule], fn () => true);
         }
         
-=======
             $validator->sometimes("team.$i.email", [$emailRule], fn() => true);
         }
 
->>>>>>> 9d9ed85b (for cleaner setup)
         return $validator->validate();
     }
 
@@ -326,19 +275,14 @@ class CompanyController extends Controller
      * - Assigns company_id.
      * - Sets a random password if creating a new user (and password column exists).
      */
-<<<<<<< HEAD
     protected function upsertTeam(Company $company, array $team): void
-=======
    protected function upsertTeam(Company $company, array $team): void
->>>>>>> 9d9ed85b (for cleaner setup)
     {
         // 1) Normalize incoming rows and collect identifiers we’ll keep
         $normalized = [];
         $keepIds = [];
         $keepEmails = [];
 
-<<<<<<< HEAD
-=======
         // helper to coerce checkbox-ish values to boolean (1/0)
         $toBool = static function ($v): int {
             if ($v === null) return 0;
@@ -349,7 +293,6 @@ class CompanyController extends Controller
             return in_array($v, [1, true], true) ? 1 : 0;
         };
 
->>>>>>> 9d9ed85b (for cleaner setup)
         foreach ($team as $row) {
             $first  = trim($row['first_name'] ?? '');
             $last   = trim($row['last_name'] ?? '');
@@ -359,14 +302,12 @@ class CompanyController extends Controller
             }
 
             $normalized[] = [
-<<<<<<< HEAD
                 'id'         => $row['id'] ?? null,
                 'first_name' => $first,
                 'last_name'  => $last,
                 'email'      => $email,
                 'contact_no' => $row['contact_no'] ?? null,
                 'status'     => $row['status'] ?? 1,
-=======
                 'id'                   => $row['id'] ?? null,
                 'first_name'           => $first,
                 'last_name'            => $last,
@@ -377,7 +318,6 @@ class CompanyController extends Controller
                 // NEW: map form fields -> user columns; accept either form names or direct column names
                 'is_billing_contact'   => $toBool($row['is_billing'] ?? $row['is_billing'] ?? 0),
                 'is_project_contact'   => $toBool($row['is_project'] ?? $row['is_project'] ?? 0),
->>>>>>> 9d9ed85b (for cleaner setup)
             ];
 
             if (!empty($row['id'])) {
@@ -385,11 +325,8 @@ class CompanyController extends Controller
             }
             $keepEmails[] = $email;
         }
-<<<<<<< HEAD
 
-=======
         //dd($normalized);
->>>>>>> 9d9ed85b (for cleaner setup)
         // 2) Upsert each incoming member (prefer ID, fallback to email)
         foreach ($normalized as $row) {
             /** @var \App\Models\User $user */
@@ -397,25 +334,19 @@ class CompanyController extends Controller
                 // Try update by ID within the same company
                 $user = $company->users()->whereKey($row['id'])->first();
                 // If not found (id not in this company), fallback to email
-<<<<<<< HEAD
                 if (! $user) {
-=======
                 if (!$user) {
->>>>>>> 9d9ed85b (for cleaner setup)
                     $user = \App\Models\User::firstOrNew(['email' => $row['email']]);
                 }
             } else {
                 $user = \App\Models\User::firstOrNew(['email' => $row['email']]);
             }
 
-<<<<<<< HEAD
             if (! $user->exists) {
                 $user->password = \Illuminate\Support\Facades\Hash::make(\Illuminate\Support\Str::random(16));
-=======
             if (!$user->exists) {
                 $password = 'Brisk@123';
                 $user->password = \Illuminate\Support\Facades\Hash::make($password);
->>>>>>> 9d9ed85b (for cleaner setup)
             }
 
             $user->first_name = $row['first_name'];
@@ -427,13 +358,10 @@ class CompanyController extends Controller
             $user->email      = $row['email']; // allow email updates
             $user->company_id = $company->id;
 
-<<<<<<< HEAD
-=======
             // NEW: persist the two flags
             $user->is_billing_contact = (int) $row['is_billing_contact'];
             $user->is_project_contact = (int) $row['is_project_contact'];
 
->>>>>>> 9d9ed85b (for cleaner setup)
             $user->save();
 
             // Ensure role assignment (idempotent)
@@ -447,7 +375,6 @@ class CompanyController extends Controller
         $query = $company->users();
 
         // Optional: restrict to a role so you don't delete admins/employees accidentally.
-<<<<<<< HEAD
         // If you use Spatie roles and want to only manage "customer" role members, uncomment:
         // $query->role('customer');
 
@@ -455,11 +382,9 @@ class CompanyController extends Controller
             // Delete if NOT in keepIds (when ids exist) AND NOT in keepEmails.
             // This handles rows where email changed but id stayed (kept by id),
             // and rows without id (kept by email).
-=======
         // $query->role('customer');
 
         $query->where(function ($q) use ($keepIds, $keepEmails) {
->>>>>>> 9d9ed85b (for cleaner setup)
             if (!empty($keepIds)) {
                 $q->whereNotIn('id', $keepIds);
             }
@@ -467,23 +392,18 @@ class CompanyController extends Controller
                 $q->whereNotIn(\DB::raw('LOWER(email)'), $keepEmails);
             }
         })
-<<<<<<< HEAD
         // Safety: don’t delete the currently authenticated user, if they belong to this company.
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
         ->when(auth()->check(), function ($q) {
             $q->where('id', '!=', auth()->id());
         })
         ->get()
         ->each(function ($user) {
-<<<<<<< HEAD
             // Prefer one of the following:
             $user->delete();               // Soft or hard delete based on your model
             // $user->update(['status' => 0]); // Or "deactivate" instead of delete
         });
     }
 
-=======
             $user->delete();               // or $user->update(['status' => 0]);
         });
     }
@@ -604,5 +524,4 @@ public function projects(string $encrypted)
         ->make(true);
 }
 
->>>>>>> 9d9ed85b (for cleaner setup)
 }

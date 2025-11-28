@@ -88,7 +88,6 @@
                             <input type="number" step="0.01" name="ctc" class="form-control" placeholder="Enter CTC" value="{{ old('ctc', $data->ctc ?? '') }}">
                         </div>
 
-<<<<<<< HEAD
                         <div class="col-md-6 mb-3">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                             <select name="status" id="status" class="form-select {{ $errors->has('status') ? 'is-invalid' : '' }}">
@@ -98,7 +97,6 @@
                             </select>
                             @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
-=======
                         @php
                        
                         $statusVal = (string) old('status', $data->status ?? 1);
@@ -114,7 +112,6 @@
                         @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
 
                     <div class="text-end">

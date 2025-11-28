@@ -53,32 +53,26 @@
         <thead>
           <tr>
             <th></th>
-<<<<<<< HEAD
             <th>Contract Start Date</th>
             <th>Contract End Date</th>
            <th>Contact No</th>
-=======
             <th>Customer</th>
             <th>Department</th>
             <th>Industry</th>
             <th>Description</th>
             <th>Contact No</th>
->>>>>>> 9d9ed85b (for cleaner setup)
             <th>Actions</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th></th>
-<<<<<<< HEAD
             <th>Contract Start Date</th>
             <th>Contract End Date</th>
-=======
             <th>Customer</th>
             <th>Department</th>
             <th>Industry</th>
             <th>Description</th>
->>>>>>> 9d9ed85b (for cleaner setup)
             <th>Contact No</th>
             <th>Actions</th>
           </tr>
@@ -106,13 +100,11 @@
           orderable: false,
           data: null,
           defaultContent: '',
-<<<<<<< HEAD
           responsivePriority: 1,
         },
         { data: 'contract_start_date',       name: 'contract_start_date',       responsivePriority: 2 },
         { data: 'contract_end_date',    name: 'contract_end_date',    responsivePriority: 3 },
         { data: 'contact_no', name: 'contact_no', responsivePriority: 3 },
-=======
           responsivePriority: 1
         },
         { data: 'customer',               name: 'customer',               responsivePriority: 2 },
@@ -120,13 +112,11 @@
         { data: 'industry',               name: 'industry',               responsivePriority: 4 },
         { data: 'description',            name: 'description',            responsivePriority: 5 },
         { data: 'contact_no',             name: 'contact_no',             responsivePriority: 3 },
->>>>>>> 9d9ed85b (for cleaner setup)
         {
           data: 'actions',
           name: 'actions',
           orderable: false,
           searchable: false,
-<<<<<<< HEAD
           responsivePriority: 2
         }
       ],
@@ -136,13 +126,11 @@
           className: 'text-center',
           width: '150px',
         }
-=======
           responsivePriority: 1
         }
       ],
       columnDefs: [
         { targets: -1, className: 'text-center', width: '150px' }
->>>>>>> 9d9ed85b (for cleaner setup)
       ],
       pagingType: "simple_numbers",
       language: {

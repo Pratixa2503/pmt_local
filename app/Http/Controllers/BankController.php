@@ -59,21 +59,15 @@ class BankController extends Controller
             'bsr_code'         => ['nullable','string','max:50'],
             'branch_address'   => ['nullable','string'],
             'status'           => ['required','in:0,1'],
-<<<<<<< HEAD
-=======
             'aba_number'     => ['nullable','digits:9'],
             'routing_number' => ['nullable','digits:9'],
->>>>>>> 9d9ed85b (for cleaner setup)
         ]);
 
         Bank::create(array_merge(
             $request->only([
                 'entity','currency_id','account_name','account_number','bank_name',
-<<<<<<< HEAD
                 'branch_location','ifsc_code','swift_code','micr','bsr_code','branch_address','status',
-=======
                 'branch_location','ifsc_code','swift_code','micr','bsr_code','branch_address','status','aba_number','routing_number'
->>>>>>> 9d9ed85b (for cleaner setup)
             ]),
             [
                 'created_by' => auth()->id(),
@@ -133,21 +127,15 @@ class BankController extends Controller
             'bsr_code'         => ['nullable','string','max:50'],
             'branch_address'   => ['nullable','string'],
             'status'           => ['required','in:0,1'],
-<<<<<<< HEAD
-=======
             'aba_number'     => ['nullable','digits:9'],
             'routing_number' => ['nullable','digits:9'],
->>>>>>> 9d9ed85b (for cleaner setup)
         ]);
 
         $bank->update(array_merge(
             $request->only([
                 'entity','currency_id','account_name','account_number','bank_name',
-<<<<<<< HEAD
                 'branch_location','ifsc_code','swift_code','micr','bsr_code','branch_address','status',
-=======
                 'branch_location','ifsc_code','swift_code','micr','bsr_code','branch_address','status','aba_number','routing_number'
->>>>>>> 9d9ed85b (for cleaner setup)
             ]),
             ['updated_by' => auth()->id()]
         ));

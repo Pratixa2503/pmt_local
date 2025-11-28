@@ -12,7 +12,6 @@ class DocumentDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-<<<<<<< HEAD
            ->addColumn('contract_start_date', function ($row) {
             return $row->contract_start_date 
                 ? \Carbon\Carbon::parse($row->contract_start_date)->format('Y-m-d') 
@@ -24,9 +23,7 @@ class DocumentDataTable extends DataTable
                     : '-';
             })
             ->addColumn('contact_no', function ($row) {
-=======
             ->editColumn('contact_no', function ($row) {
->>>>>>> 9d9ed85b (for cleaner setup)
                 return $row->contact_no ?? '-';
             })
             ->addColumn('customer', function ($row) {
@@ -61,11 +58,8 @@ class DocumentDataTable extends DataTable
                     $actions .= '<a href="javascript:void(0)" id="delete-document-master" data-id="' . $encrypted . '" class="delete-document"><i class="fa-solid fa-trash" title="Delete"></i></a>';
                 }
 
-<<<<<<< HEAD
                 
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
 
                 return $actions;
             })
@@ -82,11 +76,8 @@ class DocumentDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-<<<<<<< HEAD
             ->setTableId('pricing-master-table')
-=======
             ->setTableId('documents-table')
->>>>>>> 9d9ed85b (for cleaner setup)
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
@@ -97,7 +88,6 @@ class DocumentDataTable extends DataTable
     protected function getColumns()
     {
         return [
-<<<<<<< HEAD
             ['data' => 'pricing_type',     'name' => 'pricingType.name',      'title' => 'Pricing Type'],
             ['data' => 'industry_vertical',     'name' => 'industryVertical.name',      'title' => 'Industry Vertical'],
             ['data' => 'department',            'name' => 'department.name',            'title' => 'Department'],
@@ -107,11 +97,9 @@ class DocumentDataTable extends DataTable
             ['data' => 'rate',                  'name' => 'rate',                       'title' => 'Rate'],
             ['data' => 'description',           'name' => 'description.name',           'title' => 'Description'],
             ['data' => 'is_approved',           'name' => 'is_approved',                'title' => 'Approval Status'],
-=======
             ['data' => 'contact_no',            'name' => 'documents.contact_no',            'title' => 'Contact No','orderable' => false, 'searchable' => true],
             ['data' => 'description',      'name' => 'description',       'title' => 'Description'],
             ['data' => 'status',           'name' => 'status',           'title' => 'Status'],
->>>>>>> 9d9ed85b (for cleaner setup)
             ['data' => 'actions',               'name' => 'actions',                    'title' => 'Actions', 'orderable' => false, 'searchable' => false],
         ];
     }

@@ -13,14 +13,11 @@ class PricingMasterDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('pricing_type',function($row){
-<<<<<<< HEAD
                  return $row->pricing_type ?? '-';
-=======
                 return $row->pricing_type === 'static'
                 ? 'Standard'
                 : ($row->pricing_type === 'custom' ? 'Custom' : '-');
 
->>>>>>> 9d9ed85b (for cleaner setup)
             })
             ->addColumn('name',function($row){
                  return $row->name ?? '-';

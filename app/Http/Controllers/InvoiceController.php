@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-=======
 use App\Models\Bank;
->>>>>>> 9d9ed85b (for cleaner setup)
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
-<<<<<<< HEAD
-=======
 use App\Models\Invoice;
 use App\Models\InvoiceLine;
 use Illuminate\Validation\Rule;
@@ -28,7 +23,6 @@ use Illuminate\Support\Facades\Crypt;
 use App\DataTables\InvoiceBrowseDataTable;
 use App\Helpers\Helpers;
 use App\Mail\FinanceInvoiceSubmitted;
->>>>>>> 9d9ed85b (for cleaner setup)
 
 class InvoiceController extends Controller
 {
@@ -41,12 +35,10 @@ class InvoiceController extends Controller
 
         $title = 'Generate Invoice';
 
-<<<<<<< HEAD
         $qb = DB::table('projects')
             ->select('projects.id', 'projects.project_name')
             ->whereNull('projects.deleted_at')
             ->where('projects.project_status_id', 2);
-=======
         $qb = DB::table('projects as p')
             ->join('project_statuses as s', 's.id', '=', 'p.project_status_id')
             ->whereNull('p.deleted_at')
@@ -57,16 +49,12 @@ class InvoiceController extends Controller
 
 
         $projects = $qb->get();
->>>>>>> 9d9ed85b (for cleaner setup)
 
         if (!$isAdmin) {
             // Non-admin: restrict to projects assigned in project_user
             if (Schema::hasTable('project_user')) {
-<<<<<<< HEAD
                 $qb->join('project_user', 'project_user.project_id', '=', 'projects.id')
-=======
                 $qb->join('project_user', 'project_user.project_id', '=', 'p.id')
->>>>>>> 9d9ed85b (for cleaner setup)
                     ->where('project_user.user_id', $user->id);
             } else {
                 // Pivot missing: return empty list for non-admins
@@ -76,11 +64,8 @@ class InvoiceController extends Controller
         }
 
         $projects = $qb->distinct()
-<<<<<<< HEAD
             ->orderBy('projects.project_name', 'asc')
-=======
             ->orderBy('p.project_name', 'asc')
->>>>>>> 9d9ed85b (for cleaner setup)
             ->get();
 
         return view('content.invoices.index', compact('projects', 'isAdmin', 'title'));
@@ -90,11 +75,8 @@ class InvoiceController extends Controller
     {
         $request->validate([
             'project_id' => 'required|integer|exists:projects,id',
-<<<<<<< HEAD
             'month'      => ['required', 'regex:/^\d{4}-(0[1-9]|1[0-2])$/'], // YYYY-MM
-=======
             //'month'      => ['required', 'regex:/^\d{4}-(0[1-9]|1[0-2])$/'], // YYYY-MM
->>>>>>> 9d9ed85b (for cleaner setup)
         ]);
 
         $project = DB::table('projects')
@@ -111,7 +93,6 @@ class InvoiceController extends Controller
 
         switch ($cat) {
             case 2:
-<<<<<<< HEAD
                 $pricingRow = DB::table('projects as p')
                     ->leftJoin('pricing_masters as pm', 'pm.id', '=', 'p.pricing_id')
                     ->leftJoin('currencies as cur', 'cur.id', '=', 'pm.currency_id')
@@ -127,7 +108,6 @@ class InvoiceController extends Controller
                 $currencyKey   = strtoupper(trim($currencyName));
                 $currencySymbol = config('currency.symbols.' . $currencyKey, ''); // from config/currency.php
 
-=======
                 // ---- Project context (IV/Dept) ----
                 $proj = DB::table('projects as p')
                     ->leftJoin('pricing_masters as pm', 'pm.id', '=', 'p.pricing_id') // legacy project-level pricing (optional)
@@ -145,13 +125,11 @@ class InvoiceController extends Controller
                 $depId = $proj->department_id ?? null;
 
                 // ---- Locked lines (existing invoices) ----
->>>>>>> 9d9ed85b (for cleaner setup)
                 $locked = DB::table('invoice_lines as il')
                     ->join('invoices as iv', 'iv.id', '=', 'il.invoice_id')
                     ->where('iv.project_id', $project->id)
                     ->where('iv.billing_month', $yyyyMm)
                     ->whereIn('iv.status', ['submitted', 'finance_approved', 'sent'])
-<<<<<<< HEAD
                     ->select('il.source_intake_id as intake_id', 'iv.invoice_no')
                     ->get()
                     ->keyBy('intake_id');
@@ -185,7 +163,6 @@ class InvoiceController extends Controller
                 });
 
                 $gross = (float)$rows->where('locked', false)->sum('value');
-=======
                     ->select('il.source_intake_id as intake_id', 'iv.invoice_no', 'iv.status')
                     ->get()
                     ->keyBy('intake_id');
@@ -359,7 +336,6 @@ $deliveredStatusId = DB::table('intake_statuses')
                     ->where('locked', false)               // only editable rows contribute to draft total
                     ->filter(fn($r) => $r->value !== null) // skip rows with no rate resolved
                     ->sum('value');
->>>>>>> 9d9ed85b (for cleaner setup)
 
                 return response()->json([
                     'category' => 2,
@@ -369,13 +345,10 @@ $deliveredStatusId = DB::table('intake_statuses')
                         'name'   => $currencyName,
                         'symbol' => $currencySymbol,
                     ],
-<<<<<<< HEAD
                     'pricing'  => [
                         'rate' => $projectRate, // null if not configured
-=======
                     'pricing' => [
                         'mode' => 'standard', // explicit
->>>>>>> 9d9ed85b (for cleaner setup)
                     ],
                     'data'   => $rows,
                     'totals' => [
@@ -412,11 +385,9 @@ $deliveredStatusId = DB::table('intake_statuses')
                 ], 422);
         }
     }
-<<<<<<< HEAD
 
 
 
-=======
     /**
      * Build invoice preview HTML and RESERVE (store) an invoice number on a draft invoice.
      *
@@ -425,25 +396,21 @@ $deliveredStatusId = DB::table('intake_statuses')
      * - invoices.invoice_no is NOT NULL and UNIQUE
      * - invoices.billing_month is VARCHAR(7) and NOT NULL (we auto-fill if not sent)
      */
->>>>>>> 9d9ed85b (for cleaner setup)
     public function previewHtml(Request $request)
     {
         $request->validate([
             'project_id'   => 'required|integer|exists:projects,id',
             'intake_ids'   => 'required|array|min:1',
             'intake_ids.*' => 'integer',
-<<<<<<< HEAD
             'month'        => ['nullable', 'regex:/^\d{4}-(0[1-9]|1[0-2])$/'], // keep optional if you want
         ]);
 
         // ---- Company info (config/companyinfo.php) ----
-=======
             // Month is REQUIRED and must be MM-YYYY
             'month'        => ['required', 'regex:/^(0[1-9]|1[0-2])-\d{4}$/'], // MM-YYYY
         ]);
 
         // ---------------- Company info (config) ----------------
->>>>>>> 9d9ed85b (for cleaner setup)
         $ci = config('companyinfo');
         $companyName      = $ci['name']        ?? 'Company Name';
         $companyAddress   = $ci['address']     ?? "Address line 1\nCity, State PIN\nContact";
@@ -454,11 +421,9 @@ $deliveredStatusId = DB::table('intake_statuses')
         $lutNo            = $ci['lut_no']      ?? '';
         $iec              = $ci['iec_code']    ?? '';
         $invDescription   = $ci['description'] ?? '';
-<<<<<<< HEAD
         $sacCodeDefault   = $ci['sac_code']    ?? '';
 
         // ---- Project & pricing ----
-=======
         $sacCodeDefault   = "-";
 
         // ---------------- Month (MM-YYYY) ----------------
@@ -472,7 +437,6 @@ $deliveredStatusId = DB::table('intake_statuses')
         $monthDb = sprintf('%02d-%04d', $mm, $yyyy); // store consistently as MM-YYYY
 
         // ---------------- Project (+ IV/Dept, pricing & currency) ----------------
->>>>>>> 9d9ed85b (for cleaner setup)
         $project = DB::table('projects as p')
             ->leftJoin('pricing_masters as pm', 'pm.id', '=', 'p.pricing_id')
             ->leftJoin('currencies as cur', 'cur.id', '=', 'pm.currency_id')
@@ -482,15 +446,12 @@ $deliveredStatusId = DB::table('intake_statuses')
                 'p.project_name',
                 'p.pricing_id',
                 'p.customer_id',
-<<<<<<< HEAD
                 'pm.rate as pricing_rate',
                 'cur.name as currency_name'
-=======
                 'p.industry_vertical_id',
                 'p.department_id',
                 'pm.rate as pricing_rate',
                 'cur.name as currency_name',
->>>>>>> 9d9ed85b (for cleaner setup)
             ])
             ->first();
 
@@ -498,7 +459,6 @@ $deliveredStatusId = DB::table('intake_statuses')
             return response()->json(['html' => '<div>Project not found.</div>'], 404);
         }
 
-<<<<<<< HEAD
         // ---- Customer (to choose template) ----
         // $customer = DB::table('companies')
         //     ->where('id', $project->customer_id)
@@ -543,7 +503,6 @@ $deliveredStatusId = DB::table('intake_statuses')
             ];
         });
 
-=======
         // ---------------- Customer (template selection) ----------------
         $customer = DB::table('companies')
             ->where('id', $project->customer_id)
@@ -680,12 +639,10 @@ $deliveredStatusId = DB::table('intake_statuses')
         }
 
         // ---------------- Totals ----------------
->>>>>>> 9d9ed85b (for cleaner setup)
         $subtotal = (float)$lines->sum('value');
         $discount = 0.00;
         $net      = $subtotal - $discount;
 
-<<<<<<< HEAD
         // ---- Resolve PO Number (parent/subproject + month window) ----
         $projMeta = DB::table('projects')->where('id', $request->project_id)->select('id', 'parent_id')->first();
         $parentId = $projMeta?->parent_id ? (int)$projMeta->parent_id : (int)$request->project_id;
@@ -718,7 +675,6 @@ $deliveredStatusId = DB::table('intake_statuses')
         $customerType = "IND";
         // ---- Render (IND vs US) ----
         $view = $customerType === 'IND'
-=======
         // ---------------- PO number (optional; unchanged) ----------------
         $projMeta    = DB::table('projects')->where('id', $request->project_id)->select('id', 'parent_id')->first();
         $parentId    = $projMeta?->parent_id ? (int)$projMeta->parent_id : (int)$request->project_id;
@@ -761,21 +717,17 @@ $deliveredStatusId = DB::table('intake_statuses')
 
         // ---------------- Render (IND vs US) ----------------
         $view = $customerType === 1
->>>>>>> 9d9ed85b (for cleaner setup)
             ? 'content.invoices.preview_ind'
             : 'content.invoices.preview_us';
 
         $html = view($view, [
             'project'        => $project,
-<<<<<<< HEAD
             'month'          => $request->month,
             'invoiceNo'      => 'AUTO-' . now()->format('Ymd-His'),
             'invoiceDt'      => now()->format('Y-m-d'),
-=======
             'month'          => $billingMonth,
             'invoiceNo'      => $invoiceNo,
             'invoiceDt'      => Helpers::ymd_to_mdy($invoiceDate->toDateString()),
->>>>>>> 9d9ed85b (for cleaner setup)
             'poNo'           => $poNo,
 
             // statutory / config
@@ -785,19 +737,16 @@ $deliveredStatusId = DB::table('intake_statuses')
             'iec'            => $iec,
             'referenceNo'    => $referenceNo,
 
-<<<<<<< HEAD
             // company
             'company' => [
                 'name'      => $companyName,
                 'address'   => $companyAddress,
                 'due'       => now()->addDays(7)->format('Y-m-d'),
-=======
             // company (bank placeholders for preview)
             'company' => [
                 'name'      => $companyName,
                 'address'   => $companyAddress,
                 'due'       => now()->addDays(7)->format('m-d-Y'),
->>>>>>> 9d9ed85b (for cleaner setup)
                 'signatory' => $companySignatory,
                 'bank'      => [
                     'name'    => '—',
@@ -814,10 +763,7 @@ $deliveredStatusId = DB::table('intake_statuses')
             'billTo' => [
                 'name'    => $customer->name ?? 'Customer Name',
                 'address' => $customer->address ?? 'Customer Address',
-<<<<<<< HEAD
-=======
                 'customer_zipcode' => ($customer->location ?? '') . ' ' . ($customer->zip_code ?? ''),
->>>>>>> 9d9ed85b (for cleaner setup)
             ],
 
             'lines'  => $lines,
@@ -831,18 +777,14 @@ $deliveredStatusId = DB::table('intake_statuses')
                 'name'   => $currencyName,
                 'symbol' => $currencySymbol,
             ],
-<<<<<<< HEAD
             
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
             // optional fields for templates
             'invoiceDescription' => $invDescription,
             'placeOfSupply'      => '', // IND
             'destination'        => '', // US
         ])->render();
 
-<<<<<<< HEAD
         return response()->json(['html' => $html]);
     }
 
@@ -857,14 +799,12 @@ $deliveredStatusId = DB::table('intake_statuses')
         ]);
 
         return response()->json(['ok' => true, 'message' => 'Approved successfully']);
-=======
         return response()->json([
             'html'          => $html,
             'invoice_no'    => $invoiceNo,
             'invoice_date'  => $invoiceDate->toDateString(),
             'billing_month' => $billingMonth, // MM-YYYY
         ]);
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function reject(Request $request)
@@ -879,8 +819,6 @@ $deliveredStatusId = DB::table('intake_statuses')
 
         return response()->json(['ok' => true, 'message' => 'Rejected successfully']);
     }
-<<<<<<< HEAD
-=======
 
     // app/Http/Controllers/InvoiceController.php
 
@@ -2010,5 +1948,4 @@ $deliveredStatusId = DB::table('intake_statuses')
             'Pragma'              => 'public',
         ]);
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

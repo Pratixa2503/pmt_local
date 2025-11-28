@@ -14,14 +14,11 @@ $configData = Helper::appClasses();
 @section('page-style')
   <!-- Page -->
   <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-advance.css') }}">
-<<<<<<< HEAD
-=======
   <style>
     button.swal2-deny.btn.btn-label-secondary {
     display: none !important;
 }
   </style>
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection
 
 @section('vendor-script')
@@ -41,15 +38,12 @@ $configData = Helper::appClasses();
       <h4 class="text-dark bold mb-0">{{ __('Projects') }}</h4>
       <div class="justify-content-between">
         @if(auth()->check() && auth()->user()->can('create project'))
-<<<<<<< HEAD
           <a href="{{ route('projects.create') }}" class="btn btn-primary btn-md" data-toggle="tooltip" title="Add Project">
             <i class="fa fa-plus me-2"></i>{{ __('Add Project') }}
           </a>
-=======
           <!-- <a href="{{ route('projects.create') }}" class="btn btn-primary btn-md" data-toggle="tooltip" title="Add Project">
             <i class="fa fa-plus me-2"></i>{{ __('Add Project') }}
           </a> -->
->>>>>>> 9d9ed85b (for cleaner setup)
         @endif
           
       </div>
@@ -76,11 +70,8 @@ $configData = Helper::appClasses();
             <th></th>
             <th>Name</th>
             <th>Customer</th>
-<<<<<<< HEAD
             <th>Project Type</th>
-=======
             <!-- <th>Project Type</th> -->
->>>>>>> 9d9ed85b (for cleaner setup)
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -91,11 +82,8 @@ $configData = Helper::appClasses();
             <th></th>
             <th>Name</th>
             <th>Customer</th>
-<<<<<<< HEAD
             <th>Project Type</th>
-=======
             <!-- <th>Project Type</th> -->
->>>>>>> 9d9ed85b (for cleaner setup)
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -126,11 +114,8 @@ $configData = Helper::appClasses();
         },
         { data: 'project_name', name: 'projects.project_name' },
         { data: 'customer_name', name: 'c.name' },
-<<<<<<< HEAD
         { data: 'project_type_name', name: 'pt.name' },
-=======
         // { data: 'project_type_name', name: 'pt.name' },
->>>>>>> 9d9ed85b (for cleaner setup)
         { data: 'status_name', name: 'ps.name' },
         {
           data: 'actions',
@@ -154,7 +139,6 @@ $configData = Helper::appClasses();
     });
 
   // ---------- Expand / Collapse Subprojects ----------
-<<<<<<< HEAD
   $('#project-table').on('click', 'a.details-control', function () {
     var $btn = $(this);
     var tr = $btn.closest('tr');
@@ -178,7 +162,6 @@ $configData = Helper::appClasses();
         row.child('<div class="p-2 text-danger">Failed to load subprojects.</div>').show();
       });
   });
-=======
  // helper → swap FA icons and update aria-expanded
 function setExpanderIcon($btn, isOpen) {
   const $i = $btn.find('i').first();
@@ -222,7 +205,6 @@ $('#project-table').on('draw.dt', function () {
   });
 });
 
->>>>>>> 9d9ed85b (for cleaner setup)
   });
 
   // Delete handler
@@ -231,11 +213,8 @@ $(document).on('click', '.delete-project', function (e) {
 
     let encryptedId = $(this).data('id');
     let row = $(this).closest("tr"); // if you want to remove row after delete
-<<<<<<< HEAD
 
-=======
     
->>>>>>> 9d9ed85b (for cleaner setup)
     Swal.fire({
         title: "Are you sure?",
         text: "This project will be permanently deleted!",

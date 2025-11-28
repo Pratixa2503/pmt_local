@@ -169,7 +169,6 @@
             });
         });
 
-<<<<<<< HEAD
         $( document ).on("click", ".delete-customer", function() {
             var id = $(this).data('id');
             Swal.fire({
@@ -220,7 +219,6 @@
             return false;
         });
 
-=======
         // ONE-TIME: include the CSRF token on all AJAX calls
 $.ajaxSetup({
   headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') }
@@ -310,7 +308,6 @@ $(document).on('click', '.delete-customer', function (e) {
 
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
         setTimeout(function() {
             $(".alert-block").remove();
         }, 5000);

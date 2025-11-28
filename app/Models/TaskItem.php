@@ -3,14 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 
 class TaskItem extends Model
 {
     protected $fillable = [
         'project_id','user_id','main_task_id','sub_task_id',
         'status','total_seconds','started_at','completed_at','notes'
-=======
 use Illuminate\Database\Eloquent\SoftDeletes;
 class TaskItem extends LoggableModel
 {
@@ -18,7 +16,6 @@ class TaskItem extends LoggableModel
     protected $fillable = [
         'project_id','user_id','main_task_id','sub_task_id',
         'status','total_seconds','total_counts','started_at','completed_at','notes',
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
 
     protected $casts = [

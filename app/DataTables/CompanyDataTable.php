@@ -3,10 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Company;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Services\DataTable;
 
@@ -22,7 +19,6 @@ class CompanyDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-<<<<<<< HEAD
             ->addColumn('team', function ($company) {
                 // uses withCount alias 'team_count' from query()
                 return (int) $company->team_count;
@@ -48,7 +44,6 @@ class CompanyDataTable extends DataTable
                 }
 
                 return $actions;
-=======
             ->addColumn('id_encrypted', fn($row) => Crypt::encryptString($row->id))
             ->addColumn('team', fn($company) => (int) ($company->team_count ?? 0))
             ->addColumn('actions', function ($company) {
@@ -88,7 +83,6 @@ class CompanyDataTable extends DataTable
                 }
 
                 return $html ? implode('', $html) : '-';
->>>>>>> 9d9ed85b (for cleaner setup)
             })
             ->rawColumns(['actions']);
     }
@@ -101,17 +95,13 @@ class CompanyDataTable extends DataTable
      */
     public function query(Company $model)
     {
-<<<<<<< HEAD
         // Count only users with role 'customer' as the "team" size
         $query = $model->newQuery()
-=======
         return $model->newQuery()
->>>>>>> 9d9ed85b (for cleaner setup)
             ->select('companies.*')
             ->withCount([
                 'users as team_count' => function ($q) {
                     $q->join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-<<<<<<< HEAD
                       ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
                       ->where('roles.name', '=', 'customer');
                 }
@@ -122,13 +112,11 @@ class CompanyDataTable extends DataTable
         // or apply multi-tenancy scoping, do it here.
 
         return $query;
-=======
                         ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
                         ->where('roles.name', '=', 'customer');
                 }
             ])
             ->orderBy('companies.id', 'DESC');
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     /**
@@ -162,19 +150,16 @@ class CompanyDataTable extends DataTable
             ['data' => 'website',    'name' => 'website',    'title' => 'Website'],
             ['data' => 'team',       'name' => 'team_count', 'title' => 'Team'],
             [
-<<<<<<< HEAD
                 'data' => 'actions',
                 'name' => 'actions',
                 'title' => 'Actions',
                 'orderable' => false,
                 'searchable' => false
-=======
                 'data'       => 'actions',
                 'name'       => 'actions',
                 'title'      => 'Actions',
                 'orderable'  => false,
                 'searchable' => false,
->>>>>>> 9d9ed85b (for cleaner setup)
             ],
         ];
     }

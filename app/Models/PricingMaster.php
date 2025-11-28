@@ -3,20 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-<<<<<<< HEAD
-=======
 use Illuminate\Database\Eloquent\SoftDeletes;
->>>>>>> 9d9ed85b (for cleaner setup)
 
 class PricingMaster extends LoggableModel
 {
     use HasFactory;
-<<<<<<< HEAD
 
-=======
     use SoftDeletes;
     
->>>>>>> 9d9ed85b (for cleaner setup)
     protected $fillable = [
         'pricing_type',
         'industry_vertical_id',
@@ -37,13 +31,10 @@ class PricingMaster extends LoggableModel
         'name',
         'status',
         'document_path',
-<<<<<<< HEAD
         'approval_note', // note can be set during approve/reject
-=======
         'approval_note',
         'custom_pricing_type',
         'customer_id'
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
 
      protected $casts = [

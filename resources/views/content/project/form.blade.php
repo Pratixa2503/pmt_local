@@ -4,8 +4,6 @@
 @section('vendor-style')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
-<<<<<<< HEAD
-=======
 <style>
    /* wrapper around the select2 to position the action buttons */
   .select2-with-actions {
@@ -42,7 +40,6 @@
     width: 100% !important;
   }
 </style>
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection
 
 @section('vendor-script')
@@ -116,7 +113,6 @@
           <div class="row g-3">
             <div class="col-md-3">
               <label class="form-label d-block">Project Category <span class="text-danger">*</span></label>
-<<<<<<< HEAD
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="general_project" name="project_category" value="1"
                   {{ (string)old('project_category', $project->project_category ?? 1) === '1' ? 'checked' : '' }}>
@@ -132,7 +128,6 @@
                   {{ (string)old('project_category', $project->project_category ?? 1) === '3' ? 'checked' : '' }}>
                 <label class="form-check-label" for="la_project">API</label>
               </div>
-=======
                <select name="project_category" id="project_category" class="form-select select2" required>
                 <option value="">Select</option>
                 @foreach($masters['project_category'] as $item)
@@ -141,7 +136,6 @@
                   </option>
                 @endforeach
               </select>
->>>>>>> 9d9ed85b (for cleaner setup)
               @error('project_category') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
 
@@ -154,10 +148,8 @@
 
             <div class="col-md-6">
               <label for="description" class="form-label">Description / Scope <span class="text-danger">*</span></label>
-<<<<<<< HEAD
               <input type="text" class="form-control" id="description" name="description" required
                 value="{{ old('description', $project->description ?? '') }}" placeholder="Short scope or description" autocomplete="off">
-=======
                <textarea
                   class="form-control"
                   id="description"
@@ -168,7 +160,6 @@
                   placeholder="Short scope or description"
                   autocomplete="off"
                 >{{ old('description', $project->description ?? '') }}</textarea>
->>>>>>> 9d9ed85b (for cleaner setup)
               @error('description') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
           </div>
@@ -184,7 +175,6 @@
 
           <div class="row g-3 mb-3">
             <div class="col-md-6">
-<<<<<<< HEAD
               <label class="form-label d-block">Ongoing / Recurring</label>
               <div class="form-check form-switch">
                 <input type="hidden" name="is_recurring" value="0">
@@ -193,7 +183,6 @@
                 <label class="form-check-label" for="is_recurring">Ongoing project</label>
               </div>
               @error('is_recurring') <div class="text-danger small">{{ $message }}</div> @enderror
-=======
               <label class="form-label d-block">Project Type</label>
 
               <div class="form-check form-switch">
@@ -226,22 +215,16 @@
               @error('is_recurring')
                 <div class="text-danger small">{{ $message }}</div>
               @enderror
->>>>>>> 9d9ed85b (for cleaner setup)
             </div>
 
             <div class="col-md-6" id="recurrence_group" style="display:none;">
               <label class="form-label d-block">Repeat <span class="text-danger">*</span></label>
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="recurring_type" id="weekly" value="weekly"
                   {{ old('recurring_type', $project->recurring_type ?? '') == 'weekly' ? 'checked' : '' }}>
                 <label class="form-check-label" for="weekly">Weekly</label>
               </div>
-<<<<<<< HEAD
-=======
 
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="recurring_type" id="biweekly" value="biweekly"
@@ -249,55 +232,42 @@
                 <label class="form-check-label" for="biweekly">Fortnightly</label>
               </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="recurring_type" id="monthly" value="monthly"
                   {{ old('recurring_type', $project->recurring_type ?? '') == 'monthly' ? 'checked' : '' }}>
                 <label class="form-check-label" for="monthly">Monthly</label>
               </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="recurring_type" id="yearly" value="yearly"
                   {{ old('recurring_type', $project->recurring_type ?? '') == 'yearly' ? 'checked' : '' }}>
                 <label class="form-check-label" for="yearly">Yearly</label>
               </div>
-<<<<<<< HEAD
               @error('recurring_type') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
-=======
 
               @error('recurring_type') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
           </div>
 
           <div class="row g-3">
             <div class="col-md-6">
               <label for="start_date" class="form-label">Start Date <span class="text-danger">*</span></label>
               <input type="text" class="form-control datepicker" id="start_date" name="start_date" required
-<<<<<<< HEAD
                 value="{{ old('start_date', isset($project->start_date) ? \Carbon\Carbon::parse($project->start_date)->format('m/d/Y') : '') }}"
                 placeholder="MM/DD/YYYY" autocomplete="off">
-=======
                 value="{{ old('start_date', isset($project->start_date) ? \Carbon\Carbon::parse($project->start_date)->format('m-d-Y') : '') }}"
                 placeholder="MM-DD-YYYY" autocomplete="off">
->>>>>>> 9d9ed85b (for cleaner setup)
               @error('start_date') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
             <div class="col-md-6">
               <label for="end_date" class="form-label">End Date <span class="text-danger">*</span></label>
               <input type="text" class="form-control datepicker" id="end_date" name="end_date" required
-<<<<<<< HEAD
                 value="{{ old('end_date', isset($project->end_date) ? \Carbon\Carbon::parse($project->end_date)->format('m/d/Y') : '') }}"
                 placeholder="MM/DD/YYYY" autocomplete="off">
-=======
                 value="{{ old('end_date', isset($project->end_date) ? \Carbon\Carbon::parse($project->end_date)->format('m-d-Y') : '') }}"
                 placeholder="MM-DD-YYYY" autocomplete="off">
->>>>>>> 9d9ed85b (for cleaner setup)
               @error('end_date') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
           </div>
@@ -312,14 +282,12 @@
           </div>
 
           <div class="row g-3">
-<<<<<<< HEAD
             <div class="col-md-4">
               <label for="customer_id" class="form-label">Customer <span class="text-danger">*</span></label>
               <select name="customer_id" id="customer_id" class="form-select select2" required>
                 <option value="">Select Customer</option>
                 @foreach($customers as $c)
                   <option value="{{ $c->id }}" {{ (string)old('customer_id', $project->customer_id ?? '') === (string)$c->id ? 'selected' : '' }}>
-=======
             <!-- <div class="col-md-4">
               <label for="customer_id" class="form-label">Customer <span class="text-danger">*</span></label>
              
@@ -331,23 +299,19 @@
                 @foreach($customers as $c)
                   <option value="{{ $c->id }}"
                     {{ (string)old('customer_id', $presetCustomerId) === (string)$c->id ? 'selected' : '' }}>
->>>>>>> 9d9ed85b (for cleaner setup)
                     {{ $c->name }}
                   </option>
                 @endforeach
               </select>
               @error('customer_id') <div class="text-danger small">{{ $message }}</div> @enderror
-<<<<<<< HEAD
             </div>
 
             <div class="col-md-8">
-=======
             </div> -->
             <input type="hidden" name="customer_id" id="customer_id" value="{{ old('customer_id', $presetCustomerId) }}">
             <input type="hidden" name="project_id" id="project_id" value="{{ old('project_id', $id ?? '') }}">
 
             <div class="col-md-12">
->>>>>>> 9d9ed85b (for cleaner setup)
               <label class="form-label">POCs <span class="text-danger">*</span></label>
               <div id="poc-repeater" class="d-flex flex-column gap-2">
                 @php $alreadyChosen = []; @endphp
@@ -464,11 +428,8 @@
           </div>
 
           <div class="row g-3">
-<<<<<<< HEAD
             <div class="col-md-4">
-=======
             <!-- <div class="col-md-4">
->>>>>>> 9d9ed85b (for cleaner setup)
               <label for="project_type_id" class="form-label">Project Type <span class="text-danger">*</span></label>
               <select name="project_type_id" id="project_type_id" class="form-select select2" required>
                 <option value="">Select</option>
@@ -479,11 +440,9 @@
                 @endforeach
               </select>
               @error('project_type_id') <div class="text-danger small">{{ $message }}</div> @enderror
-<<<<<<< HEAD
             </div>
 
             <div class="col-md-4">
-=======
             </div> -->
 
             <div class="col-md-4">
@@ -500,7 +459,6 @@
             </div>
  
             <div class="col-md-4">
->>>>>>> 9d9ed85b (for cleaner setup)
               <label for="department_id" class="form-label">Department / Business Unit <span class="text-danger">*</span></label>
               <select name="department_id" id="department_id" class="form-select select2" required>
                 <option value="">Select</option>
@@ -514,9 +472,7 @@
             </div>
 
             <div class="col-md-4">
-<<<<<<< HEAD
               <label for="pricing_id" class="form-label">Pricing <span class="text-danger">*</span></label>
-=======
               <label for="service_offering_id" class="form-label">Service Offering <span class="text-danger">*</span></label>
               <select name="service_offering_id" id="service_offering_id" class="form-select select2" required>
                 <option value="">Select</option>
@@ -579,7 +535,6 @@
                 </button>
               </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
               <select name="pricing_id" id="pricing_id" class="form-select select2" required>
                 <option value="">Select</option>
                 @foreach(($pricing ?? []) as $p)
@@ -588,17 +543,14 @@
                   </option>
                 @endforeach
               </select>
-<<<<<<< HEAD
               @error('pricing_id') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
 
-=======
             </div>
 
             @error('pricing_id') <div class="text-danger small">{{ $message }}</div> @enderror
           </div>
           
->>>>>>> 9d9ed85b (for cleaner setup)
             <div class="col-md-4">
               <label for="input_format_id" class="form-label">Input Format <span class="text-danger">*</span></label>
               <select name="input_format_id" id="input_format_id" class="form-select select2" required>
@@ -650,10 +602,8 @@
               </select>
               @error('frequency_of_delivery_id') <div class="text-danger small">{{ $message }}</div> @enderror
             </div>
-<<<<<<< HEAD
           </div>
 
-=======
 
             <!-- <div class="col-md-4" id="suite_id_group" style="{{ (string)old('project_category', $project->project_category ?? 1) === '2' ? '' : 'display:none;' }}">
               <label for="suite_id" class="form-label">Suite ID</label>
@@ -669,7 +619,6 @@
 
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
           {{-- ===================== Status & Priority ===================== --}}
           <div class="col-md-12 my-4">
             <div class="d-flex align-items-center">
@@ -718,8 +667,6 @@
             </button>
           </div>
         </form>
-<<<<<<< HEAD
-=======
         {{-- ===================== Bulk Import ===================== --}}
 <div class="col-md-12 my-4" style="{{ (string)old('project_category', $project->project_category ?? 1) === '2' ? '' : 'display:none;' }}">
   <div class="d-flex align-items-center">
@@ -813,7 +760,6 @@
   </div>
 </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
       </div>
 
     </div>
@@ -824,7 +770,6 @@
 @section('extra-script')
 <script>
 $(function () {
-<<<<<<< HEAD
   // ---------- helpers ----------
   function isGeneralProject() { return $('input[name="project_category"]:checked').val() === '1'; }
 
@@ -978,7 +923,6 @@ if ($.validator) {
 
 
   // ---------------------- POC repeater ----------------------
-=======
 function togglePricingActions() {
   const pType = $('#pricing_type').val(); // 'standard' or 'fixed'
   const $bar  = $('.select2-with-actions .select-action-bar');
@@ -1204,7 +1148,6 @@ function togglePricingActions() {
   // ==========================
   // POC Repeater (hidden customer_id aware)
   // ==========================
->>>>>>> 9d9ed85b (for cleaner setup)
   let pocOptionsCache = Array.isArray(window.__pocSeed) ? window.__pocSeed : [];
   function pocLabel(p){ return p.email ? `${p.name} (${p.email})` : p.name; }
   function getAllSelectedPocIds(exclude){
@@ -1213,18 +1156,14 @@ function togglePricingActions() {
     }); return ids;
   }
   function populatePocSelect($select){
-<<<<<<< HEAD
     const selected = getAllSelectedPocIds($select); const curVal = $select.val();
-=======
     const selected = getAllSelectedPocIds($select); const curVal=$select.val();
->>>>>>> 9d9ed85b (for cleaner setup)
     $select.empty().append(new Option('Select POC','',false,false));
     pocOptionsCache.forEach(p=>{
       const opt = new Option(pocLabel(p), String(p.id), false, false);
       if (selected.has(String(p.id)) && String(p.id)!==String(curVal)) $(opt).prop('disabled', true);
       $select.append(opt);
     });
-<<<<<<< HEAD
     if (curVal && $select.find(`option[value="${curVal}"]`).length) $select.val(curVal);
     else $select.val('');
     if ($select.hasClass('select2-hidden-accessible')) $select.trigger('change.select2');
@@ -1237,7 +1176,6 @@ function togglePricingActions() {
       if (i===rows.length-1) $btn.text('+').removeClass('btn-outline-danger').addClass('btn-outline-primary').attr('data-action','add');
       else $btn.text('−').removeClass('btn-outline-primary').addClass('btn-outline-danger').attr('data-action','remove');
     });
-=======
     if (curVal && $select.find(`option[value="${curVal}"]`).length) $select.val(curVal); else $select.val('');
     if ($select.hasClass('select2-hidden-accessible')) $select.trigger('change.select2');
   }
@@ -1272,7 +1210,6 @@ function togglePricingActions() {
     $.getJSON(`/customers/${customerId}/pocs`)
       .done(function(data){ pocOptionsCache = Array.isArray(data) ? data : []; refreshAllPocSelects(); })
       .fail(function(){ pocOptionsCache=[]; refreshAllPocSelects(); alert('Failed to load POCs.'); });
->>>>>>> 9d9ed85b (for cleaner setup)
   }
   function addPocRow(){
     const idx=$('#poc-repeater .poc-row').length;
@@ -1285,7 +1222,6 @@ function togglePricingActions() {
       </div>`);
     $('#poc-repeater').append($row);
     $row.find('.poc-select').select2({ width:'100%', placeholder:'Select POC', allowClear:true })
-<<<<<<< HEAD
       .on('change', function(){ $(this).valid(); refreshAllPocSelects(); });
     refreshAllPocSelects(); togglePocButtons();
   }
@@ -1331,7 +1267,6 @@ function togglePricingActions() {
   const $pmTplWrap  = $('#pm-row-template');
 
   // de-dup helpers
-=======
       .on('change', function(){ refreshAllPocSelects(); });
     refreshAllPocSelects();
     updateRepeaterButtons($('#poc-repeater'), '.poc-row', '.poc-addremove', 'poc-add', '+ Add POC');
@@ -1378,7 +1313,6 @@ function togglePricingActions() {
   const $pmRepeater = $('#pm-repeater');
   const $pmTplWrap  = $('#pm-row-template');
 
->>>>>>> 9d9ed85b (for cleaner setup)
   function chosenPmIds(exclude){
     const ids=new Set();
     $pmRepeater.find('.pm-select').each(function(){
@@ -1391,7 +1325,6 @@ function togglePricingActions() {
     const chosen=chosenPmIds($select); const curVal=$select.val();
     $select.find('option').each(function(){
       const val=$(this).attr('value'); if(!val) return;
-<<<<<<< HEAD
       const disable = chosen.has(String(val)) && String(val)!==String(curVal);
       $(this).prop('disabled', disable);
     });
@@ -1410,14 +1343,12 @@ function togglePricingActions() {
   }
 
   // Build options & apply selection
-=======
       $(this).prop('disabled', chosen.has(String(val)) && String(val)!==String(curVal));
     });
     if ($select.hasClass('select2-hidden-accessible')) $select.trigger('change.select2');
   }
   function refreshAllPmSelects(){ $pmRepeater.find('.pm-select').each(function(){ dedupePmSelect($(this)); }); }
 
->>>>>>> 9d9ed85b (for cleaner setup)
   function populateMembersSelect($select, list, preselectedIds = []) {
     const selectedSet = new Set((preselectedIds || []).map(String));
     $select.empty();
@@ -1428,20 +1359,17 @@ function togglePricingActions() {
     });
     $select.trigger('change');
   }
-<<<<<<< HEAD
 
   function fetchMembersForPM(pmId) {
     return $.post("{{ route('projects.pmMembers') }}", {
       pm_ids: [String(pmId)],
       @if($isEdit)
       project_id: {{ (int)$project->id }},
-=======
   function fetchMembersForPM(pmId) {
     return $.post("{{ route('projects.pmMembers') }}", {
       pm_ids: [String(pmId)],
       @if(isset($isEdit) && $isEdit)
       project_id: {{ (int)($project->id ?? 0) }},
->>>>>>> 9d9ed85b (for cleaner setup)
       @endif
       _token: "{{ csrf_token() }}"
     });
@@ -1449,7 +1377,6 @@ function togglePricingActions() {
 
   function refreshMembersForRow($row){
     const pmId = $row.find('.pm-select').val();
-<<<<<<< HEAD
     const show = $('input[name="project_category"]:checked').val() === '1' && !!pmId;
 
     const $wrap = $row.find('.members-for-pm');
@@ -1470,7 +1397,6 @@ function togglePricingActions() {
 
     // Initial preselected (from server for edit/old), used only once
     const preselected = Array.isArray($sel.data('preselected')) ? $sel.data('preselected') : [];
-=======
     const catIs1 = getProjectCategoryVal() === '1';
     const $wrap = $row.find('.members-for-pm');
     const $sel  = $row.find('.members-select');
@@ -1486,14 +1412,11 @@ function togglePricingActions() {
     }
 
     $wrap.show();
->>>>>>> 9d9ed85b (for cleaner setup)
 
     if (!$sel.hasClass('select2-hidden-accessible')) {
       $sel.select2({ width:'100%', placeholder:'Select members', allowClear:true });
     }
 
-<<<<<<< HEAD
-=======
     if (!pmId) {
       $sel.attr('name', 'members_by_pm[TMP][]').attr('data-for-pm', '').removeData('loaded-for');
       if (!$sel.data('placeholder-injected')) {
@@ -1512,35 +1435,28 @@ function togglePricingActions() {
 
     const preselected = Array.isArray($sel.data('preselected')) ? $sel.data('preselected') : [];
 
->>>>>>> 9d9ed85b (for cleaner setup)
     fetchMembersForPM(pmId)
       .done(res => {
         const list = Array.isArray(res?.data) ? res.data : [];
         populateMembersSelect($sel, list, preselected);
-<<<<<<< HEAD
         $sel.data('loaded-for', String(pmId));
         $sel.data('preselected', []); // clear cache
       })
       .fail(() => {
         console.error('Failed to load members for PM', pmId);
         populateMembersSelect($sel, [], []);
-=======
         $sel.data('loaded-for', String(pmId)).data('preselected', []);
         $sel.trigger('change.select2');
       })
       .fail(() => {
         $sel.empty().trigger('change.select2');
->>>>>>> 9d9ed85b (for cleaner setup)
       });
   }
 
   function addPmRow(){
     const $row = $pmTplWrap.children('.pm-row').first().clone(true,true);
-<<<<<<< HEAD
 
     // reset fields
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
     const $sel=$row.find('select.pm-select');
     $sel.prop('disabled', false).attr('name','pm_ids[]').val('');
     const $members=$row.find('.members-select');
@@ -1549,7 +1465,6 @@ function togglePricingActions() {
 
     $pmRepeater.append($row);
 
-<<<<<<< HEAD
     // init select2
     $sel.select2({ width:'100%', placeholder:'Select PM', allowClear:true })
       .on('change', function(){
@@ -1564,7 +1479,6 @@ function togglePricingActions() {
   }
 
   // init existing PM selects & members
-=======
     $sel.select2({ width:'100%', placeholder:'Select PM', allowClear:true });
     $members.select2({ width:'100%', placeholder:'Select members', allowClear:true });
 
@@ -1573,14 +1487,12 @@ function togglePricingActions() {
     refreshMembersForRow($row);
   }
 
->>>>>>> 9d9ed85b (for cleaner setup)
   $pmRepeater.find('.pm-select').each(function(){
     $(this).select2({ width:'100%', placeholder:'Select PM', allowClear:true });
   });
   $pmRepeater.find('.members-select').each(function(){
     $(this).select2({ width:'100%', placeholder:'Select members', allowClear:true });
   });
-<<<<<<< HEAD
 
   refreshAllPmSelects();
   $pmRepeater.find('.pm-row').each(function(){ refreshMembersForRow($(this)); });
@@ -1638,7 +1550,6 @@ function togglePricingActions() {
   if ($('#department_id').val()){ $('#department_id').trigger('change'); }
 
   // -------- final submit guard for POCs/PMs ----------
-=======
   refreshAllPmSelects();
   $pmRepeater.find('.pm-row').each(function(){ refreshMembersForRow($(this)); });
 
@@ -1763,33 +1674,27 @@ $(document).on('click', '#btn-refresh-pricing', function(){
   // ==========================
   // Submit guards
   // ==========================
->>>>>>> 9d9ed85b (for cleaner setup)
   function validatePocRepeaterRequired(){
     const ok = $('#poc-repeater .poc-select').toArray().some(el => $(el).val());
     $('#poc-repeater-error').toggleClass('d-none', ok);
     return ok;
   }
-<<<<<<< HEAD
   $(document).on('change', '#poc-repeater .poc-select', function(){
   validatePocRepeaterRequired();
 });
   $('#projectForm').on('submit', function(e){
     const pocOK = validatePocRepeaterRequired();
     const pmOK  = $pmRepeater.find('.pm-select').toArray().some(el => el.value);
-=======
   $('#projectForm').on('submit', function(e){
     const pocOK = validatePocRepeaterRequired();
     const pmOK  = $('#pm-repeater .pm-select').toArray().some(el => el.value);
->>>>>>> 9d9ed85b (for cleaner setup)
     $('#pm-repeater-error').toggleClass('d-none', pmOK);
     if (!pocOK || !pmOK){
       e.preventDefault();
       if (!pocOK) $('#poc-repeater .poc-select').first().select2('open');
-<<<<<<< HEAD
       else        $pmRepeater.find('.pm-select').first().select2('open');
     }
   });
-=======
       else $('#pm-repeater .pm-select').first().select2('open');
     }
   });
@@ -1899,7 +1804,6 @@ $('#department_id').on('change', function () {
   }
 })();
 
->>>>>>> 9d9ed85b (for cleaner setup)
 });
 </script>
 @endsection

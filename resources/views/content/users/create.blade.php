@@ -31,10 +31,7 @@
                         'last_name' => 'Last Name',
                         'email' => 'Email',
                         'contact_no' => 'Contact No',
-<<<<<<< HEAD
                         'company_name' => 'Company Name',
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
                         ];
 
                         $requiredFields = ['first_name','last_name','email', 'contact_no']; // Add required fields here
@@ -64,7 +61,6 @@
                         </div>
                         @endforeach
 
-<<<<<<< HEAD
                         <div class="mb-3 custom-validation col-md-6 col-lg-6">
                             <label for="role" class="form-label">Role  <span class="text-danger">*</span></label>
                             <select name="role[]" id="role" class="form-control form-select {{ $errors->has('role') ? 'is-invalid' : '' }}" multiple="multiple">
@@ -120,7 +116,6 @@
                             </span>
                             @enderror
                         </div>
-=======
                     <div class="mb-3 custom-validation col-md-6 col-lg-6">
                         <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
                         <select name="role[]" id="role"
@@ -176,7 +171,6 @@
                         @enderror
                         </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
 
                     <div class="row">
@@ -320,8 +314,6 @@
             }
         });
     });
-<<<<<<< HEAD
-=======
     (function () {
         function hasPMRole() {
             const sel = document.getElementById('role');
@@ -364,6 +356,5 @@
             togglePM(); // in case the DOM is already ready
         }
     })();
->>>>>>> 9d9ed85b (for cleaner setup)
 </script>
 @endsection

@@ -54,9 +54,7 @@
         @error($field)<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
     @endforeach
-<<<<<<< HEAD
 
-=======
       <div class="mb-3 col-md-6">
     <label for="aba_number" class="form-label">ABA No.</label>
     <input type="text"
@@ -84,7 +82,6 @@
            placeholder="9-digit routing">
     @error('routing_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
   </div>
->>>>>>> 9d9ed85b (for cleaner setup)
     {{-- Branch address (textarea) --}}
     <div class="mb-3 col-12">
       <label for="branch_address" class="form-label">Branch address</label>
@@ -93,7 +90,6 @@
         placeholder="Enter Branch address">{{ old('branch_address', $bank->branch_address ?? '') }}</textarea>
       @error('branch_address')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
-<<<<<<< HEAD
 
     {{-- Status --}}
     <div class="mb-3 col-md-6">
@@ -105,7 +101,6 @@
       </select>
       @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
-=======
      
     {{-- Status --}}
     <div class="mb-3 col-md-6">
@@ -121,7 +116,6 @@
       @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
   </div>
 
   <div class="text-end">

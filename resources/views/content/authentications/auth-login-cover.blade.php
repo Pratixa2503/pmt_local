@@ -42,11 +42,8 @@
           </a>
         </div>
         <!-- /Logo -->
-<<<<<<< HEAD
         <h3 class=" mb-1 fw-bold">Welcome to {{config('variables.templateName')}}! 👋</h3>
-=======
         <h3 class=" mb-1 fw-bold">Welcome test to {{config('variables.templateName')}}! 👋</h3>
->>>>>>> 9d9ed85b (for cleaner setup)
         <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
                     <form id="LoginForm" class="mb-3" action="{{ route('auth-login') }}" method="POST">

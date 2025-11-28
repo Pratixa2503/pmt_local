@@ -211,11 +211,8 @@ class CollaborationController extends Controller
             ->where('project_id', $projectId)
             ->where('user_id', $user->id)
             ->exists();
-<<<<<<< HEAD
 
-=======
        
->>>>>>> 9d9ed85b (for cleaner setup)
         // Team via project_member_assignments
         $isMember = DB::table('project_member_assignments')
             ->where('project_id', $projectId)
@@ -301,19 +298,16 @@ class CollaborationController extends Controller
                 });
 
                 // (Optional) legacy pivot
-<<<<<<< HEAD
                 // $root->orWhereExists(function ($q) use ($user) {
                 //     $q->selectRaw(1)->from('project_user as pu')
                 //       ->whereColumn('pu.project_id','projects.id')
                 //       ->where('pu.user_id',$user->id);
                 // });
-=======
                 $root->orWhereExists(function ($q) use ($user) {
                     $q->selectRaw(1)->from('project_user as pu')
                       ->whereColumn('pu.project_id','projects.id')
                       ->where('pu.user_id',$user->id);
                 });
->>>>>>> 9d9ed85b (for cleaner setup)
             });
         }
 

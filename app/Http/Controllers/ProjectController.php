@@ -20,10 +20,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use App\Models\ProjectMemberAssignment;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 
-=======
 use App\Http\Requests\GenericFileUploadRequest;
 use App\Imports\ProjectIntakesImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -32,7 +30,6 @@ use App\Models\ServiceOffering;
 use App\Mail\StageNotificationMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Arr;
->>>>>>> 9d9ed85b (for cleaner setup)
 class ProjectController extends Controller
 {
     public function index(ProjectDataTable $dataTable)
@@ -42,7 +39,6 @@ class ProjectController extends Controller
 
     public function create(Request $request)
     {
-<<<<<<< HEAD
         $title = "Create Project";
         $type  = "create";
         $data  = Helpers::getProjectMasterData();
@@ -60,7 +56,6 @@ class ProjectController extends Controller
         }
         $users = Helpers::getUsersByRole('project manager');
         return view('content.project.form', compact('data', 'title', 'type', 'customers', 'users', 'parentId'));
-=======
         $title  = "Create Project";
         $type   = "create";
         $data   = Helpers::getProjectMasterData();
@@ -109,15 +104,11 @@ class ProjectController extends Controller
             'content.project.form',
             compact('data', 'title', 'type', 'customers', 'users', 'parentId', 'presetCustomerId', 'presetCustomer')
         );
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
         $data = $this->validateData($request);
         $project = Project::create($data);
 
@@ -129,7 +120,6 @@ class ProjectController extends Controller
         return redirect()->route('projects.index')->with('success', 'Project created.');
     }
 
-<<<<<<< HEAD
     public function edit($encryptedId)
     {
         $id = Crypt::decryptString($encryptedId);
@@ -152,7 +142,6 @@ class ProjectController extends Controller
         // Only build membersByPm when category == 1
         $membersByPm = [];
         if ((int)($project->project_category ?? 1) === 1) {
-=======
     // public function edit($encryptedId)
     // {
     //     $id = Crypt::decryptString($encryptedId);
@@ -235,7 +224,6 @@ class ProjectController extends Controller
         // 👥 Members-by-PM only for category == 1 (so the Members multi-selects can pre-populate)
         $membersByPm = [];
         if ((int) ($project->project_category ?? 1) === 1) {
->>>>>>> 9d9ed85b (for cleaner setup)
             $membersByPm = ProjectMemberAssignment::where('project_id', $project->id)
                 ->get(['pm_id', 'member_id'])
                 ->groupBy('pm_id')
@@ -244,31 +232,22 @@ class ProjectController extends Controller
         }
 
         return view('content.project.form', compact(
-<<<<<<< HEAD
-=======
             'id',
->>>>>>> 9d9ed85b (for cleaner setup)
             'title',
             'type',
             'project',
             'customers',
             'users',
             'pricing',
-<<<<<<< HEAD
             'pocsForCustomer',
-=======
             'pocsForCustomer',   // used to seed window.__pocSeed
             'presetCustomerId',  // used to fill the hidden #customer_id
->>>>>>> 9d9ed85b (for cleaner setup)
             'parentId',
             'membersByPm'
         ));
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
     public function update(Request $request, int $id)
     {
         $project = Project::findOrFail($id);
@@ -320,7 +299,6 @@ class ProjectController extends Controller
 
     protected function validateData(Request $request, ?int $projectId = null): array
     {
-<<<<<<< HEAD
         // sanitize repeater arrays (drop blanks)
         $clean = $request->all();
         $clean['pocs'] = collect($request->input('pocs', []))
@@ -350,7 +328,6 @@ class ProjectController extends Controller
             'project_type_id'           => ['required', 'exists:project_types,id'],
             'department_id'             => ['required', 'exists:departments,id'],
             'pricing_id'                => ['required', 'exists:pricing_masters,id'],
-=======
         // Start with all inputs
         $input = $request->all();
 
@@ -408,7 +385,6 @@ class ProjectController extends Controller
             'pricing_id'                => ['nullable', 'exists:pricing_masters,id'],
             //'pricing_id'                => ['required_unless:project_category,2', 'integer', 'exists:pricing_masters,id'],
             'pricing_type'              => ['required'],
->>>>>>> 9d9ed85b (for cleaner setup)
             'input_format_id'           => ['required', 'exists:input_output_formats,id'],
             'output_format_id'          => ['required', 'exists:input_output_formats,id'],
             'mode_of_delivery_id'       => ['required', 'exists:mode_of_deliveries,id'],
@@ -416,14 +392,12 @@ class ProjectController extends Controller
             'project_priority_id'       => ['required', 'exists:project_priorities,id'],
             'project_status_id'         => ['required', 'exists:project_statuses,id'],
             'parent_id'                 => ['nullable', 'integer', 'exists:projects,id'],
-<<<<<<< HEAD
 
             // arrays (already sanitized)
             'pocs'     => ['required', 'array', 'min:1'],
             'pocs.*'   => ['integer', 'distinct', 'exists:users,id'],
             'pm_ids'   => ['required', 'array', 'min:1'],
             'pm_ids.*' => ['integer', 'distinct', 'exists:users,id'],
-=======
             'industry_vertical_id'      => ['required', 'exists:industry_verticals,id'],
             'service_offering_id'       => ['required', 'exists:service_offerings,id'],
             // Repeaters (already sanitized)
@@ -433,7 +407,6 @@ class ProjectController extends Controller
             'pm_ids.*'                  => ['integer', 'distinct', 'exists:users,id'],
 
             'suite_id'                  => ['nullable', 'string', 'max:255'],
->>>>>>> 9d9ed85b (for cleaner setup)
         ];
 
         $messages = [
@@ -441,7 +414,6 @@ class ProjectController extends Controller
             'pm_ids.min'                => 'Please select at least one Project Manager.',
             'end_date.after_or_equal'   => 'End date must be the same or after Start date.',
             'recurring_type.required'   => 'Please choose a repeat cadence.',
-<<<<<<< HEAD
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -449,7 +421,6 @@ class ProjectController extends Controller
 
         $data = $validator->validated();
         $data['is_recurring'] = $request->boolean('is_recurring');
-=======
             'industry_vertical_id'      => 'Please choose a Industry vertical.',
             'pricing_id'                => 'Please choose a Pricing.',
         ];
@@ -466,7 +437,6 @@ class ProjectController extends Controller
         // dd($data);
         // Make sure the boolean is a real bool in the returned payload
         $data['is_recurring'] = (bool) $input['is_recurring'];
->>>>>>> 9d9ed85b (for cleaner setup)
 
         return $data;
     }
@@ -482,11 +452,8 @@ class ProjectController extends Controller
 
         $subs = Project::query()
             ->leftJoin('companies as c', 'c.id', '=', 'projects.customer_id')
-<<<<<<< HEAD
             ->leftJoin('project_types as pt', 'pt.id', '=', 'projects.project_type_id')
-=======
             // ->leftJoin('project_types as pt', 'pt.id', '=', 'projects.project_type_id')
->>>>>>> 9d9ed85b (for cleaner setup)
             ->leftJoin('project_statuses as ps', 'ps.id', '=', 'projects.project_status_id')
             ->where('projects.parent_id', $parentId)
             ->select([
@@ -495,11 +462,8 @@ class ProjectController extends Controller
                 'projects.start_date',
                 'projects.end_date',
                 'c.name as customer_name',
-<<<<<<< HEAD
                 'pt.name as project_type_name',
-=======
                 // 'pt.name as project_type_name',
->>>>>>> 9d9ed85b (for cleaner setup)
                 'ps.name as status_name',
             ])
             ->orderByDesc('projects.id');
@@ -578,9 +542,7 @@ class ProjectController extends Controller
         $rows     = collect();
 
         if ($parentId) {
-<<<<<<< HEAD
             $rowsQ = ProjectIntake::query()
-=======
             $parent = Project::query()
                 ->select('id', 'department_id', 'industry_vertical_id')
                 ->whereKey((int) $parentId)
@@ -604,7 +566,6 @@ class ProjectController extends Controller
                         $q->whereNull('query_resolved_date');
                     },
                 ])
->>>>>>> 9d9ed85b (for cleaner setup)
                 ->where('parent_id', $parentId)
                 ->orderBy('id');
 
@@ -616,11 +577,8 @@ class ProjectController extends Controller
                     $rowsQ->where('reviewer_id', $user->id);
                 } elseif ($user->hasRole('customer')) {
                     $rowsQ->where('property_manager_id', $user->id);
-<<<<<<< HEAD
-=======
                 } elseif ($user->hasRole('sense check')) {
                     $rowsQ->where('sense_check_ddr_id', $user->id);
->>>>>>> 9d9ed85b (for cleaner setup)
                 }
             }
 
@@ -658,10 +616,8 @@ class ProjectController extends Controller
         ]);
     }
 
-<<<<<<< HEAD
 
     public function store2(StoreProjectIntakeRequest $request)
-=======
     // public function store2(Request $request)
     // {
     //     $parentId = $request->input('parent_id');
@@ -1014,12 +970,10 @@ class ProjectController extends Controller
     // }
 
     public function store2(Request $request)
->>>>>>> 9d9ed85b (for cleaner setup)
     {
         $parentId = $request->input('parent_id');
         $all      = $request->all();
 
-<<<<<<< HEAD
         $count = count($request->input('property_manager_id', []));
         $rows  = [];
 
@@ -1084,7 +1038,6 @@ class ProjectController extends Controller
                 'property_manager_id'           => data_get($all, "property_manager_id.{$i}"),
                 'request_received_date'         => data_get($all, "request_received_date.{$i}"),
                 'delivered_date'                => data_get($all, "delivered_date.{$i}"),
-=======
         // === 1) Field map ===
         $formFields = [
             'property_manager_id','request_received_date','delivered_date','priority_id','status_master','property_id',
@@ -1208,7 +1161,6 @@ class ProjectController extends Controller
                 'property_manager_id'           => data_get($all, "property_manager_id.{$i}"),
                 'request_received_date'         => $normDate(data_get($all, "request_received_date.{$i}")),
                 'delivered_date'                => $normDate(data_get($all, "delivered_date.{$i}")),
->>>>>>> 9d9ed85b (for cleaner setup)
                 'priority_id'                   => data_get($all, "priority_id.{$i}"),
                 'status_master_id'              => data_get($all, "status_master.{$i}"),
                 'property_id'                   => data_get($all, "property_id.{$i}"),
@@ -1222,7 +1174,6 @@ class ProjectController extends Controller
                 'type_of_queries'               => data_get($all, "type_of_queries.{$i}"),
                 'client_response'               => data_get($all, "client_response.{$i}"),
                 'query_status_id'               => data_get($all, "query_status.{$i}"),
-<<<<<<< HEAD
                 'query_raised_date'             => data_get($all, "query_raised_date.{$i}"),
                 'query_resolved_date'           => data_get($all, "query_resolved_date.{$i}"),
                 'abstractor_id'                 => data_get($all, "abstractor.{$i}"),
@@ -1240,7 +1191,6 @@ class ProjectController extends Controller
                 'non_english_pages'             => (int) (data_get($all, "non_english_pages.{$i}", 0) ?? 0),
                 'invoice_format_id'             => data_get($all, "invoice_format.{$i}"),
                 'fb_date_received'              => data_get($all, "fb_date_received.{$i}"),
-=======
                 'query_raised_date'             => $normDate(data_get($all, "query_raised_date.{$i}")),
                 'query_resolved_date'           => $normDate(data_get($all, "query_resolved_date.{$i}")),
                 'abstractor_id'                 => data_get($all, "abstractor.{$i}"),
@@ -1260,21 +1210,16 @@ class ProjectController extends Controller
                 'non_english_pages'             => (int) (data_get($all, "non_english_pages.{$i}", 0) ?? 0),
                 'invoice_format_id'             => data_get($all, "invoice_format.{$i}"),
                 'fb_date_received'              => $normDate(data_get($all, "fb_date_received.{$i}")),
->>>>>>> 9d9ed85b (for cleaner setup)
                 'fb_customer_name'              => data_get($all, "fb_customer_name.{$i}"),
                 'fb_category_id'                => data_get($all, "fb_category_id.{$i}"),
                 'fb_customer_comments'          => data_get($all, "fb_customer_comments.{$i}"),
                 'fb_sb_response'                => data_get($all, "fb_sb_response.{$i}"),
-<<<<<<< HEAD
                 'fb_feedback_completion_date'   => data_get($all, "fb_feedback_completion_date.{$i}"),
-=======
                 'fb_feedback_completion_date'   => $normDate(data_get($all, "fb_feedback_completion_date.{$i}")),
->>>>>>> 9d9ed85b (for cleaner setup)
                 'cost_usd'                      => (float) (data_get($all, "cost_usd.{$i}", 0) ?? 0),
                 'type_of_lease_id'              => data_get($all, "type_of_lease.{$i}"),
                 'type_of_work_id'               => data_get($all, "type_of_work.{$i}"),
                 'language_code'                 => data_get($all, "language.{$i}"),
-<<<<<<< HEAD
                 'id'                            => $intakeId ? (int) $intakeId : null,
             ];
 
@@ -1308,7 +1253,6 @@ class ProjectController extends Controller
 
             if ($canPrune && $parentId !== null) {
                 ProjectIntake::where('parent_id', $parentId)
-=======
                 'suite_id'                      => data_get($all, "suite_id.{$i}"),
                 'id'                            => $intakeId ? (int) $intakeId : null,
                 'created_at'                    => now(),
@@ -1391,12 +1335,10 @@ class ProjectController extends Controller
             $idsToKeep = array_values(array_filter(array_map(fn($r) => $r['id'] ?? null, $rows)));
             if ($canPrune && $parentId !== null && !$hasActiveFilters) {
                 \App\Models\ProjectIntake::where('parent_id', $parentId)
->>>>>>> 9d9ed85b (for cleaner setup)
                     ->when(!empty($idsToKeep), fn($q) => $q->whereNotIn('id', $idsToKeep))
                     ->delete();
             }
 
-<<<<<<< HEAD
             $updateColumns = [
                 'parent_id',
                 'property_manager_id',
@@ -1445,7 +1387,6 @@ class ProjectController extends Controller
             ];
 
             ProjectIntake::upsert($normalized, ['id'], $updateColumns);
-=======
             // TRIGGERS (only for submitted non-empty values & never re-send once *_notified_on set)
             foreach ($rows as $r) {
                 $id = $r['id'] ?? null;
@@ -1590,16 +1531,12 @@ class ProjectController extends Controller
                     }
                 }
             });
->>>>>>> 9d9ed85b (for cleaner setup)
         });
 
         return back()->with('success', 'Intake rows saved successfully.');
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
     private function applyIntakeFiltersOnIntakes(Builder $q, Request $request): void
     {
         $f = (array) $request->input('filter', []);
@@ -1831,7 +1768,6 @@ class ProjectController extends Controller
         }
     }
 
-<<<<<<< HEAD
 //     public function generalView(string $encryptedId, Request $request)
 // {
 //     $id = Crypt::decryptString($encryptedId);
@@ -1890,7 +1826,6 @@ class ProjectController extends Controller
 //         // 'items'      => $items,
 //     ]);
 // }
-=======
     //     public function generalView(string $encryptedId, Request $request)
     // {
     //     $id = Crypt::decryptString($encryptedId);
@@ -1949,7 +1884,6 @@ class ProjectController extends Controller
     //         // 'items'      => $items,
     //     ]);
     // }
->>>>>>> 9d9ed85b (for cleaner setup)
 
     // public function storeAssignmentDates(Request $request, $encryptedId)
     // {
@@ -1980,8 +1914,6 @@ class ProjectController extends Controller
     //         ->route('projects.generalView', $encryptedId)
     //         ->with('success', 'Assignment dates saved.');
     // }
-<<<<<<< HEAD
-=======
 
     public function import(Project $project, GenericFileUploadRequest $request)
     {
@@ -2025,5 +1957,4 @@ class ProjectController extends Controller
             return $v;
         }
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

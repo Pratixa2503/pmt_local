@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 use App\Helpers\Helpers;
 use App\Models\Company;
 use App\Models\Document;
-<<<<<<< HEAD
-=======
 use App\Models\DocumentAlert;
 use App\Models\DocumentContract;
->>>>>>> 9d9ed85b (for cleaner setup)
 use App\DataTables\DocumentDataTable;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Crypt;
@@ -28,11 +25,8 @@ class DocumentController extends Controller
      */
     public function index(DocumentDataTable $dataTable)
     {
-<<<<<<< HEAD
         if ( !auth()->user()->can('view document')) {
-=======
         if (!auth()->user()->can('view document')) {
->>>>>>> 9d9ed85b (for cleaner setup)
             abort(403, 'Unauthorized action.');
         }
         return $dataTable->render('content.document.index');
@@ -41,7 +35,6 @@ class DocumentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-<<<<<<< HEAD
     public function create()
     {
         if ( !auth()->user()->can('create document')) {
@@ -55,7 +48,6 @@ class DocumentController extends Controller
         $document = null;
 
         return view('content.document.form', compact('title', 'type','customers','users','document'));
-=======
     public function create(Request $request)
     {
         if (!auth()->user()->can('create document')) {
@@ -102,7 +94,6 @@ class DocumentController extends Controller
             'document',
             'presetCustomerId'
         ));
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     /**
@@ -127,7 +118,6 @@ class DocumentController extends Controller
             $data['project_manager_id'] = $data['project_manager_id'][0] ?? null;
         }
 
-<<<<<<< HEAD
         // ✅ handle file upload
         if ($request->hasFile('file_path')) {
             $data['file_path'] = $request->file('file_path')->store('documents', 'public');
@@ -136,7 +126,6 @@ class DocumentController extends Controller
         // dd($data);
 
         Document::create($data);
-=======
         // Remove alerts and contracts from data array (handled separately)
         $alertsData = $data['alerts'] ?? [];
         $contractsData = $data['contracts'] ?? [];
@@ -202,7 +191,6 @@ class DocumentController extends Controller
                 }
             }
         }
->>>>>>> 9d9ed85b (for cleaner setup)
 
         return redirect()->route('document.index')->with('success', 'Document created.');
     }
@@ -213,11 +201,8 @@ class DocumentController extends Controller
     public function show(string $encryptedId)
     {
         $id = Crypt::decryptString($encryptedId);
-<<<<<<< HEAD
         $document = Document::findOrFail($id);
-=======
         $document = Document::with(['contracts.alerts', 'contracts', 'alerts.contract'])->findOrFail($id);
->>>>>>> 9d9ed85b (for cleaner setup)
         $title = 'Document Details';
         $customers = Company::orderBy('name')->get(['id', 'name']);
         $users = Helpers::getUsersByRole('project manager');
@@ -225,11 +210,8 @@ class DocumentController extends Controller
         $customerId = old('customer_id', $document->customer_id);
         $selectedPm = old('project_manager_id', $document->project_manager_id);
 
-<<<<<<< HEAD
         return view('content.document.show', compact('document','title','customers','projectManager','customerId','selectedPm'));
-=======
         return view('content.document.show', compact('document', 'title', 'customers', 'projectManager', 'customerId', 'selectedPm'));
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     /**
@@ -238,19 +220,16 @@ class DocumentController extends Controller
     public function edit($encryptedId)
     {
         // dd($id);
-<<<<<<< HEAD
         if ( !auth()->user()->can('edit document')) {
             abort(403, 'Unauthorized action.');
         }
         $id = Crypt::decryptString($encryptedId);
         $document = Document::findOrFail($id);
-=======
         if (!auth()->user()->can('edit document')) {
             abort(403, 'Unauthorized action.');
         }
         $id = Crypt::decryptString($encryptedId);
         $document = Document::with(['alerts.contract', 'contracts.alerts'])->findOrFail($id);
->>>>>>> 9d9ed85b (for cleaner setup)
         // dd($document);
         //$data  = Helpers::getDocumentMasterData();
         $title = 'Edit Document';
@@ -261,21 +240,15 @@ class DocumentController extends Controller
         $customerId = old('customer_id', $document->customer_id);
         $selectedPm = old('project_manager_id', $document->project_manager_id);
 
-<<<<<<< HEAD
         return view('content.document.form', compact('document','title', 'type','customers','users','customerId','selectedPm'));
-=======
         return view('content.document.form', compact('document', 'title', 'type', 'customers', 'users', 'customerId', 'selectedPm'));
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< HEAD
    public function update(Request $request, $id)
-=======
     public function update(Request $request, $id)
->>>>>>> 9d9ed85b (for cleaner setup)
     {
         // dd($id);
         abort_unless(auth()->user()->can('edit document'), 403, 'Unauthorized action.');
@@ -288,18 +261,14 @@ class DocumentController extends Controller
             $data['project_manager_id'] = $data['project_manager_id'][0] ?? null;
         }
 
-<<<<<<< HEAD
         // Handle file upload
-=======
         // Handle file upload with document ID in filename
->>>>>>> 9d9ed85b (for cleaner setup)
         if ($request->hasFile('file_path')) {
             // Delete old file if it exists
             if ($document->file_path && Storage::disk('public')->exists($document->file_path)) {
                 Storage::disk('public')->delete($document->file_path);
             }
 
-<<<<<<< HEAD
             // Store new file
             $data['file_path'] = $request->file('file_path')->store('documents', 'public');
         }
@@ -307,7 +276,6 @@ class DocumentController extends Controller
         // Update document
         $document->update($data);
 
-=======
             // Store new file with document ID in filename
             $file = $request->file('file_path');
             $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -407,22 +375,18 @@ class DocumentController extends Controller
             }
         }
 
->>>>>>> 9d9ed85b (for cleaner setup)
         return redirect()->route('document.index')->with('success', 'Document updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-<<<<<<< HEAD
    public function destroy($id)
     {
         if ( !auth()->user()->can('delete document')) {
-=======
     public function destroy($id)
     {
         if (!auth()->user()->can('delete document')) {
->>>>>>> 9d9ed85b (for cleaner setup)
             abort(403, 'Unauthorized action.');
         }
         $pricingMaster = Document::findOrFail(Crypt::decryptString($id));
@@ -435,8 +399,6 @@ class DocumentController extends Controller
         ]);
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Download or view a document file.
      */
@@ -490,30 +452,24 @@ class DocumentController extends Controller
         return Storage::disk('public')->response($alert->alert_file);
     }
 
->>>>>>> 9d9ed85b (for cleaner setup)
     protected function validateData(Request $request, ?int $projectId = null, bool $debug = false): array
     {
         $rules = [
             'customer_id'   => ['required', 'exists:companies,id'],
-<<<<<<< HEAD
             'contact_no' => ['required'],
             'description'   => ['required', 'string', 'max:1000'],
             'contract_start_date'    => ['required', 'date_format:m/d/Y'],
             'contract_end_date'      => ['required', 'date_format:m/d/Y', 'after_or_equal:start_date'],
-=======
             'description'   => ['required', 'string', 'max:1000'],
             'contracts' => ['required', 'array', 'min:1'],
             'contracts.*.contract_start_date' => ['required', 'date_format:m/d/Y'],
             'contracts.*.contract_end_date' => ['required', 'date_format:m/d/Y'],
->>>>>>> 9d9ed85b (for cleaner setup)
             'project_manager_id' => ['nullable', 'array'],
             'project_manager_id.*' => ['nullable', 'exists:users,id'],
             'status'             => ['required'],
             'industry_vertical_id'      => ['required', 'exists:industry_verticals,id'],
             'department_id'             => ['required', 'exists:departments,id'],
-<<<<<<< HEAD
             'file_path' => ['nullable', 'file', 'max:5120', 'mimetypes:application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/png,image/jpeg'],
-=======
             'file_path' => ['nullable', 'file', 'max:5120', 'mimes:pdf,doc,docx,xls,xlsx,png,jpg,jpeg'],
             'contracts.*.is_active' => ['nullable', 'boolean'],
             'alerts' => ['nullable', 'array'],
@@ -521,20 +477,16 @@ class DocumentController extends Controller
             'alerts.*.alert_days.*' => ['required_with:alerts.*.alert_days', 'integer', 'in:7,15,30,60'],
             'alerts.*.alert_file' => ['nullable', 'file', 'max:5120', 'mimes:pdf,doc,docx,xls,xlsx,png,jpg,jpeg'],
             'alerts.*.existing_file' => ['nullable', 'string'],
->>>>>>> 9d9ed85b (for cleaner setup)
 
 
 
         ];
 
         $messages = [
-<<<<<<< HEAD
             'contract_end_date.after_or_equal' => 'End date must be the same or after Start date.',
-=======
             'contracts.required' => 'At least one contract date range is required.',
             'contracts.min' => 'At least one contract date range is required.',
             'contracts.*.contract_end_date.after_or_equal' => 'Contract end date must be the same or after start date.',
->>>>>>> 9d9ed85b (for cleaner setup)
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
 
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
 namespace App\Http\Middleware;
 
 use Closure;
@@ -12,17 +9,13 @@ use Symfony\Component\HttpFoundation\Response;
 class PreventBackHistory
 {
     /**
-<<<<<<< HEAD
      * Handle an incoming request.
      *
-=======
      * @param  \Illuminate\Http\Request  $request
->>>>>>> 9d9ed85b (for cleaner setup)
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-<<<<<<< HEAD
         $response = $next($request);
 
         return $response->header('Cache-Control', 'no-cache, no-store, must-revalidate')
@@ -30,7 +23,6 @@ class PreventBackHistory
                         ->header('Expires', '0');
     }
 }
-=======
         /** @var \Symfony\Component\HttpFoundation\Response $response */
         $response = $next($request);
 
@@ -65,4 +57,3 @@ class PreventBackHistory
 //                         ->header('Expires', '0');
 //     }
 // }
->>>>>>> 9d9ed85b (for cleaner setup)

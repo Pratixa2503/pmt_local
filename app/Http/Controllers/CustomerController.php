@@ -12,10 +12,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
 class CustomerController extends Controller
 {
     /**
@@ -130,11 +127,8 @@ class CustomerController extends Controller
         if ( !auth()->user()->can('edit customer')) {
             abort(403, 'Unauthorized action.');
         }
-<<<<<<< HEAD
         try { 
-=======
         try {
->>>>>>> 9d9ed85b (for cleaner setup)
             $decryptedId = Crypt::decryptString($id);
             $title      = __('Customer') . ' : ' .  __('Edit');
             $customer = User::join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
@@ -158,11 +152,8 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-<<<<<<< HEAD
     {   
-=======
     {
->>>>>>> 9d9ed85b (for cleaner setup)
         $decryptedId = Crypt::decryptString($id);
         if ( !auth()->user()->can('edit customer')) {
             abort(403, 'Unauthorized action.');
@@ -199,11 +190,8 @@ class CustomerController extends Controller
             'status.in' => 'Invalid Status selected.',
         ]);
         try {
-<<<<<<< HEAD
             
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
             $tmpUser = User::join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
             ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
             ->select('users.*', 'roles.id as role_id', 'roles.name as role_name')
@@ -238,11 +226,8 @@ class CustomerController extends Controller
     public function destroy($encryptedId)
     {
         try {
-<<<<<<< HEAD
             $id = Crypt::decryptString($encryptedId); 
-=======
             $id = Crypt::decryptString($encryptedId);
->>>>>>> 9d9ed85b (for cleaner setup)
             $customer = User::findOrFail($id);
             $customer->delete();
             $status     = true;

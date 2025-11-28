@@ -762,7 +762,6 @@
     totalEarningChart.render();
   }
 
-<<<<<<< HEAD
   //  For Datatable
   // --------------------------------------------------------------------
 //   var dt_projects_table = $('.datatables-projects');
@@ -957,6 +956,4 @@
 //     $('.dataTables_filter .form-control').removeClass('form-control-sm');
 //     $('.dataTables_length .form-select').removeClass('form-select-sm');
 //   }, 300);
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
 })();

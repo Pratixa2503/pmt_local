@@ -51,13 +51,10 @@
 
           <div class="col-md-4 mb-3">
             <label class="form-label fw-semibold">Pricing Type</label>
-<<<<<<< HEAD
             <div class="form-control-plaintext text-capitalize">{{ $data->pricing_type }}</div>
-=======
             <div class="form-control-plaintext text-capitalize">{{ $data->pricing_type === 'static' ? 'Standard' : ($data->pricing_type === 'custom' ? 'Custom' : '-') }}</div>
             
 
->>>>>>> 9d9ed85b (for cleaner setup)
           </div>
 
          <div class="col-md-4 mb-3">
@@ -207,29 +204,20 @@
 
           <div class="col-md-4 mb-3">
             <label class="form-label fw-semibold">Created By</label>
-<<<<<<< HEAD
             <div class="form-control-plaintext">{{ $data->creator->name ?? $data->created_by }}</div>
-=======
             <div class="form-control-plaintext">{{ $data->creator->name ?? Helper::user_full_name($data->created_by) }}</div>
->>>>>>> 9d9ed85b (for cleaner setup)
           </div>
 
           <div class="col-md-4 mb-3">
             <label class="form-label fw-semibold">Updated By</label>
-<<<<<<< HEAD
             <div class="form-control-plaintext">{{ $data->updater->name ?? $data->updated_by }}</div>
-=======
             <div class="form-control-plaintext">{{ $data->updater->name ?? Helper::user_full_name($data->updated_by) }}</div>
->>>>>>> 9d9ed85b (for cleaner setup)
           </div>
 
           <div class="col-md-4 mb-3">
             <label class="form-label fw-semibold">Approved By</label>
-<<<<<<< HEAD
             <div class="form-control-plaintext">{{ $data->approver->name ?? ($data->approved_by ?? '—') }}</div>
-=======
             <div class="form-control-plaintext">{{ $data->approver->name ?? (Helper::user_full_name($data->approved_by) ?? '—') }}</div>
->>>>>>> 9d9ed85b (for cleaner setup)
           </div>
 
           <div class="col-md-4 mb-3">
@@ -243,11 +231,8 @@
           </div>
 
           <div class="col-md-12 mb-3">
-<<<<<<< HEAD
             <label class="form-label fw-semibold">Approval Note</label>
-=======
             <label class="form-label fw-semibold">{{ $data->approval_status === 'rejected' ? 'Reject Note' : 'Approval Note' }}</label>
->>>>>>> 9d9ed85b (for cleaner setup)
             <div class="form-control" readonly style="min-height:70px;">{{ $data->approval_note ?? '' }}</div>
           </div>
         </div>
@@ -296,13 +281,10 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-<<<<<<< HEAD
           <label class="form-label">Approval Note (optional)</label>
           <textarea name="approval_note" class="form-control" rows="3" placeholder="Add a note (optional)"></textarea>
-=======
           <label class="form-label">Approval Note</label>
           <textarea name="approval_note" class="form-control" rows="3" placeholder="Add a note" required></textarea>
->>>>>>> 9d9ed85b (for cleaner setup)
         </div>
       </div>
       <div class="modal-footer">

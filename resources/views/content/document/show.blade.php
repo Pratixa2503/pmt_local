@@ -15,7 +15,6 @@
 
 @section('content')
 @php
-<<<<<<< HEAD
   // convenience helpers
   $statusBadge = (int)($data->status ?? 0) === 1 ? ['text' => 'Active', 'class' => 'bg-success'] : ['text' => 'Inactive', 'class' => 'bg-secondary'];
   $approvalColors = [
@@ -25,11 +24,9 @@
     'rejected'=> 'bg-danger',
   ];
   $approvalBadge = $approvalColors[$data->approval_status ?? 'draft'] ?? 'bg-secondary';
-=======
   use Illuminate\Support\Facades\Storage;
   // convenience helpers
   $statusBadge = (int)($document->status ?? 0) === 1 ? ['text' => 'Active', 'class' => 'bg-success'] : ['text' => 'Inactive', 'class' => 'bg-secondary'];
->>>>>>> 9d9ed85b (for cleaner setup)
 @endphp
 
 <div class="row">
@@ -68,7 +65,6 @@
             </div>
         </div>
 
-<<<<<<< HEAD
         {{-- Timeline --}}
             <div class="row">
                 <div class="col-md-12 my-3">
@@ -94,7 +90,6 @@
                 </div>
             </div>
 
-=======
         {{-- Contracts & Alerts --}}
         <div class="row">
             <div class="col-md-12 my-3">
@@ -180,7 +175,6 @@
             @endif
         </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
         {{-- Ownership--}}
 
         <div class="row">
@@ -211,11 +205,9 @@
 
           <div class="col-md-4 mb-3">
             <label class="form-label fw-semibold">Status</label>
-<<<<<<< HEAD
             <div class="form-control-plaintext">{{ $document->status == 1 ? 'Active' : 'Inactive' }}</div>
           </div>
 
-=======
             <div class="form-control-plaintext">
               <span class="badge {{ $document->status == 1 ? 'bg-success' : 'bg-secondary' }}">
                 {{ $document->status == 1 ? 'Active' : 'Inactive' }}
@@ -234,7 +226,6 @@
           </div>
           @endif
 
->>>>>>> 9d9ed85b (for cleaner setup)
           <div class="col-md-4 mb-3">
             <label class="form-label fw-semibold">Industry Vertical</label>
             <div class="form-control-plaintext">

@@ -32,11 +32,8 @@
                         'last_name' => 'Last Name',
                         'email' => 'Email',
                         'contact_no' => 'Contact No',
-<<<<<<< HEAD
                         'company_name' => 'Company Name',
-=======
                        
->>>>>>> 9d9ed85b (for cleaner setup)
                         ];
 
                         $requiredFields = ['first_name','last_name','email', 'contact_no']; // Add required fields here
@@ -81,7 +78,6 @@
                             </span>
                             @enderror
                         </div>
-<<<<<<< HEAD
                         <div class="mb-3 col-md-6 col-lg-6">
                             <label for="project_manager" class="form-label">
                                 Project Manager
@@ -124,7 +120,6 @@
                             @enderror
                         </div>
                     </div>
-=======
                        @php
   // If you're using spatie/laravel-permission:
   $userRoleNames = isset($user) && method_exists($user, 'roles')
@@ -181,7 +176,6 @@
   @enderror
 </div>
 
->>>>>>> 9d9ed85b (for cleaner setup)
 
                     <div class="row">
                         <div class="text-end">
@@ -324,8 +318,6 @@
             }
         });
     });
-<<<<<<< HEAD
-=======
     (function () {
   function hasPMRole() {
     const sel = document.getElementById('role'); // your Roles multi-select
@@ -364,6 +356,5 @@
     togglePM();
   }
 })();
->>>>>>> 9d9ed85b (for cleaner setup)
 </script>
 @endsection

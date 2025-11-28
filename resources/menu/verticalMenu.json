@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "menu": [
         {
             "url": "/",
@@ -456,7 +455,6 @@
             "permission": ["view setting"]
         }
     ]
-=======
   "menu": [
     {
       "url": "/",
@@ -817,5 +815,4 @@
       ]
     }
   ]
->>>>>>> 9d9ed85b (for cleaner setup)
 }

@@ -29,12 +29,9 @@ class PoNumberController extends Controller
         }
 
         $customers = DB::table('companies')->orderBy('name')->get(['id','name']);
-<<<<<<< HEAD
         $projects  = DB::table('projects')->whereNull('parent_id')->whereNull('deleted_at')->where('project_status_id',2)->orderBy('project_name')->get(['id','project_name','parent_id']);
-=======
         $projects  = DB::table('projects')->whereNull('parent_id')->whereNull('deleted_at')->where('project_status_id',2)->orderBy('id')->get(['id','project_name','parent_id']);
        
->>>>>>> 9d9ed85b (for cleaner setup)
         // Optionally pre-filter sub-projects to only children
         $subProjects = DB::table('projects')->whereNotNull('parent_id')->orderBy('project_name')->get(['id','project_name','parent_id']);
 
@@ -91,11 +88,8 @@ class PoNumberController extends Controller
         $row = PoNumber::findOrFail($id);
 
         $customers  = DB::table('companies')->orderBy('name')->get(['id','name']);
-<<<<<<< HEAD
         $projects   = DB::table('projects')->orderBy('project_name')->get(['id','project_name','parent_id']);
-=======
         $projects  = DB::table('projects')->whereNull('parent_id')->whereNull('deleted_at')->where('project_status_id',2)->orderBy('id')->get(['id','project_name','parent_id']);
->>>>>>> 9d9ed85b (for cleaner setup)
         $subProjects= DB::table('projects')->whereNotNull('parent_id')->orderBy('project_name')->get(['id','project_name','parent_id']);
 
         return view('content.po_numbers.form', [

@@ -24,10 +24,7 @@
   }
   .start-btn { height: 38px; }
   .tasks-table tbody tr td { border-bottom: 1px solid #eee !important; }
-<<<<<<< HEAD
   /* Ensure pause button is fully hidden when JS toggles .d-none */
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
   .d-none { display: none !important; }
 </style>
 @endsection
@@ -45,15 +42,12 @@
   $remainingSeconds    = (int)($remainingSeconds ?? 0);
   $activeTaskType      = $activeTaskType      ?? null; // 1=Productive, 2=General
   $activeMainTaskId    = $activeMainTaskId    ?? null;
-<<<<<<< HEAD
   $activeSubTaskId     = $activeSubTaskId     ?? null; // <-- make sure controller sets this when running
   $resolvedType = (int) old('task_type', $activeTaskType ?? 1);
   // Helper
-=======
   $activeSubTaskId     = $activeSubTaskId     ?? null;
   $resolvedType = (int) old('task_type', $activeTaskType ?? 1);
 
->>>>>>> 9d9ed85b (for cleaner setup)
   $hms = function (int $sec) {
     $sec = max(0, $sec);
     $h = intdiv($sec, 3600);
@@ -82,7 +76,6 @@
         <div class="row g-3">
           {{-- Task Type --}}
           <div class="col-md-3">
-<<<<<<< HEAD
             <label class="form-label d-block">Task Type <span class="text-danger">*</span></label>
               <div class="form-check form-check-inline">
               <input class="form-check-input"
@@ -93,7 +86,6 @@
                     {{ $resolvedType === 1 ? 'checked' : '' }}
                     {{ $isRunning ? 'disabled' : '' }}>
               <label class="form-check-label" for="taskType1">Productive</label>
-=======
             <label class="form-label d-block">Project Tracker <span class="text-danger">*</span></label>
             <div class="form-check form-check-inline">
               <input class="form-check-input"
@@ -104,12 +96,10 @@
                      {{ $resolvedType === 1 ? 'checked' : '' }}
                      {{ $isRunning ? 'disabled' : '' }}>
               <label class="form-check-label" for="taskType1">Production</label>
->>>>>>> 9d9ed85b (for cleaner setup)
             </div>
 
             <div class="form-check form-check-inline">
               <input class="form-check-input"
-<<<<<<< HEAD
                     type="radio"
                     name="task_type"
                     id="taskType2"
@@ -121,7 +111,6 @@
           </div>
 
           {{-- Productive Main Task (default visible) --}}
-=======
                      type="radio"
                      name="task_type"
                      id="taskType2"
@@ -133,7 +122,6 @@
           </div>
 
           {{-- Productive Main Task --}}
->>>>>>> 9d9ed85b (for cleaner setup)
           <div class="col-md-3 main_task" id="wrapProductive">
             <label class="form-label">Main Task <span class="text-danger">*</span></label>
             <select id="mainTask" class="form-select" {{ $isRunning ? 'disabled' : '' }}>
@@ -146,11 +134,8 @@
             </select>
           </div>
 
-<<<<<<< HEAD
           {{-- General Main Task (hidden initially) --}}
-=======
           {{-- General Main Task --}}
->>>>>>> 9d9ed85b (for cleaner setup)
           <div class="col-md-3 general_task d-none" id="wrapGeneral">
             <label class="form-label">General <span class="text-danger">*</span></label>
             <select id="generalMainTask" class="form-select" {{ $isRunning ? 'disabled' : 'disabled' }}>
@@ -182,8 +167,6 @@
 
         <hr class="my-4">
 
-<<<<<<< HEAD
-=======
         <div id="sessionHistory" style="border: 1px solid #ccc; padding: 15px; max-height: 400px; overflow-y: auto;">
             <h6 class="mb-0">Current Count</h6>
             <p>Loading history...</p>
@@ -191,17 +174,13 @@
 
         <hr class="my-4">
 
->>>>>>> 9d9ed85b (for cleaner setup)
         <div class="row g-3">
           <div class="col-lg-8">
             {{-- Current Running --}}
             <div class="border rounded p-3 mb-3">
               <div class="d-flex justify-content-between align-items-center mb-2">
-<<<<<<< HEAD
                 <h6 class="mb-0">Current Session</h6>
-=======
                 <h6 class="mb-0">Current Session Test</h6>
->>>>>>> 9d9ed85b (for cleaner setup)
                 <div id="now" class="text-muted small"></div>
               </div>
               <div id="currentStatus" class="text-muted">No running task.</div>
@@ -258,33 +237,26 @@
                 <table class="table table-sm align-middle tasks-table">
                   <thead class="table-light">
                     <tr>
-<<<<<<< HEAD
-=======
                       <th>Start Time</th>
                       <th>Emd Time</th>
->>>>>>> 9d9ed85b (for cleaner setup)
                       <th style="width:40%">Main Task</th>
                       <th style="width:40%">Sub Task</th>
                       <th class="text-end">Time (hh:mm:ss)</th>
                     </tr>
                   </thead>
-<<<<<<< HEAD
                   <tbody>
                     @forelse($todayRows as $r)
                       <tr>
-=======
                   <tbody id="todayTbody">
                     @forelse($todayRows as $r)
                       <tr>
                         <td>{{ $r->start_time ? \Carbon\Carbon::parse($r->start_time)->format('h:i A') : '-' }}</td>
                         <td>{{ $r->end_time ? \Carbon\Carbon::parse($r->end_time)->format('h:i A') : '-' }}</td>
->>>>>>> 9d9ed85b (for cleaner setup)
                         <td>{{ $r->main_task }}</td>
                         <td>{{ $r->sub_task }}</td>
                         <td class="text-end">{{ $hms((int)$r->seconds_today) }}</td>
                       </tr>
                     @empty
-<<<<<<< HEAD
                       <tr><td colspan="3" class="text-muted">No work recorded yet today.</td></tr>
                     @endforelse
                   </tbody>
@@ -292,7 +264,6 @@
                   <tfoot>
                     <tr class="table-light">
                       <th colspan="2" class="text-end">Total</th>
-=======
                       <tr><td colspan="5" class="text-muted">No work recorded yet today.</td></tr>
                     @endforelse
                   </tbody>
@@ -300,7 +271,6 @@
                   <tfoot id="todayTfoot">
                     <tr class="table-light">
                       <th colspan="4" class="text-end">Total</th>
->>>>>>> 9d9ed85b (for cleaner setup)
                       <th class="text-end">{{ $hms($secondsToday) }}</th>
                     </tr>
                   </tfoot>
@@ -315,14 +285,11 @@
             <div class="border rounded p-3">
               <h6 class="mb-3">Controls</h6>
               <div class="d-grid gap-2">
-<<<<<<< HEAD
                 {{-- Pause is hidden if Task Type is General (handled by JS + init) --}}
                 <button id="btnPause" class="btn btn-warning {{ ($activeTaskType ?? 1) == 2 ? 'd-none' : '' }}" {{ $isRunning ? '' : 'disabled' }}>
                   <i class="ti ti-player-pause me-1"></i> Pause
-=======
                 <button id="btnPause" class="btn btn-warning {{ ($activeTaskType ?? 1) == 2 ? 'd-none' : '' }}" {{ $isRunning ? '' : 'disabled' }}>
                   <i class="ti ti-player-pause me-1"></i> Pause this
->>>>>>> 9d9ed85b (for cleaner setup)
                 </button>
                 <button id="btnEnd" class="btn btn-danger" {{ $isRunning ? '' : 'disabled' }}>
                   <i class="ti ti-player-stop me-1"></i> End
@@ -373,8 +340,6 @@
 @section('extra-script')
 <script>
 $(function () {
-<<<<<<< HEAD
-=======
 
   // 1) Add this near your other route constants:
 const TODAY_URL = "{{ route('taskitems.today', $encryptedId) }}";
@@ -402,43 +367,34 @@ function refreshTodaysTasks(){
 }
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
   const routes = {
     subtasksByMain: (mainId) => "{{ url('subtasks/by-main') }}/" + mainId,
     start:  "{{ route('taskitems.start') }}",
     pause:  "{{ route('taskitems.pause') }}",
     resume: "{{ route('taskitems.resume') }}",
     end:    "{{ route('taskitems.end') }}",
-<<<<<<< HEAD
-=======
     getSessionHistory: "{{ route('getSessionHistory') }}"
->>>>>>> 9d9ed85b (for cleaner setup)
   };
 
   const projectId = {{ (int)$project->id }};
   const csrf = '{{ csrf_token() }}';
 
   // From server
-<<<<<<< HEAD
   const ACTIVE_TASK_TYPE   = @json($activeTaskType);     // 1|2|null
   const ACTIVE_MAIN_TASKID = @json($activeMainTaskId);   // int|null
   const ACTIVE_SUB_TASKID  = @json($activeSubTaskId);    // int|null
-=======
   const ACTIVE_TASK_TYPE   = @json($activeTaskType);   // 1|2|null
   const ACTIVE_MAIN_TASKID = @json($activeMainTaskId); // int|null
   const ACTIVE_SUB_TASKID  = @json($activeSubTaskId);  // int|null
->>>>>>> 9d9ed85b (for cleaner setup)
   const INIT_IS_RUNNING    = {!! $isRunning ? 'true' : 'false' !!};
 
   let isRunningState = INIT_IS_RUNNING;
   let currentTaskItemId = null;
-<<<<<<< HEAD
   let startedAtISO = null;  // last session started_at (ISO)
   let baseSeconds  = 0;     // continue-from
   let tickTimer    = null;
 
   // Elements (the main select id can swap between productive/general)
-=======
   let startedAtLocal = null;  // last session start (LOCAL string)
   let baseSeconds  = 0;       // continue-from seconds
   let tickTimer    = null;
@@ -466,13 +422,11 @@ function refreshTodaysTasks(){
   }
 
   // Elements
->>>>>>> 9d9ed85b (for cleaner setup)
   const $sub = $('#subTask'), $meta = $('#subMeta');
   const $btnStart = $('#btnStart'), $btnPause = $('#btnPause'), $btnEnd = $('#btnEnd');
   const $status = $('#currentStatus'), $elapsedW = $('#elapsedWrap'), $elapsed = $('#elapsed'), $now = $('#now');
   const $pausedTable = $('#pausedTable tbody'), $pausedCount = $('#pausedCount');
 
-<<<<<<< HEAD
   // Helper to always fetch the current visible main select
   const $main = () => $('#mainTask');
 
@@ -499,7 +453,6 @@ function refreshTodaysTasks(){
     }
   }
 
-=======
   const $main = () => $('#mainTask');
 
   // Live clock (local)
@@ -527,12 +480,10 @@ function refreshTodaysTasks(){
   }
 
   
->>>>>>> 9d9ed85b (for cleaner setup)
   // UI states
   function setStateIdle(){
     isRunningState = false;
     stopTick();
-<<<<<<< HEAD
     currentTaskItemId=null; startedAtISO=null; baseSeconds=0;
     $status.text('No running task.'); $elapsedW.addClass('d-none');
 
@@ -540,13 +491,11 @@ function refreshTodaysTasks(){
     $('#taskType1, #taskType2').prop('disabled', false);
     $main().prop('disabled', false);
     // sub is enabled only after main chosen
-=======
     currentTaskItemId=null; startedAtLocal=null; baseSeconds=0;
     $status.text('No running task.'); $elapsedW.addClass('d-none');
 
     $('#taskType1, #taskType2').prop('disabled', false);
     $main().prop('disabled', false);
->>>>>>> 9d9ed85b (for cleaner setup)
     $sub.prop('disabled', $main().val()==='');
 
     $btnPause.prop('disabled', true);
@@ -558,10 +507,7 @@ function refreshTodaysTasks(){
     $status.html(`Running: <strong>${mainLabel||''}</strong> <span class="text-muted">→</span> <em>${subLabel||''}</em>`);
     $elapsedW.removeClass('d-none');
 
-<<<<<<< HEAD
     // lock editing while running
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
     $('#taskType1, #taskType2').prop('disabled', true);
     $main().prop('disabled', true);
     $sub.prop('disabled', true);
@@ -571,11 +517,8 @@ function refreshTodaysTasks(){
     $btnStart.prop('disabled', true);
   }
 
-<<<<<<< HEAD
   // paused table helpers
-=======
   // Paused rows helpers
->>>>>>> 9d9ed85b (for cleaner setup)
   function updatePausedCount(){
     const count = $pausedTable.find('tr').not('.no-paused').length;
     $pausedCount.text(count);
@@ -611,11 +554,8 @@ function refreshTodaysTasks(){
     ensureNoPausedRow(); updatePausedCount();
   }
 
-<<<<<<< HEAD
   // load subtasks, optionally selecting one
-=======
   // Subtasks loader
->>>>>>> 9d9ed85b (for cleaner setup)
   function loadSubtasks(mainId, selectedSubId=null, cb=null){
     if(!mainId){
       $sub.html('<option value="">Select a sub task</option>').prop('disabled',true); $meta.text('—'); $btnStart.prop('disabled', true); return;
@@ -632,7 +572,6 @@ function refreshTodaysTasks(){
               .attr('data-bench', r.benchmarked_time));
         });
 
-<<<<<<< HEAD
         // if running, keep disabled; else enable
         if (!isRunningState) {
           $sub.prop('disabled', false);
@@ -642,12 +581,10 @@ function refreshTodaysTasks(){
         if (selectedSubId) {
           $sub.val(String(selectedSubId));
           // show meta
-=======
         if (!isRunningState) $sub.prop('disabled', false);
 
         if (selectedSubId) {
           $sub.val(String(selectedSubId));
->>>>>>> 9d9ed85b (for cleaner setup)
           const $opt=$sub.find(':selected');
           if($opt.val()){
             const type=Number($opt.data('task-type'))===1?'Production':'Non-Production';
@@ -655,10 +592,7 @@ function refreshTodaysTasks(){
             if(!isRunningState) $btnStart.prop('disabled', false);
           }
         } else {
-<<<<<<< HEAD
           // reset meta when no sub selected
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
           $meta.text('—');
           if(!isRunningState) $btnStart.prop('disabled', true);
         }
@@ -672,7 +606,6 @@ function refreshTodaysTasks(){
     });
   }
 
-<<<<<<< HEAD
   // ---- Task Type <-> Main Task show/hide & id swapping ----
   const wrapProductive   = document.getElementById('wrapProductive');
   const wrapGeneral      = document.getElementById('wrapGeneral');
@@ -685,7 +618,6 @@ function refreshTodaysTasks(){
     if (subTaskSelect) {
       subTaskSelect.innerHTML = '<option value="">Select a sub task</option>';
       // keep disabled if not running? we set below on load
-=======
   // Switch between Productive/General main-task selects
   const wrapProductive   = document.getElementById('wrapProductive');
   const wrapGeneral      = document.getElementById('wrapGeneral');
@@ -696,13 +628,11 @@ function refreshTodaysTasks(){
   function setVisibleDropdown(type) {
     if (subTaskSelect) {
       subTaskSelect.innerHTML = '<option value="">Select a sub task</option>';
->>>>>>> 9d9ed85b (for cleaner setup)
       if (!isRunningState) subTaskSelect.setAttribute('disabled', 'disabled');
       const subMeta = document.getElementById('subMeta');
       if (subMeta) subMeta.innerHTML = '';
     }
 
-<<<<<<< HEAD
     // Update Pause button visibility
     updatePauseVisibility(type);
 
@@ -716,7 +646,6 @@ function refreshTodaysTasks(){
       if (!isRunningState) prodSelect.removeAttribute('disabled');
 
       // Ensure General does NOT have id="mainTask"
-=======
     updatePauseVisibility(type);
 
     if (String(type) === '1') {
@@ -726,13 +655,11 @@ function refreshTodaysTasks(){
       prodSelect.id = 'mainTask';
       if (!isRunningState) prodSelect.removeAttribute('disabled');
 
->>>>>>> 9d9ed85b (for cleaner setup)
       if (generalSelect.id === 'mainTask') generalSelect.id = 'generalMainTask';
       generalSelect.setAttribute('disabled', 'disabled');
       generalSelect.value = '';
 
     } else if (String(type) === '2') {
-<<<<<<< HEAD
       // Show General, hide Productive
       wrapGeneral.classList.remove('d-none');
       wrapProductive.classList.add('d-none');
@@ -742,25 +669,20 @@ function refreshTodaysTasks(){
       if (!isRunningState) generalSelect.removeAttribute('disabled');
 
       // Remove id from Productive select
-=======
       wrapGeneral.classList.remove('d-none');
       wrapProductive.classList.add('d-none');
 
       generalSelect.id = 'mainTask';
       if (!isRunningState) generalSelect.removeAttribute('disabled');
 
->>>>>>> 9d9ed85b (for cleaner setup)
       if (prodSelect.id === 'mainTask') prodSelect.id = 'productiveMainTask';
       prodSelect.setAttribute('disabled', 'disabled');
       prodSelect.value = '';
     }
   }
 
-<<<<<<< HEAD
   // ---- Guards: prevent edits while running ----
-=======
   // Guards while running
->>>>>>> 9d9ed85b (for cleaner setup)
   document.querySelectorAll('input[name="task_type"]').forEach(r => {
     r.addEventListener('change', function (e) {
       if (isRunningState) {
@@ -770,19 +692,13 @@ function refreshTodaysTasks(){
         return;
       }
       setVisibleDropdown(this.value);
-<<<<<<< HEAD
       // trigger change so subtasks refresh when switching groups
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
       $('#mainTask').trigger('change');
     });
   });
 
-<<<<<<< HEAD
   // Delegate because #mainTask may swap between selects
-=======
   // main task changed
->>>>>>> 9d9ed85b (for cleaner setup)
   $(document).on('change', '#mainTask', function(e){
     if (isRunningState) {
       e.preventDefault();
@@ -792,10 +708,7 @@ function refreshTodaysTasks(){
     loadSubtasks($(this).val(), null);
   });
 
-<<<<<<< HEAD
-=======
   // sub task changed
->>>>>>> 9d9ed85b (for cleaner setup)
   $sub.on('change', function(e){
     if (isRunningState) {
       e.preventDefault();
@@ -809,11 +722,8 @@ function refreshTodaysTasks(){
     $btnStart.prop('disabled', false);
   });
 
-<<<<<<< HEAD
   // ---- Actions ----
-=======
   // Start
->>>>>>> 9d9ed85b (for cleaner setup)
   $btnStart.on('click', function(){
     $.ajax({
       url: routes.start, type:'POST',
@@ -821,25 +731,19 @@ function refreshTodaysTasks(){
       success: function(res){
         if(res.status===1){
           currentTaskItemId = res.task_item_id;
-<<<<<<< HEAD
           startedAtISO      = res.started_at;
-=======
           startedAtLocal    = res.started_at;          // "Y-m-d H:i:s" (local)
->>>>>>> 9d9ed85b (for cleaner setup)
           baseSeconds       = res.total_seconds || 0;
 
           removePausedRow(currentTaskItemId);
 
           setStateRunning($main().find(':selected').text(), $sub.find(':selected').text());
           $elapsed.text(hms(baseSeconds));
-<<<<<<< HEAD
           startTick(startedAtISO, baseSeconds);
 
           // Also enforce pause visibility after start
-=======
           startTick(startedAtLocal, baseSeconds);
 
->>>>>>> 9d9ed85b (for cleaner setup)
           const typeVal = $('input[name="task_type"]:checked').val() || (ACTIVE_TASK_TYPE ?? '1');
           updatePauseVisibility(typeVal);
 
@@ -851,8 +755,6 @@ function refreshTodaysTasks(){
     });
   });
 
-<<<<<<< HEAD
-=======
   // Pause
   $btnPause.on('click', function(){
     // 1. Show SweetAlert2 prompt to collect data
@@ -919,7 +821,6 @@ function refreshTodaysTasks(){
       });
   });
   /*
->>>>>>> 9d9ed85b (for cleaner setup)
   $btnPause.on('click', function(){
     $.ajax({
       url: routes.pause, type:'POST',
@@ -937,7 +838,6 @@ function refreshTodaysTasks(){
       error: function(){ Swal.fire({icon:'error', text:'Failed to pause task.'}); }
     });
   });
-<<<<<<< HEAD
 
   $btnEnd.on('click', function(){
     $.ajax({
@@ -958,7 +858,6 @@ function refreshTodaysTasks(){
 
   // Resume from paused list
   $(document).on('click', '.btnResume', function(){
-=======
   */
   // End
   $btnEnd.on('click', function(){
@@ -983,7 +882,6 @@ function refreshTodaysTasks(){
   // Resume from paused list
   $(document).on('click', '.btnResume', function(){
 
->>>>>>> 9d9ed85b (for cleaner setup)
     const $tr = $(this).closest('tr');
     const id  = $tr.data('id');
 
@@ -995,11 +893,8 @@ function refreshTodaysTasks(){
           removePausedRow(id);
 
           currentTaskItemId = res.task_item_id;
-<<<<<<< HEAD
           startedAtISO      = res.started_at;
-=======
           startedAtLocal    = res.started_at; // local
->>>>>>> 9d9ed85b (for cleaner setup)
           baseSeconds       = res.total_seconds || Number($tr.find('[data-seconds]').attr('data-seconds')) || 0;
 
           const mainName = $tr.children().eq(0).text();
@@ -1007,11 +902,8 @@ function refreshTodaysTasks(){
 
           setStateRunning(mainName, subName);
           $elapsed.text(hms(baseSeconds));
-<<<<<<< HEAD
           startTick(startedAtISO, baseSeconds);
-=======
           startTick(startedAtLocal, baseSeconds);
->>>>>>> 9d9ed85b (for cleaner setup)
 
           const typeVal = $('input[name="task_type"]:checked').val() || (ACTIVE_TASK_TYPE ?? '1');
           updatePauseVisibility(typeVal);
@@ -1025,7 +917,6 @@ function refreshTodaysTasks(){
   });
 
   // End from paused list
-<<<<<<< HEAD
   $(document).on('click', '.btnEndPaused', function(){
     const $tr = $(this).closest('tr');
     const id  = $tr.data('id');
@@ -1045,7 +936,6 @@ function refreshTodaysTasks(){
   });
 
   // ---- Initial show/hide for main-task selects + preselect + pause visibility ----
-=======
  $(document).on('click', '.btnEndPaused', function(){
   const $tr = $(this).closest('tr');
   const id  = $tr.data('id');
@@ -1114,13 +1004,11 @@ error: function() {
 
 
   // Init (show/hide & preselect)
->>>>>>> 9d9ed85b (for cleaner setup)
   function initialShowHideAndPreselect(){
     const initialType = (ACTIVE_TASK_TYPE ? String(ACTIVE_TASK_TYPE) : ($('input[name="task_type"]:checked').val() || '1'));
     setVisibleDropdown(initialType);
     updatePauseVisibility(initialType);
 
-<<<<<<< HEAD
     // Preselect main
     if (ACTIVE_MAIN_TASKID) {
       $('#mainTask').val(String(ACTIVE_MAIN_TASKID));
@@ -1138,7 +1026,6 @@ error: function() {
     } else {
       // No main preselected: if not running, keep sub disabled
       if (!isRunningState) { $('#subTask').prop('disabled', true); }
-=======
     if (ACTIVE_MAIN_TASKID) $('#mainTask').val(String(ACTIVE_MAIN_TASKID));
 
     const mainVal = $('#mainTask').val();
@@ -1148,12 +1035,10 @@ error: function() {
       });
     } else {
       if (!isRunningState) $('#subTask').prop('disabled', true);
->>>>>>> 9d9ed85b (for cleaner setup)
     }
   }
   initialShowHideAndPreselect();
 
-<<<<<<< HEAD
   // ---- Bootstrap running state from server ----
   @if(!empty($currentRunning))
     (function initRunning(){
@@ -1167,7 +1052,6 @@ error: function() {
       // If running type is general, ensure Pause hidden
       updatePauseVisibility(String(ACTIVE_TASK_TYPE ?? '1'));
     })();
-=======
   // Bootstrap running state from server (LOCAL times)
   @if(!empty($currentRunning))
     (function initRunning(){
@@ -1188,7 +1072,6 @@ error: function() {
         // Handle the case where no task is active/loaded
         $('#sessionHistory').html('<p>No active or paused task selected to display history.</p>');
     }
->>>>>>> 9d9ed85b (for cleaner setup)
   @else
     setStateIdle();
   @endif

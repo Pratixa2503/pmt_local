@@ -3,10 +3,7 @@
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection
 
 @section('vendor-script')
@@ -17,7 +14,6 @@
 @endsection
 @section('extra-script')
 <script>
-<<<<<<< HEAD
   $(document).ready(function() {
 
    function updateCTC($row) {
@@ -42,7 +38,6 @@
       });
 
       // IMPORTANT: update Select2 UI after changing option disabled state
-=======
 (function ($, window, document) {
   'use strict';
 
@@ -109,13 +104,11 @@ $('#department_id').off('change.pm').on('change.pm', function () {
         $(this).prop('disabled', selected.includes(val) && val !== currentVal);
       });
       // refresh Select2 UI
->>>>>>> 9d9ed85b (for cleaner setup)
       $(this).trigger('change.select2');
     });
   }
 
   function updateButtons() {
-<<<<<<< HEAD
     $('.skill-row').each(function(index) {
       const $btnContainer = $(this).find('.btn-container, .col-md-2, .col-md-3.d-flex.align-items-end.mb-3').first();
       $btnContainer.html('');
@@ -506,7 +499,6 @@ function num(v) {
   function readFields() {
     const laborCTC = calcSkillSubtotal();
 
-=======
     const $rows = $('.skill-row');
     const many  = $rows.length > 1;
 
@@ -638,7 +630,6 @@ function num(v) {
 
   function readFields() {
     const laborCTC = calcSkillSubtotal();
->>>>>>> 9d9ed85b (for cleaner setup)
     return {
       laborCTC,
       pmPct:       pct(document.querySelector('input[name="project_management_cost"]')?.value),
@@ -651,21 +642,17 @@ function num(v) {
     };
   }
 
-<<<<<<< HEAD
   // ---------- main calculation ----------
   function computeRate() {
-=======
   function computeRate() {
     // Never touch Rate in Static mode
     if (!isPricingCustom() || isCustomFixed()) return;
 
->>>>>>> 9d9ed85b (for cleaner setup)
     const {
       laborCTC, pmPct, vendor, infra,
       overheadPct, marginPct, volAdj, fx
     } = readFields();
 
-<<<<<<< HEAD
   //   // Step 1: Base cost
   //   const pmCost = laborCTC * pmPct;
   //   const base   = laborCTC + pmCost + vendor + infra;
@@ -718,7 +705,6 @@ function num(v) {
   window.addEventListener('DOMContentLoaded', () => setTimeout(computeRate, 150));
 </script>
 
-=======
     // Your original logic:
     // finalRate1 =
     //   (((laborCTC + (laborCTC * pmPct)) + vendor + infra) *
@@ -1051,7 +1037,6 @@ toggleCustomPricingUI();
 </script>
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection
 
 @section('content')
@@ -1076,14 +1061,12 @@ $pricingType = old('pricing_type', $data->pricing_type ?? 'static');
           @if($type == 'edit') @method('PUT') @endif
 
           <div class="row">
-<<<<<<< HEAD
             {{-- Pricing Type --}}
             <div class="col-md-12 mb-4 form-group">
               <label class="form-label d-block">Pricing Type <span class="text-danger">*</span></label>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="pricing_type" id="pricing_static" value="static" {{ $pricingType == 'static' ? 'checked' : '' }}>
                 <label class="form-check-label" for="pricing_static">Static</label>
-=======
            @php
   // Resolve customer_id from old/model/request
   $resolvedCustomerId = old('customer_id', $data->customer_id ?? request('customer_id'));
@@ -1133,15 +1116,12 @@ $pricingType = old('pricing_type', $data->pricing_type ?? 'static');
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="pricing_type" id="pricing_static" value="static" {{ $pricingType == 'static' ? 'checked' : '' }}>
                 <label class="form-check-label" for="pricing_static">Standard</label>
->>>>>>> 9d9ed85b (for cleaner setup)
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="pricing_type" id="pricing_custom" value="custom" {{ $pricingType == 'custom' ? 'checked' : '' }}>
                 <label class="form-check-label" for="pricing_custom">Custom</label>
               </div>
-<<<<<<< HEAD
             </div>
-=======
             </div> -->
             {{-- Pricing Type --}}
             <!-- <div class="col-md-12 mb-4 form-group">
@@ -1177,7 +1157,6 @@ $pricingType = old('pricing_type', $data->pricing_type ?? 'static');
                 </div>
               @endif
             </div> -->
->>>>>>> 9d9ed85b (for cleaner setup)
 
             {{-- Basic Details --}}
             <div class="col-md-12 my-4">
@@ -1187,8 +1166,6 @@ $pricingType = old('pricing_type', $data->pricing_type ?? 'static');
                 <div class="flex-grow-1 border-top border-grey"></div>
               </div>
             </div>
-<<<<<<< HEAD
-=======
             {{-- Custom Pricing Type (visible only for Custom) --}}
             <div class="col-md-4 mb-3 form-group custom">
               <label for="custom_pricing_type" class="form-label">
@@ -1200,7 +1177,6 @@ $pricingType = old('pricing_type', $data->pricing_type ?? 'static');
                 <option value="variable" {{ old('custom_pricing_type', $data->custom_pricing_type ?? '') === 'variable' ? 'selected' : '' }}>Variable</option>
               </select>
             </div>
->>>>>>> 9d9ed85b (for cleaner setup)
 
             <div class="col-md-4 mb-3 form-group static custom">
               <label for="industry_vertical_id" class="form-label">Industry Vertical <span class="text-danger">*</span></label>
@@ -1420,13 +1396,11 @@ $pricingType = old('pricing_type', $data->pricing_type ?? 'static');
 
           <div class="mb-3 col-md-4 form-group">
             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
-<<<<<<< HEAD
             <select name="status" id="status" class="form-control select2">
               <option value="1" {{ old('status', $data->status ?? 1) == 1 ? 'selected' : '' }}>Active</option>
               <option value="0" {{ old('status', $data->status ?? 1) == 0 ? 'selected' : '' }}>Inactive</option>
             </select>
           </div>
-=======
 
             @php
               // Default to 1 (Active) if nothing set yet; keep old()/model value on edit/validation error
@@ -1448,7 +1422,6 @@ $pricingType = old('pricing_type', $data->pricing_type ?? 'static');
 
         <input type="hidden" name="customer_id" value="{{ $customerId }}">
 
->>>>>>> 9d9ed85b (for cleaner setup)
       </div>
       <div class="col-md-12 my-4">
         <div class="d-flex align-items-center">

@@ -58,11 +58,8 @@ class UserController extends Controller
             'first_name' => ['required', 'max:100', 'regex:/^[a-zA-Z0-9\s]+$/'],
             'last_name' => ['required', 'max:100', 'regex:/^[a-zA-Z0-9\s]+$/'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-<<<<<<< HEAD
             'contact_no' => ['required', 'max:20', 'regex:/^[0-9+\-\s]+$/'],
-=======
             'contact_no' => ['required', 'min:10','max:10', 'regex:/^[0-9+\-\s]+$/'],
->>>>>>> 9d9ed85b (for cleaner setup)
             'company_name' => ['nullable', 'max:100', 'regex:/^[a-zA-Z0-9\s]*$/'],
             'status' => ['required', 'in:0,1'],
             'project_manager.' => ['integer', 'exists:users,id'],
@@ -81,11 +78,8 @@ class UserController extends Controller
             'email.unique' => 'This email is already in use.',
 
             'contact_no.required' => 'Please enter Contact Number.',
-<<<<<<< HEAD
             'contact_no.max' => 'Contact Number cannot exceed 20 digits.',
-=======
             'contact_no.max' => 'Contact Number cannot exceed 10 digits.',
->>>>>>> 9d9ed85b (for cleaner setup)
             'contact_no.regex' => 'Contact Number can only contain digits, +, - and spaces.',
 
             'company_name.max' => 'Company Name cannot exceed 100 characters.',
@@ -171,11 +165,8 @@ class UserController extends Controller
             'first_name' => ['required', 'max:100', 'regex:/^[a-zA-Z0-9\s]+$/'],
             'last_name' => ['required', 'max:100', 'regex:/^[a-zA-Z0-9\s]+$/'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($decryptedId)],
-<<<<<<< HEAD
             'contact_no' => ['required', 'max:20', 'regex:/^[0-9+\-\s]+$/'],
-=======
             'contact_no' => ['required','min:10','max:10', 'regex:/^[0-9+\-\s]+$/'],
->>>>>>> 9d9ed85b (for cleaner setup)
             'company_name' => ['nullable', 'max:100', 'regex:/^[a-zA-Z0-9\s]*$/'],
             'status' => ['required', 'in:0,1'],
             'project_manager.' => ['integer', 'exists:users,id'],
@@ -194,11 +185,8 @@ class UserController extends Controller
             'email.unique' => 'This email is already in use.',
 
             'contact_no.required' => 'Please enter Contact Number.',
-<<<<<<< HEAD
             'contact_no.max' => 'Contact Number cannot exceed 20 digits.',
-=======
             'contact_no.max' => 'Contact Number cannot exceed 10 digits.',
->>>>>>> 9d9ed85b (for cleaner setup)
             'contact_no.regex' => 'Contact Number can only contain digits, +, - and spaces.',
 
             'company_name.max' => 'Company Name cannot exceed 100 characters.',

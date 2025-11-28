@@ -19,10 +19,7 @@
     <div class="mt-2">GSTIN: {{ $gstin ?: '—' }}</div>
     <div>PAN: {{ $pan ?: '—' }}</div>
   </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
   <div>
     <table class="tbl">
       <tr><th>Invoice No:</th><td>{{ $invoiceNo }}</td></tr>

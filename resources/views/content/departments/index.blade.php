@@ -50,31 +50,25 @@
             <table class="common-datatable table" id="department-table">
                 <thead>
                     <tr>
-<<<<<<< HEAD
                         <th></th>
                         <th>Name</th>
                         <th>Action</th>
-=======
                     <th></th>
                     <th>Name</th>
                     <th>Industry Vertical</th> {{-- NEW --}}
                     <th>Action</th>
->>>>>>> 9d9ed85b (for cleaner setup)
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0"></tbody>
                 <tfoot>
                     <tr>
-<<<<<<< HEAD
                         <th></th>
                         <th>Name</th>
                         <th>Action</th>
-=======
                     <th></th>
                     <th>Name</th>
                     <th>Industry Vertical</th> {{-- NEW --}}
                     <th>Action</th>
->>>>>>> 9d9ed85b (for cleaner setup)
                     </tr>
                 </tfoot>
             </table>
@@ -95,7 +89,6 @@
             pageLength: dataTablePageLength,
             columns: [
                 {
-<<<<<<< HEAD
                     className: 'dtr-control',
                     orderable: false,
                     data: null,
@@ -115,7 +108,6 @@
                     className: 'text-center',
                     width: '150px',
                     responsivePriority: 4,
-=======
                 className: 'dtr-control',
                 orderable: false,
                 data: null,
@@ -140,7 +132,6 @@
                 className: 'text-center',
                 width: '150px',
                 responsivePriority: 4,
->>>>>>> 9d9ed85b (for cleaner setup)
                 }
             ],
             pagingType: "simple_numbers",
@@ -149,13 +140,10 @@
                 search: "",
                 searchPlaceholder: "Search",
                 oPaginate: {
-<<<<<<< HEAD
                     sNext: '<i class="fas fa-angle-right"></i>',
                     sPrevious: '<i class="fas fa-angle-left"></i>',
-=======
                 sNext: '<i class="fas fa-angle-right"></i>',
                 sPrevious: '<i class="fas fa-angle-left"></i>',
->>>>>>> 9d9ed85b (for cleaner setup)
                 }
             },
             order: [[0, 'desc']],

@@ -15,11 +15,8 @@
   }
 
   .chat-window {
-<<<<<<< HEAD
     height: 500px;
-=======
     height: 300px;
->>>>>>> 9d9ed85b (for cleaner setup)
     overflow-y: auto;
     border: 1px solid #e0e0e0;
     border-radius: .5rem;
@@ -38,10 +35,7 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
 <div class="card">
   <div class="card-header d-flex justify-content-between align-items-center">
     <h5 class="mb-0">Project: {{ $project->project_name }}</h5>

@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-<<<<<<< HEAD
 class Document extends Model
-=======
 class Document extends LoggableModel
->>>>>>> 9d9ed85b (for cleaner setup)
 {
     use HasFactory, SoftDeletes;
     protected $table = 'documents';
@@ -20,11 +17,8 @@ class Document extends LoggableModel
         'customer_id',
         'contact_no',
         'description',
-<<<<<<< HEAD
         'contract_start_date',
         'contract_end_date',
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
         'project_manager_id',
         'industry_vertical_id',
         'department_id',
@@ -37,11 +31,8 @@ class Document extends LoggableModel
 
     protected $casts = [
         'is_recurring' => 'boolean',
-<<<<<<< HEAD
         'contract_start_date' => 'date',
         'contract_end_date'   => 'date',
-=======
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
 
     // Relations
@@ -66,9 +57,7 @@ class Document extends LoggableModel
         return $this->belongsTo(User::class, 'project_manager_id');
     }
 
-<<<<<<< HEAD
 
-=======
     /**
      * Get all alerts for this document.
      */
@@ -84,5 +73,4 @@ class Document extends LoggableModel
     {
         return $this->hasMany(DocumentContract::class);
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

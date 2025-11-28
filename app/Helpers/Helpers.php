@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
 namespace App\Helpers;
 
 use Config;
@@ -26,13 +23,11 @@ use App\Models\IntakeStatus;
 use App\Models\IntakeQueryType;
 use App\Models\IntakeLanguage;
 use App\Models\IntakeLeaseType;
-<<<<<<< HEAD
 Use App\Models\IntakeWorkType;
 use App\Models\QueryStatus;
 use App\Models\FeedbackCategory;
 use App\Models\InvoiceFormat;
 
-=======
 use App\Models\IntakeWorkType;
 use App\Models\QueryStatus;
 use App\Models\FeedbackCategory;
@@ -42,7 +37,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ProjectCategory;
->>>>>>> 9d9ed85b (for cleaner setup)
 
 class Helpers
 {
@@ -220,7 +214,6 @@ class Helpers
     }
   }
 
-<<<<<<< HEAD
   public static function getProjectMasterData(){
     return [
         'project_types' => ProjectType::where('status', 1)->get(),
@@ -246,7 +239,6 @@ class Helpers
     return [
         'departments' => Department::where('status', 1)->get(),
         'industry_vertical' => IndustryVertical::where('status', 1)->get(),
-=======
   public static function getProjectMasterData()
   {
     return [
@@ -277,13 +269,11 @@ class Helpers
     return [
       'departments' => Department::where('status', 1)->get(),
       'industry_vertical' => IndustryVertical::where('status', 1)->get(),
->>>>>>> 9d9ed85b (for cleaner setup)
 
     ];
   }
 
   /**Pricing Master */
-<<<<<<< HEAD
   public static function getPricingMasterData(){
     return [
         'industry_vertical' => IndustryVertical::where('status', 1)->get(),
@@ -293,7 +283,6 @@ class Helpers
         'description' => Description::where('status', 1)->get(),
         'departments' => Department::where('status', 1)->get(),
         'skills'      => SkillMaster::where('status', 1)->get(),
-=======
   public static function getPricingMasterData()
   {
     return [
@@ -304,12 +293,10 @@ class Helpers
       'description' => Description::where('status', 1)->get(),
       'departments' => Department::where('status', 1)->get(),
       'skills'      => SkillMaster::where('status', 1)->get(),
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
   }
 
   public static function getDisplayValue($key, $value)
-<<<<<<< HEAD
     {
         return match ($key) {
             'unit_of_measurement_id' => UnitOfMeasurement::find($value)?->name ?? $value,
@@ -411,7 +398,6 @@ class Helpers
 
 }
 
-=======
   {
     return match ($key) {
       'unit_of_measurement_id' => UnitOfMeasurement::find($value)?->name ?? $value,
@@ -599,4 +585,3 @@ class Helpers
         return $name !== '' ? $name : ($user->name ?? $fallback);
     }
 }
->>>>>>> 9d9ed85b (for cleaner setup)

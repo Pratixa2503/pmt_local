@@ -30,8 +30,6 @@ class LoginController extends Controller
         return view('content.authentications.auth-login-cover', ['pageConfigs' => $pageConfigs]);
     }
 
-<<<<<<< HEAD
-=======
     // public function store(Request $request)
     // {
     //     // Validation
@@ -58,7 +56,6 @@ class LoginController extends Controller
     //     return redirect()->route('login')->with('error', 'Login failed. Please check your credentials.');
     // }
    
->>>>>>> 9d9ed85b (for cleaner setup)
     public function store(Request $request)
     {
         // Validation
@@ -79,12 +76,10 @@ class LoginController extends Controller
             // Regenerate session for security
             $request->session()->regenerate();
 
-<<<<<<< HEAD
             return redirect()->intended('dashboard')
                 ->with('success', __('messages.signin.success'));
         }
         return redirect()->route('login')->with('error', 'Login failed. Please check your credentials.');
-=======
             $user = Auth::user();
 
             // Deny ONLY when billing=1 AND project=0
@@ -109,7 +104,6 @@ class LoginController extends Controller
         return redirect()
             ->route('login')
             ->with('error', 'Login failed. Please check your credentials.');
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
 

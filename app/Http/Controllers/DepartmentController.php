@@ -5,11 +5,8 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\DataTables\DepartmentDataTable;
-<<<<<<< HEAD
 
-=======
 use App\Models\IndustryVertical;
->>>>>>> 9d9ed85b (for cleaner setup)
 class DepartmentController extends Controller
 {
     public function index(DepartmentDataTable $dataTable)
@@ -26,17 +23,13 @@ class DepartmentController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $title = 'Create Department';
-<<<<<<< HEAD
         return view('content.departments.create', compact('title'));
-=======
         $industry_verticals = IndustryVertical::where('status',1)->get();
         return view('content.departments.create', compact('title','industry_verticals'));
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
         if ( !auth()->user()->can('create department')) {
             abort(403, 'Unauthorized action.');
         }
@@ -50,7 +43,6 @@ class DepartmentController extends Controller
         return redirect()->route('departments.index')->with('success', 'Department created successfully.');
     }
 
-=======
         if (! auth()->user()->can('create department')) {
             abort(403, 'Unauthorized action.');
         }
@@ -78,7 +70,6 @@ class DepartmentController extends Controller
     }
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
     public function edit($id)
     {
         if ( !auth()->user()->can('edit department')) {
@@ -87,13 +78,10 @@ class DepartmentController extends Controller
         $title = 'Edit Department';
         $id = Crypt::decryptString($id);
         $department = Department::findOrFail($id);
-<<<<<<< HEAD
 
         return view('content.departments.edit', compact('department', 'title'));
-=======
         $industry_verticals = IndustryVertical::where('status',1)->get();
         return view('content.departments.edit', compact('department','industry_verticals','title'));
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function update(Request $request, $id)
@@ -128,8 +116,6 @@ class DepartmentController extends Controller
             'message' => $message,
         ]);
     }
-<<<<<<< HEAD
-=======
 
     public function byIndustry($industry)
     {
@@ -148,5 +134,4 @@ class DepartmentController extends Controller
 
         return response()->json(['data' => $items]);
     }
->>>>>>> 9d9ed85b (for cleaner setup)
 }

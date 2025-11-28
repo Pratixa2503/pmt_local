@@ -18,7 +18,6 @@
                     @if($type == 'edit') @method('PUT') @endif
 
                     <div class="row">
-<<<<<<< HEAD
                         <div class="col-md-6 mb-3">
                             <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
@@ -32,7 +31,6 @@
                                 <option value="">Select</option>
                                 <option value="1" {{ old('status', $data->status ?? '') == '1' ? 'selected' : '' }}>Active</option>
                                 <option value="0" {{ old('status', $data->status ?? '') == '0' ? 'selected' : '' }}>Inactive</option>
-=======
                         <div class="col-md-4 mb-3">
                             <label for="name" class="form-label">Service Offering <span class="text-danger">*</span></label>
                             <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
@@ -65,17 +63,14 @@
                                 <option value="">Select</option>
                                 <option value="1" {{ $statusVal === '1' ? 'selected' : '' }}>Active</option>
                                 <option value="0" {{ $statusVal === '0' ? 'selected' : '' }}>Inactive</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                             </select>
                             @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                     </div>
 
-<<<<<<< HEAD
                     <div class="text-end">
                         <a href="{{ route('input-output-formats.index') }}" class="btn btn-secondary"><i class="ti ti-chevron-left me-sm-1 me-0 mb-1"></i>{{ __('Back') }}</a>
                         <button type="submit" class="btn btn-primary">{{ $type == 'create' ? 'Save' : 'Update' }}<i class="ti ti-file-upload ms-1 mb-1"></i></button>
-=======
                     {{-- NEW: Department --}}
                     <div class="row">
                         
@@ -89,15 +84,11 @@
                             {{ $type == 'create' ? 'Save' : 'Update' }}
                             <i class="ti ti-file-upload ms-1 mb-1"></i>
                         </button>
->>>>>>> 9d9ed85b (for cleaner setup)
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection

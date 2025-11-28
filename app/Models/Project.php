@@ -29,15 +29,12 @@ class Project extends Model
         'project_priority_id',
         'project_status_id',
         'parent_id',
-<<<<<<< HEAD
         'project_category'
-=======
         'project_category',
         'suite_id',
         'industry_vertical_id',
         'service_offering_id',
         'pricing_type'
->>>>>>> 9d9ed85b (for cleaner setup)
     ];
 
     protected $casts = [
@@ -61,14 +58,11 @@ class Project extends Model
     public function frequencyOfDelivery() { return $this->belongsTo(ProjectDeliveryFrequency::class, 'frequency_of_delivery_id'); }
     public function priority()            { return $this->belongsTo(ProjectPriority::class, 'project_priority_id'); }
     public function status()              { return $this->belongsTo(ProjectStatus::class, 'project_status_id'); }
-<<<<<<< HEAD
 
-=======
     public function category()
     {
         return $this->belongsTo(ProjectCategory::class, 'project_category');
     }     
->>>>>>> 9d9ed85b (for cleaner setup)
     // Helpers
     public function setStartDateAttribute($value)
     {

@@ -11,13 +11,10 @@ class ServiceOfferingDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-<<<<<<< HEAD
             ->addColumn('actions', function ($type) {
                 $encrypted = Crypt::encryptString($type->id);
-=======
             ->addColumn('actions', function ($row) {
                 $encrypted = Crypt::encryptString($row->id);
->>>>>>> 9d9ed85b (for cleaner setup)
                 $actions = '';
                 if (auth()->user()->can('edit service offering')) {
                     $actions .= '<a href="' . route('service-offerings.edit', $encrypted) . '"><i class="fa-solid fa-pen-to-square" title="Edit"></i></a> ';
@@ -32,9 +29,7 @@ class ServiceOfferingDataTable extends DataTable
 
     public function query(ServiceOffering $model)
     {
-<<<<<<< HEAD
         return $model->newQuery()->orderBy('id', 'DESC');
-=======
         return $model->newQuery()
             ->leftJoin('departments as d', 'd.id', '=', 'service_offerings.department_id')
             ->leftJoin('industry_verticals as iv', 'iv.id', '=', 'd.industry_verticals_id')
@@ -44,17 +39,13 @@ class ServiceOfferingDataTable extends DataTable
                 'iv.name as industry_vertical',
             ])
             ->orderBy('service_offerings.id', 'DESC');
->>>>>>> 9d9ed85b (for cleaner setup)
     }
 
     public function html()
     {
         return $this->builder()
-<<<<<<< HEAD
             ->setTableId('project-status-table')
-=======
             ->setTableId('input-output-format-table') // match Blade
->>>>>>> 9d9ed85b (for cleaner setup)
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
@@ -65,17 +56,14 @@ class ServiceOfferingDataTable extends DataTable
     protected function getColumns()
     {
         return [
-<<<<<<< HEAD
             ['data' => 'name',     'name' => 'name',     'title' => 'Project Type'],
             ['data' => 'status',   'name' => 'status',   'title' => 'Status'],
             ['data' => 'actions',  'name' => 'actions',  'title' => 'Actions', 'orderable' => false, 'searchable' => false],
-=======
             ['data' => 'name',              'name' => 'service_offerings.name', 'title' => 'Service Offering'],
             ['data' => 'department_name',   'name' => 'd.name',                 'title' => 'Department'],
             ['data' => 'industry_vertical', 'name' => 'iv.name',                'title' => 'Industry Vertical'],
             ['data' => 'status',            'name' => 'service_offerings.status','title' => 'Status'],
             ['data' => 'actions',           'name' => 'actions',                'title' => 'Actions', 'orderable' => false, 'searchable' => false],
->>>>>>> 9d9ed85b (for cleaner setup)
         ];
     }
 }

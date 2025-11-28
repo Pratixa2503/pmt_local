@@ -10,11 +10,9 @@ class ProjectDataTable extends DataTable
 {
     public function dataTable($query)
     {
-<<<<<<< HEAD
         return datatables()
             ->eloquent($query)
             ->addColumn('expand', function ($p) {
-=======
         $user = auth()->user();
         $shouldHideExpand = false;
         if ($user) {
@@ -36,7 +34,6 @@ class ProjectDataTable extends DataTable
                     // Hide for Abstractor / Reviewer / Sense Check / Customer
                     return '';
                 }
->>>>>>> 9d9ed85b (for cleaner setup)
                 $encId = Crypt::encryptString($p->id);
                 return '<a href="javascript:void(0)" class="details-control" data-id="' . $encId . '" title="View subprojects"><i class="fa fa-plus-circle"></i></a>';
             })
@@ -45,7 +42,6 @@ class ProjectDataTable extends DataTable
             ->editColumn('status_name', fn($p) => $p->status_name ?? '-')
             ->addColumn('actions', function ($p) {
                 $encrypted = Crypt::encryptString($p->id);
-<<<<<<< HEAD
                 $actions = '';
 
                 if (auth()->check() && auth()->user()->can('view intake form')) {
@@ -87,7 +83,6 @@ class ProjectDataTable extends DataTable
                         . '<i class="fa-solid fa-trash" title="Delete"></i></a>';
                 }
                 return $actions ?: '-';
-=======
                 $user      = auth()->user();
                 $actions   = [];
 
@@ -147,7 +142,6 @@ class ProjectDataTable extends DataTable
                 }
 
                 return $actions ? implode('', $actions) : '-';
->>>>>>> 9d9ed85b (for cleaner setup)
             })
             ->rawColumns(['expand', 'actions']);
     }
@@ -158,29 +152,23 @@ class ProjectDataTable extends DataTable
 
         $query = $model->newQuery()
             ->leftJoin('companies as c', 'c.id', '=', 'projects.customer_id')
-<<<<<<< HEAD
             ->leftJoin('project_types as pt', 'pt.id', '=', 'projects.project_type_id')
             ->leftJoin('project_statuses as ps', 'ps.id', '=', 'projects.project_status_id')
             // we’ll left join intakes so cat=1 projects without intakes aren’t dropped
             ->leftJoin('project_intakes as pi', 'pi.parent_id', '=', 'projects.id')
             ->whereNull('projects.parent_id')
-=======
             //->leftJoin('project_types as pt', 'pt.id', '=', 'projects.project_type_id')
             ->leftJoin('project_statuses as ps', 'ps.id', '=', 'projects.project_status_id')
             // we’ll left join intakes so cat=1 projects without intakes aren’t dropped
             ->leftJoin('project_intakes as pi', 'pi.parent_id', '=', 'projects.id')
->>>>>>> 9d9ed85b (for cleaner setup)
             ->select([
                 'projects.id',
                 'projects.project_name',
                 'projects.start_date',
                 'projects.end_date',
                 'c.name as customer_name',
-<<<<<<< HEAD
                 'pt.name as project_type_name',
-=======
                 //'pt.name as project_type_name',
->>>>>>> 9d9ed85b (for cleaner setup)
                 'ps.name as status_name',
                 'projects.project_category',
             ])
@@ -190,13 +178,10 @@ class ProjectDataTable extends DataTable
         if (!$user) {
             return $query;
         }
-<<<<<<< HEAD
 
-=======
         if($user->hasRole('super admin') || $user->hasRole('project manager')){
             $query->whereNull('projects.parent_id');
         }
->>>>>>> 9d9ed85b (for cleaner setup)
         if ($user->hasRole('super admin')) {
             return $query;
         }
@@ -268,11 +253,8 @@ class ProjectDataTable extends DataTable
         return $query;
     }
 
-<<<<<<< HEAD
-=======
    
 
->>>>>>> 9d9ed85b (for cleaner setup)
 
 
     public function html()
@@ -292,11 +274,8 @@ class ProjectDataTable extends DataTable
             ['data' => 'expand',            'name' => 'expand',               'title' => '', 'orderable' => false, 'searchable' => false, 'width' => '30px'],
             ['data' => 'project_name',      'name' => 'projects.project_name', 'title' => 'Project Name'],
             ['data' => 'customer_name',     'name' => 'c.name',                'title' => 'Customer'],
-<<<<<<< HEAD
             ['data' => 'project_type_name', 'name' => 'pt.name',               'title' => 'Project Type'],
-=======
           //  ['data' => 'project_type_name', 'name' => 'pt.name',               'title' => 'Project Type'],
->>>>>>> 9d9ed85b (for cleaner setup)
             ['data' => 'status_name',       'name' => 'ps.name',               'title' => 'Status'],
             ['data' => 'start_date',        'name' => 'projects.start_date',   'title' => 'Start Date'],
             ['data' => 'end_date',          'name' => 'projects.end_date',     'title' => 'End Date'],

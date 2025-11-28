@@ -2,17 +2,14 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 
 class SubTask extends Model
 {
-=======
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SubTask extends LoggableModel
 {
     use SoftDeletes;
->>>>>>> 9d9ed85b (for cleaner setup)
     protected $fillable = ['main_task_id','name','task_type','benchmarked_time','status'];
 
     public function mainTask() {

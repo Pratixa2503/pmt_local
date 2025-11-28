@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Models;
-<<<<<<< HEAD
 
 class Note extends LoggableModel
 {
-=======
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Note extends LoggableModel
 {
    
->>>>>>> 9d9ed85b (for cleaner setup)
     protected $fillable = [
         'pricing_master_id',
         'note_type',

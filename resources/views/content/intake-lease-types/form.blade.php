@@ -1,6 +1,5 @@
 @extends('layouts/layoutMaster')
 
-<<<<<<< HEAD
 @section('title', $title ?? 'Intake Lease Types')
 
 @section('vendor-style')
@@ -97,7 +96,6 @@
   });
 </script>
 @endsection
-=======
 @section('title', $title ?? 'Intake Lease Type')
 
 @section('content')
@@ -141,4 +139,3 @@
   </div>
 </div>
 @endsection
->>>>>>> 9d9ed85b (for cleaner setup)

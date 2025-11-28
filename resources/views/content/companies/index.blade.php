@@ -13,8 +13,6 @@
 
 @section('page-style')
   <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-advance.css') }}">
-<<<<<<< HEAD
-=======
   <style>
   button.swal2-deny.btn.btn-label-secondary {
       display: none !important;
@@ -29,7 +27,6 @@
     padding: 2px 6px;
   }
 </style>
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection
 
 @section('vendor-script')
@@ -101,10 +98,8 @@
 <script>
   const dataTablePageLength = {{ env('DATATABLEPAGELENGTH', 10) }};
 
-<<<<<<< HEAD
   $(function () {
     $('#companies-table').DataTable({
-=======
   // A small helper to create a unique child-table id for each parent row
   function childTableIdFor(encId) {
     return 'projects-of-' + encId.replace(/[^a-zA-Z0-9_-]/g, '');
@@ -136,20 +131,17 @@
   $(function () {
     // Initialize the parent Companies DataTable
     const dt = $('#companies-table').DataTable({
->>>>>>> 9d9ed85b (for cleaner setup)
       responsive: true,
       processing: true,
       serverSide: true,
       ajax: '{!! route('companies.index') !!}',
       pageLength: dataTablePageLength,
       columns: [
-<<<<<<< HEAD
         {
           className: 'dtr-control',
           orderable: false,
           data: null,
           defaultContent: '',
-=======
         // Expand/Collapse control column
         {
           data: null,
@@ -158,25 +150,20 @@
           searchable: false,
           width: '32px',
           defaultContent: '<button class="btn btn-sm btn-outline-secondary toggle-child" title="Expand/Collapse"><i class="fas fa-plus"></i></button>',
->>>>>>> 9d9ed85b (for cleaner setup)
           responsivePriority: 1,
         },
         { data: 'name',       name: 'name',       responsivePriority: 2 },
         { data: 'address',    name: 'address',    responsivePriority: 3 },
-<<<<<<< HEAD
         // { data: 'location',   name: 'location',   responsivePriority: 3 },
         { data: 'contact_no', name: 'contact_no', responsivePriority: 3 },
         // { data: 'website',    name: 'website',    responsivePriority: 3 },
         // { data: 'team',       name: 'team_count', responsivePriority: 3 },
-=======
         { data: 'contact_no', name: 'contact_no', responsivePriority: 3 },
->>>>>>> 9d9ed85b (for cleaner setup)
         {
           data: 'actions',
           name: 'actions',
           orderable: false,
           searchable: false,
-<<<<<<< HEAD
           responsivePriority: 2
         }
       ],
@@ -186,7 +173,6 @@
           className: 'text-center',
           width: '150px',
         }
-=======
           className: 'text-center',
           width: '150px',
           responsivePriority: 2
@@ -197,7 +183,6 @@
       ],
       columnDefs: [
         { targets: -2, className: 'text-center' } // actions column
->>>>>>> 9d9ed85b (for cleaner setup)
       ],
       pagingType: "simple_numbers",
       language: {
@@ -209,7 +194,6 @@
           sPrevious: '<i class="fas fa-angle-left"></i>',
         }
       },
-<<<<<<< HEAD
       order: [[0, 'desc']]
     });
   });
@@ -260,7 +244,6 @@
     $(".alert-block").remove();
   }, 5000);
 </script>
-=======
       // Order by Name (since first column is the expand control)
       order: [[1, 'desc']]
     });
@@ -408,5 +391,4 @@ $(document).on('click', '.delete-project', function (e) {
 </script>
 
 
->>>>>>> 9d9ed85b (for cleaner setup)
 @endsection

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # --- General Operating System Files ---
 .DS_Store          # Mac OS system files
 Thumbs.db          # Windows thumbnail cache
@@ -23,7 +22,6 @@ config/config.local.php # Local config files that shouldn't be shared
 
 # --- XAMPP/Local Server Files ---
 *.tmp              # Temporary files
-=======
 /.phpunit.cache
 /node_modules
 node_modules
@@ -44,4 +42,3 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
->>>>>>> 9d9ed85b (for cleaner setup)

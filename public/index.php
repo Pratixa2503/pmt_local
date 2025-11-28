@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
 // phpinfo();exit;
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 

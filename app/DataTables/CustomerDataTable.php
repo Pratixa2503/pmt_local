@@ -61,11 +61,8 @@ class CustomerDataTable extends DataTable
         ->where('users.id', '!=', Auth::id())
         ->where('roles.name', '=', 'customer')
         ->orderBy('users.id', 'DESC');
-<<<<<<< HEAD
         
-=======
 
->>>>>>> 9d9ed85b (for cleaner setup)
         return $query;
     }
 

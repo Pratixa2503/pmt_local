@@ -21,25 +21,20 @@
                         @endif
 
                         <div class="row">
-<<<<<<< HEAD
                             <div class="mb-3 col-md-6">
-=======
                             <div class="mb-3 col-md-4">
->>>>>>> 9d9ed85b (for cleaner setup)
                                 <label for="name" class="form-label">Department Name <span class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                                     value="{{ old('name', $department->name ?? '') }}" placeholder="Enter Department Name" autofocus>
                                 @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
 
-<<<<<<< HEAD
                             <div class="mb-3 col-md-6">
                                 <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                                 <select name="status" class="form-select @error('status') is-invalid @enderror">
                                     <option value="">Select Status</option>
                                     <option value="1" {{ old('status', $department->status ?? '') == 1 ? 'selected' : '' }}>Active</option>
                                     <option value="0" {{ old('status', $department->status ?? '') == 0 ? 'selected' : '' }}>Inactive</option>
-=======
                             <div class="mb-3 col-md-4">
                                 <label for="industry_verticals_id" class="form-label">Industry Vertical <span class="text-danger">*</span></label>
                                 @php
@@ -65,7 +60,6 @@
                                     <option value="">Select Status</option>
                                     <option value="1" {{ $currentStatus === '1' ? 'selected' : '' }}>Active</option>
                                     <option value="0" {{ $currentStatus === '0' ? 'selected' : '' }}>Deactive</option>
->>>>>>> 9d9ed85b (for cleaner setup)
                                 </select>
                                 @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>

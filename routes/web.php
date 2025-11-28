@@ -3,10 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\BahamasController;
->>>>>>> 9d9ed85b (for cleaner setup)
 use App\Http\Controllers\RoleController;
 
 use App\Http\Controllers\UserController;
@@ -45,16 +42,13 @@ use App\Http\Controllers\IntakeQueryTypeController;
 use App\Http\Controllers\IntakeLeaseTypeController;
 use App\Http\Controllers\IntakeWorkTypeController;
 use App\Http\Controllers\IntakeLanguageController;
-<<<<<<< HEAD
 
-=======
 use App\Http\Controllers\IntakeQueryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceFormatController;
 use App\Http\Controllers\QueryStatusController;
 use App\Http\Controllers\FeedbackCategoryController;
 use App\Http\Controllers\ProjectCategoryController;
->>>>>>> 9d9ed85b (for cleaner setup)
 Route::fallback(function () {
     return redirect()->route('login');
 });
@@ -75,30 +69,24 @@ Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard
-<<<<<<< HEAD
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-=======
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
->>>>>>> 9d9ed85b (for cleaner setup)
     Route::get('projects/fileshow', [ProjectController::class, 'files_code'])
     ->name('projects.fileshow');
     Route::get('projects/{parent}/files', [ProjectController::class, 'fileView'])
     ->name('projects.fileView');
-<<<<<<< HEAD
    Route::post('/project/file', [ProjectController::class, 'store2'])->name('project.file.store');
 Route::put('/project/file',  [ProjectController::class, 'store2'])->name('project.file.update');
     // Roles & Permission
     Route::resource('roles', RoleController::class);
     Route::resource('project-types', ProjectTypeController::class);
     Route::resource('departments', DepartmentController::class);
-=======
     Route::post('/project/file', [ProjectController::class, 'store2'])->name('project.file.store');
     Route::put('/project/file',  [ProjectController::class, 'store2'])->name('project.file.update');
     // Roles & Permission
     Route::resource('roles', RoleController::class);
     Route::resource('project-types', ProjectTypeController::class);
     Route::resource('departments', DepartmentController::class)->except(['show']);
->>>>>>> 9d9ed85b (for cleaner setup)
     Route::resource('permissions', PermissionController::class);
     Route::resource('mode-of-delivery', ModeOfDeliveryController::class);
     Route::resource('project-priorities', ProjectPriorityController::class);
@@ -107,11 +95,8 @@ Route::put('/project/file',  [ProjectController::class, 'store2'])->name('projec
     Route::resource('input-output-formats', InputOutputFormatController::class);
     Route::resource('projects',ProjectController::class);
     Route::resource('industry-verticals', IndustryVerticalController::class);
-<<<<<<< HEAD
     Route::resource('service-offerings', ServiceOfferingController::class);
-=======
     Route::resource('service-offerings', ServiceOfferingController::class)->except(['show']);
->>>>>>> 9d9ed85b (for cleaner setup)
     Route::resource('unit-of-measurements',UnitOfMeasurementController::class);
     Route::resource('currencies', CurrencyController::class);
     Route::resource('descriptions', DescriptionController::class);
@@ -121,11 +106,8 @@ Route::put('/project/file',  [ProjectController::class, 'store2'])->name('projec
     Route::post('pricing-master/{id}/reject',  [PricingMasterController::class, 'reject'])->name('pricing-master.reject');
     Route::resource('skill-masters', SkillMasterController::class);
     Route::resource('customers',CompanyController::class)->names('companies');
-<<<<<<< HEAD
-=======
     Route::delete('/companies/{encryptedId}', [CompanyController::class, 'destroy'])
     ->name('companies.destroy');
->>>>>>> 9d9ed85b (for cleaner setup)
     Route::resource('document',DocumentController::class);
     Route::get('/customers/{customer}/pocs', [CustomerController::class, 'pocs'])
      ->name('customers.pocs');
@@ -137,19 +119,16 @@ Route::put('/project/file',  [ProjectController::class, 'store2'])->name('projec
     ->name('users.unassigned');
     Route::get('projects/{parent}/subprojects', [ProjectController::class, 'subprojects'])
     ->name('projects.subprojects');
-<<<<<<< HEAD
     
    
     // Users Module
     Route::resource('users', UserController::class);
   
-=======
 
 
     // Users Module
     Route::resource('users', UserController::class);
 
->>>>>>> 9d9ed85b (for cleaner setup)
     // Customers Module
    // Route::resource('customers', CustomerController::class);
     //Bank Module
@@ -165,20 +144,14 @@ Route::put('/project/file',  [ProjectController::class, 'store2'])->name('projec
     Route::post('/invoices/preview-html', [InvoiceController::class, 'previewHtml'])->name('invoices.previewHtml');
     Route::post('/invoices/approve', [InvoiceController::class, 'approve'])->name('invoices.approve');
     Route::post('/invoices/reject', [InvoiceController::class, 'reject'])->name('invoices.reject');
-<<<<<<< HEAD
-=======
     Route::get('/invoices/{id}', [InvoiceController::class, 'show'])->name('invoices.show');
->>>>>>> 9d9ed85b (for cleaner setup)
     Route::post('/projects/pm-members', [ProjectController::class, 'pmMembers'])->name('projects.pmMembers');
     Route::get('/projects/{encryptedId}/general-view', [ProjectController::class, 'generalView'])
         ->name('projects.generalView');
     Route::post('/projects/{encryptedId}/assignment-dates', [ProjectController::class, 'storeAssignmentDates'])
      ->name('projects.storeAssignmentDates');
-<<<<<<< HEAD
      Route::get('tasks/main', [MainTaskController::class, 'index'])->name('maintasks.index');
-=======
     Route::get('tasks/main', [MainTaskController::class, 'index'])->name('maintasks.index');
->>>>>>> 9d9ed85b (for cleaner setup)
     Route::get('tasks/main/create', [MainTaskController::class, 'create'])->name('maintasks.create');
     Route::post('tasks/main', [MainTaskController::class, 'store'])->name('maintasks.store');
     Route::get('tasks/main/{id}/edit', [MainTaskController::class, 'edit'])->name('maintasks.edit');
@@ -207,8 +180,6 @@ Route::put('/project/file',  [ProjectController::class, 'store2'])->name('projec
     Route::post('taskitems/resume', [TaskTrackerController::class, 'resume'])->name('taskitems.resume');
     Route::post('taskitems/end',    [TaskTrackerController::class, 'end'])->name('taskitems.end');
     Route::get('projects/{id}/admin-tracking', [TaskTrackerController::class, 'adminView'])->name('projects.admin.tracking');
-<<<<<<< HEAD
-=======
     // Route::post('taskitems/history',  [TaskTrackerController::class, 'getSessionHistory'])->name('taskitems.history');
 // Define the route for fetching session history
 // Route::get('counts', [TaskTrackerController::class, 'getSessionHistory'])
@@ -217,7 +188,6 @@ Route::put('/project/file',  [ProjectController::class, 'store2'])->name('projec
     Route::get('track/count', [TaskTrackerController::class, 'getSessionHistory'])
     ->name('getSessionHistory');
 
->>>>>>> 9d9ed85b (for cleaner setup)
     Route::get('/projects/{encryptedId}/conversation', [CollaborationController::class, 'showProjectConversation'])->name('collab.project.conversation');
     Route::get('/conversations/{id}/messages', [CollaborationController::class, 'listMessages'])->name('collab.messages.index');
     Route::post('/conversations/{id}/messages', [CollaborationController::class, 'sendMessage'])->name('collab.messages.store');
@@ -229,13 +199,11 @@ Route::put('/project/file',  [ProjectController::class, 'store2'])->name('projec
     Route::get('/projects/{project}/sub-projects', [PoNumberController::class, 'subProjects'])
         ->name('projects.sub-projects');
     Route::resource('intake-statuses',IntakeStatusController::class)->parameters(['intake-statuses' => 'intake_status']);
-<<<<<<< HEAD
     Route::resource('intake-query-types', IntakeQueryTypeController::class);    
     Route::resource('intake-lease-types', IntakeLeaseTypeController::class);
     Route::resource('intake-work-types',  IntakeWorkTypeController::class);
     Route::resource('intake-languages',   IntakeLanguageController::class);
 });
-=======
     Route::resource('intake-query-types', IntakeQueryTypeController::class);
     Route::resource('intake-lease-types', IntakeLeaseTypeController::class);
     Route::resource('intake-work-types',  IntakeWorkTypeController::class);
@@ -304,4 +272,3 @@ Route::get('/projects/{encryptedId}/tracking/export', [TaskTrackerController::cl
 
 });
 
->>>>>>> 9d9ed85b (for cleaner setup)

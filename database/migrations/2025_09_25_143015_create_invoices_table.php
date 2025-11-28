@@ -31,10 +31,7 @@ return new class extends Migration {
       ])->default('submitted')->index();
 
       $t->unsignedBigInteger('created_by')->nullable()->index();
-<<<<<<< HEAD
-=======
       $t->unsignedBigInteger('updated_by')->nullable()->index();
->>>>>>> 9d9ed85b (for cleaner setup)
       $t->unsignedBigInteger('assigned_to')->nullable()->index(); // finance user etc
 
       // Currency snapshot
