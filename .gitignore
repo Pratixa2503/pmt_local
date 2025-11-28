@@ -1,0 +1,47 @@
+<<<<<<< HEAD
+# --- General Operating System Files ---
+.DS_Store          # Mac OS system files
+Thumbs.db          # Windows thumbnail cache
+
+# --- IDE/Editor Files ---
+.idea/             # JetBrains IDEs (e.g., PhpStorm)
+.vscode/           # Visual Studio Code workspace settings
+*.sublime-workspace
+*.bak
+
+# --- Dependencies/Build Files ---
+/vendor/           # PHP dependency manager (Composer)
+/node_modules/     # JavaScript dependency manager (NPM/Yarn)
+/public/build/     # Compiled assets (if you are using asset bundling like Webpack)
+/storage/          # Standard directory for PHP frameworks (e.g., Laravel)
+
+# --- Configuration and Environment Files (CRITICAL to ignore) ---
+.env               # Environment configuration file (often contains passwords/keys)
+.env.testing
+config/config.local.php # Local config files that shouldn't be shared
+*.log              # Log files
+
+# --- XAMPP/Local Server Files ---
+*.tmp              # Temporary files
+=======
+/.phpunit.cache
+/node_modules
+node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+vendor
+.env
+.env.backup
+.env.production
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+>>>>>>> 9d9ed85b (for cleaner setup)

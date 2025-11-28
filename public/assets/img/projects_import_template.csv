@@ -1,0 +1,19 @@
+Client Name,Name of the Project,Property ID,Property Name,Tenant ID / Lease ID,Suite ID,Tenant Name,Priority,Premises Address,PDF Names,No. of Documents,Status,Type of Lease,Type of Work,Language,Request Received Date,Delivered Date,Property Manager,Type of Queries,SB Queries,Client Response,Query Status,"Query Raised Date
+(Auto Fetch)",Query Resolved Date (Auto Fetch),Abstractor,Abstraction Start Date,Abstract Completion Date,Reviewer,Review Completion Date,Sense Check / DDR,Sense Check / DDR Completion Date,Proposed Delivery Date,Actual Delivered Date,Feedback received Date,Feedback completion date,Billing Month,No. of Pages (If non-English),Invoice Method,Date of Feedback Received,Feedback - Customer Name,Category of FB,Customer Feedback Comments,SB Response,Feedback Completion date
+Client 1,Project A,31,,0031L,01-100,OH-CIN-11120 Kenwood Rd.,1,"11120 KENWOOD ROAD, Cinncinnati, OH, United States","1. 1.1.3.11.1.13.2 Cincinnati Lease - Kenwood S
+2. 1.1.3.11.1.13.3 230501 Second Amendment to S
+3. Kenwood Rd--250623 Third Amendment for Storage space - Verdantas",3,Delivered,Lease,Full Abstraction,English,01/03/2025,,,CD Contingent,"7/21/2025: Received 3rd Amendment dated 5/30/2025, extends the Term from 6/1/2025 to 5/31/2027.
+
+05.23.2025: We have received (i) Storage Unit Lease dated 06/13/2019 by and between BenTom Properties LLC (Landlord) and CT Consultants Inc. (Tenant) for the Premises “11120 Kenwood Road, Cincinnati, OH 45242” for the period from 06/01/2019 to 05/31/2021 and further extended till 05/31/2025 and (ii) 1st Amendment to Commercial Office Lease dated 12/06/2016 by and between BMB, Ltd. (Landlord) and CT Consultants Inc. (Tenant) for the Premises “11120 Kenwood Road, Cincinnati, OH 45242” for the period from 01/01/2013 to 05/31/2023. However, the Premises Address are same. Kindly confirm can we create single Property Information and 2 different Lease Information into REAP.
+
+No Issues.","05.27.25: These are garage units used for storage, the documents were include in the first round of documents sent , the folder is named Cincinnati Kenwood, there a are 3 documents.",Open,,,jayesh.oad12@briskstar.com,1/10/2025,1/10/2025,jayesh.oad12@briskstar.com,1/13/2025,jayesh.oad12@briskstar.com,1/13/2025,,1/13/2025,1/16/2025,1/19/2025,January'25,,Property-wise,1/16/2025,,Critical,,,1/16/2025
+Client 1,Project A,70,,0070L,01-110,DE-DOV-LSE-1060 S Governors Avenue,1,"1060 S Governors Avenue, Unit 101, Dover, DE 19904, United States","1. DFF.07.00 2019 WOODBROOK DOVER- DAI Lease agreements
+2. DFF.07.01 2021-2023 WOODBROOK DOVER RNWL LEASE
+3. DFF.07.01 Dover-DE EXECUTED LEASE EXTENSION 01.01.21-12.31.23 Woodbrook Development- Dover
+4. Woodbrook Develpmnt LLC -dover
+5. Verdantas Dover lease renewal 2024 PGS",4,Delivered,Sublease,Partial Abstraction,French,01/03/2025,,,Pages missing,"04.09.2025: Received Lease document.
+
+1. Lease dated 12/08/2017 referred in the Lease Extension Agreement is missing. Kindly provide the missing document to proceed further. 
+2. Per Lease Extension Agreement, Term expired on 12/31/2023 with no further renewal option. In Verdantas lease list Current ED is mentioned as 02/28/2029. Kindly confirm whether the term is still active. If so, provide the renewal document to proceed further.
+
+3. . Lease Extension Agreement dated 02/22/2024 is not executed by Landlord. However, we will proceed with a note.","05.27.25: First part is same as above and a screen shot of the ED was provided (which is Middleton, CT)",Closed,,,jayesh.oad12@briskstar.com,1/2/2025,1/2/2025,jayesh.oad12@briskstar.com,1/10/2025,jayesh.oad12@briskstar.com,1/13/2025,,1/13/2025,1/16/2025,1/19/2025,January'25,,Tenant-wise,1/16/2025,,Non-Critical,,,1/16/2025
