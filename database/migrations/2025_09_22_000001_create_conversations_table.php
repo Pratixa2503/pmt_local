@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+  public function up(): void
+  {
+    Schema::create('conversations', function (Blueprint $t) {
+      $t->uuid('id')->primary();
+      $t->foreignId('project_id')->constrained()->cascadeOnDelete(); // 1:1 per project (you can change later)
+      $t->boolean('is_locked')->default(false);
+      $t->uuid('last_message_id')->nullable();
+      $t->timestamp('last_message_at')->nullable();
+      $t->timestamps();
+      $t->softDeletes();
+
+      $t->unique('project_id');                 // enforce 1 room per project (for now)
+      $t->index('last_message_at');
+    });
+  }
+
+  public function down(): void
+  {
+    Schema::dropIfExists('conversations');
+  }
+};

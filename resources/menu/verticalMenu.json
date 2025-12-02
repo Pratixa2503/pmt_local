@@ -1,0 +1,362 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": ["dashboard"],
+      "permission": ["view dashboard"]
+    },
+
+    {
+      "url": "/pricing-master",
+      "name": "Price Master",
+      "icon": "menu-icon tf-icons ti ti-browser",
+      "slug": [
+        "pricing-master.index",
+        "pricing-master.create",
+        "pricing-master.edit",
+        "pricing-master.destroy",
+        "pricing-master.show"
+      ],
+      "permission": ["view pricing master"]
+    },
+
+    {
+      "url": "/users",
+      "name": "Users",
+      "icon": "menu-icon tf-icons ti ti-user",
+      "slug": [
+        "users.index",
+        "users.create",
+        "users.edit",
+        "users.destroy",
+        "users.import"      
+      ],
+      "permission": ["view user"]
+    },
+
+    {
+      "url": "/customers",
+      "name": "Customers",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": [
+        "companies.index",
+        "companies.create",
+        "companies.edit",
+        "companies.destroy"
+      ],
+      "permission": ["view customer"]
+    },
+    { "url": "/projects", 
+      "name": "Projects", 
+      "route": "projects", 
+      "icon": "menu-icon tf-icons ti ti-clipboard-list", 
+      "slug": [ "projects.index", "projects.create", "projects.edit", "projects.destroy", "projects.fileView", "projects.tasks.track", "subtasks.byMain", "projects.admin.tracking" ], "permission": ["view project"] },
+
+    {
+      "url": "/invoices",
+      "name": "Invoice Management",
+      "icon": "menu-icon tf-icons ti ti-file-dollar",
+      "slug": [
+        "invoices.index",
+        "invoices.create",
+        "invoices.edit",
+        "invoices.destroy",
+        "invoices.show"
+      ],
+      "permission": ["view invoice"]
+    },
+    {
+      "url": "/invoices-list",
+      "name": "Invoice Management",
+      "icon": "menu-icon tf-icons ti ti-file-dollar",
+      "slug": [
+        "invoices-list",
+        "invoices.index",
+        "invoices.create",
+        "invoices.edit",
+        "invoices.destroy",
+        "invoices.show"
+      ],
+      "permission": ["list invoice"]
+    },
+
+    {
+      "url": "/document",
+      "name": "Contract Management",
+      "icon": "menu-icon tf-icons ti ti-file-text",
+      "slug": [
+        "document.index",
+        "document.create",
+        "document.edit",
+        "document.destroy",
+        "document.show"
+      ],
+      "permission": ["view document"]
+    },
+
+    {
+      "url": "/collab",
+      "name": "Collaborations",
+      "icon": "menu-icon tf-icons ti ti-messages",
+      "slug": [
+        "collab.inbox",
+        "conversations.show"
+      ],
+      "permission": ["view collaboration"]
+    },
+
+    {
+      "name": "Roles & Permissions",
+      "icon": "menu-icon tf-icons ti ti-lock",
+      "slug": [
+        "roles.index",
+        "roles.create",
+        "roles.edit",
+        "roles.destroy",
+        "permissions.index",
+        "permissions.create",
+        "permissions.edit",
+        "permissions.destroy"
+      ],
+      "permission": ["view role","view permission"],
+      "submenu": [
+        {
+          "url": "/roles",
+          "name": "Roles",
+          "icon": "menu-icon tf-icons ti ti-shield-lock",
+          "slug": [
+            "roles.index",
+            "roles.create",
+            "roles.edit",
+            "roles.destroy"
+          ],
+          "permission": ["view role"]
+        },
+        {
+          "url": "/permissions",
+          "name": "Permissions",
+          "icon": "menu-icon tf-icons ti ti-key",
+          "slug": [
+            "permissions.index",
+            "permissions.create",
+            "permissions.edit",
+            "permissions.destroy"
+          ],
+          "permission": ["view permission"]
+        }
+      ]
+    },
+
+    {
+      "name": "Masters",
+      "icon": "menu-icon tf-icons ti ti-settings",
+      "slug": "masters",
+      "permission": [
+        "view project",
+        "view project category",
+        "view project type",
+        "view project priorities",
+        "view project status",
+        "view delivery frequencies",
+        "view mode of delivery",
+        "view input output format",
+        "view intake status",
+        "view intake query type",
+        "view intake lease type",
+        "view intake work type",
+        "view intake language",
+        "view invoice format",
+        "view feedback category",
+        "view department",
+        "view industry vertical",
+        "view service offering",
+        "view unit of measurement",
+        "view currency",
+        "view skill master",
+        "view task",
+        "view bank",
+        "view po number"
+      ],
+      "submenu": [
+        {
+          "url": "/project-categories",
+          "name": "Project Categories",
+          "icon": "menu-icon tf-icons ti ti-tags",
+          "slug": ["project-categories.index","project-categories.create","project-categories.edit","project-categories.destroy"],
+          "permission": ["view project category"]
+        },
+        
+        {
+          "url": "/project-priorities",
+          "name": "Project Priority",
+          "icon": "menu-icon tf-icons ti ti-clipboard-list",
+          "slug": ["project-priorities.index","project-priorities.create","project-priorities.edit","project-priorities.destroy"],
+          "permission": ["view project priorities"]
+        },
+        {
+          "url": "/project-statuses",
+          "name": "Project Status",
+          "icon": "menu-icon tf-icons ti ti-clipboard-list",
+          "slug": ["project-statuses.index","project-statuses.create","project-statuses.edit","project-statuses.destroy"],
+          "permission": ["view project status"]
+        },
+        {
+          "url": "/project-delivery-frequencies",
+          "name": "Frequency of Delivery",
+          "icon": "menu-icon tf-icons ti ti-clipboard-list",
+          "slug": ["project-delivery-frequencies.index","project-delivery-frequencies.create","project-delivery-frequencies.edit","project-delivery-frequencies.destroy"],
+          "permission": ["view delivery frequencies"]
+        },
+        {
+          "url": "/mode-of-delivery",
+          "name": "Mode of Delivery",
+          "icon": "menu-icon tf-icons ti ti-clipboard-list",
+          "slug": ["mode-of-delivery.index","mode-of-delivery.create","mode-of-delivery.edit","mode-of-delivery.destroy"],
+          "permission": ["view mode of delivery"]
+        },
+        {
+          "url": "/input-output-formats",
+          "name": "Input/Output Format",
+          "icon": "menu-icon tf-icons ti ti-clipboard-list",
+          "slug": ["input-output-formats.index","input-output-formats.create","input-output-formats.edit","input-output-formats.destroy"],
+          "permission": ["view input output format"]
+        },
+        {
+          "url": "/intake-statuses",
+          "name": "Statuses",
+          "icon": "menu-icon tf-icons ti ti-list-check",
+          "slug": ["intake-statuses.index","intake-statuses.create","intake-statuses.edit","intake-statuses.destroy"],
+          "permission": ["view intake status"]
+        },
+        {
+          "url": "/intake-query-types",
+          "name": "Query Types",
+          "icon": "menu-icon tf-icons ti ti-help-hexagon",
+          "slug": ["intake-query-types.index","intake-query-types.create","intake-query-types.edit","intake-query-types.destroy"],
+          "permission": ["view intake query type"]
+        },
+        {
+          "url": "/intake-lease-types",
+          "name": "Lease Types",
+          "icon": "menu-icon tf-icons ti ti-file-certificate",
+          "slug": ["intake-lease-types.index","intake-lease-types.create","intake-lease-types.edit","intake-lease-types.destroy"],
+          "permission": ["view intake lease type"]
+        },
+        {
+          "url": "/intake-work-types",
+          "name": "Work Types",
+          "icon": "menu-icon tf-icons ti ti-hammer",
+          "slug": ["intake-work-types.index","intake-work-types.create","intake-work-types.edit","intake-work-types.destroy"],
+          "permission": ["view intake work type"]
+        },
+        {
+          "url": "/intake-languages",
+          "name": "Languages",
+          "icon": "menu-icon tf-icons ti ti-language",
+          "slug": ["intake-languages.index","intake-languages.create","intake-languages.edit","intake-languages.destroy"],
+          "permission": ["view intake language"]
+        },
+        {
+          "url": "/invoice-formats",
+          "name": "Invoice Format",
+          "icon": "menu-icon tf-icons ti ti-file-description",
+          "slug": ["invoice-formats.index","invoice-formats.create","invoice-formats.edit","invoice-formats.destroy"],
+          "permission": ["view invoice format"]
+        },
+        {
+          "url": "/query-statuses",
+          "name": "Query Status",
+          "icon": "menu-icon tf-icons ti ti-question-mark",
+          "slug": ["query-statuses.index","query-statuses.create","query-statuses.edit","query-statuses.destroy"],
+          "permission": ["view invoice format"]
+        },
+        {
+          "url": "/feedback-categories",
+          "name": "Feedback Categories",
+          "icon": "menu-icon tf-icons ti ti-message-dots",
+          "slug": ["feedback-categories.index","feedback-categories.create","feedback-categories.edit","feedback-categories.destroy"],
+          "permission": ["view feedback category"]
+        },
+        {
+          "url": "/industry-verticals",
+          "name": "Industry Vertical",
+          "icon": "menu-icon tf-icons ti ti-building-community",
+          "slug": ["industry-verticals.index","industry-verticals.create","industry-verticals.edit","industry-verticals.destroy"],
+          "permission": ["view industry vertical"]
+        },
+        {
+          "url": "/departments",
+          "name": "Department",
+          "icon": "menu-icon tf-icons ti ti-building",
+          "slug": ["departments.index","departments.create","departments.edit","departments.destroy"],
+          "permission": ["view department"]
+        },
+        {
+          "url": "/service-offerings",
+          "name": "Service Offering",
+          "icon": "menu-icon tf-icons ti ti-clipboard-list",
+          "slug": ["service-offerings.index","service-offerings.create","service-offerings.edit","service-offerings.destroy"],
+          "permission": ["view service offering"]
+        },
+        {
+          "url": "/unit-of-measurements",
+          "name": "Unit of Measurement",
+          "icon": "menu-icon tf-icons ti ti-ruler-measure",
+          "slug": ["unit-of-measurements.index","unit-of-measurements.create","unit-of-measurements.edit","unit-of-measurements.destroy"],
+          "permission": ["view unit of measurement"]
+        },
+        {
+          "url": "/currencies",
+          "name": "Currency",
+          "icon": "menu-icon tf-icons ti ti-currency-dollar",
+          "slug": ["currencies.index","currencies.create","currencies.edit","currencies.destroy"],
+          "permission": ["view currency"]
+        },
+        {
+          "url": "/descriptions",
+          "name": "Description",
+          "icon": "menu-icon tf-icons ti ti-align-left",
+          "slug": ["descriptions.index","descriptions.create","descriptions.edit","descriptions.destroy"],
+          "permission": ["view mode of delivery"]
+        },
+        {
+          "url": "/skill-masters",
+          "name": "Skill Masters",
+          "icon": "menu-icon tf-icons ti ti-certificate",
+          "slug": ["skill-masters.index","skill-masters.create","skill-masters.edit","skill-masters.destroy"],
+          "permission": ["view skill master"]
+        },
+        {
+          "url": "/tasks/main",
+          "name": "Main Task",
+          "icon": "menu-icon tf-icons ti ti-checklist",
+          "slug": ["maintasks.index","maintasks.create","maintasks.edit","maintasks.destroy"],
+          "permission": ["view task"]
+        },
+        {
+          "url": "/tasks/sub",
+          "name": "Sub Task",
+          "icon": "menu-icon tf-icons ti ti-list-details",
+          "slug": ["subtasks.index","subtasks.create","subtasks.edit","subtasks.destroy"],
+          "permission": ["view task"]
+        },
+        {
+          "url": "/po-numbers",
+          "name": "PO Number",
+          "icon": "menu-icon tf-icons ti ti-file-invoice",
+          "slug": ["po-numbers.index","po-numbers.create","po-numbers.edit","po-numbers.destroy"],
+          "permission": ["view po"]
+        },
+        {
+          "url": "/banks",
+          "name": "Banks Master",
+          "icon": "menu-icon tf-icons ti ti-building-bank",
+          "slug": ["banks.index","banks.create","banks.edit","banks.destroy"],
+          "permission": ["view bank"]
+        }
+      ]
+    }
+  ]
+}
